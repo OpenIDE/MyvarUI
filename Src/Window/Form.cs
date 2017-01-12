@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using MyvarUI.Drawing;
 using MyvarUI.Events;
 using MyvarUI.SDL;
@@ -40,7 +41,19 @@ namespace MyvarUI.Window
             W = 800;
             H = 600;
 
-            displayPort = new LinuxSdl();
+            bool isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+            bool isLinux = RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
+
+            if(isLinux)
+            {
+                 displayPort = new LinuxSdl();
+            }
+            else if(isWindows)
+            {
+                 displayPort = new WindowsSdl();
+            }
+
+           
             displayPort.Init();
             Graphics = new Graphics(displayPort);
         }

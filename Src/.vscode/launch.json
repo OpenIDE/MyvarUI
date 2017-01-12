@@ -6,7 +6,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceRoot}/bin/Debug/netcoreapp1.1/MyvarUI.dll",
+            "program": "${workspaceRoot}/bin/Debug/netcoreapp1.1/Src.dll",
             "args": [],
             "cwd": "${workspaceRoot}",
             "externalConsole": false,
