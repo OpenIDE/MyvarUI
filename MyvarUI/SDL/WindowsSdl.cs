@@ -42,7 +42,6 @@ namespace MyvarUI.SDL
             {
                 DumpErrors();
                 Console.WriteLine("SDL or TTF Init Failed");
-
             }
         }
 

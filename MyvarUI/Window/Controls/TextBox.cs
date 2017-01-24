@@ -13,14 +13,14 @@ namespace MyvarUI.Window.Controls
             X = 10;
             Y = 10;
 
-            W = 100;
-            H = 25;
+            Width = 100;
+            Height = 25;
         }
 
-        public override void FireKeybordEvents(KeybordEventArgs args)
+        public override void FireKeyboardEvents(KeybordEventArgs args)
         {
 
-            if(args.State == KeybordState.TextInput)
+            if(args.State == KeyboardState.TextInput)
             {
               /*  foreach(var c in args.Input)
                 {
@@ -29,14 +29,14 @@ namespace MyvarUI.Window.Controls
                 Text += args.Input[0];
             }
 
-            base.FireKeybordEvents(args);
+            base.FireKeyboardEvents(args);
         }
 
         public override void Draw(Graphics g)
         {
 
             //draw white box where button should be
-            g.DrawFillRectangle(X, Y, W, H, Color.White);
+            g.DrawFillRectangle(X, Y, Width, Height, Color.White);
 
             if (!string.IsNullOrEmpty(Text))
             {
@@ -46,7 +46,7 @@ namespace MyvarUI.Window.Controls
 
             if (Focused)
             {
-                g.DrawRectangle(X, Y, W - 1, H - 1, Color.Blue);
+                g.DrawRectangle(X, Y, Width - 1, Height - 1, Color.Blue);
             }
         }
     }

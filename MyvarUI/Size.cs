@@ -2,12 +2,12 @@ namespace MyvarUI
 {
     public class Size
     {
-        public int W, H;
+        public int Width, Height;
 
-        public Size(int w, int h)
+        public Size(int width, int height)
         {
-            W = w;
-            H = h;
+            Width = width;
+            Height = height;
         }
     }
 }

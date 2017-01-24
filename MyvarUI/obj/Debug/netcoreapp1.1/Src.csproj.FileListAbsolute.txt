@@ -1,0 +1,16 @@
+D:\GitHub\MyvarUI\Src\bin\Debug\netcoreapp1.1\Src.deps.json
+D:\GitHub\MyvarUI\Src\bin\Debug\netcoreapp1.1\Src.runtimeconfig.json
+D:\GitHub\MyvarUI\Src\bin\Debug\netcoreapp1.1\Src.runtimeconfig.dev.json
+D:\GitHub\MyvarUI\Src\bin\Debug\netcoreapp1.1\Src.dll
+D:\GitHub\MyvarUI\Src\bin\Debug\netcoreapp1.1\Src.pdb
+D:\GitHub\MyvarUI\Src\obj\Debug\netcoreapp1.1\Src.AssemblyInfo.cs
+D:\GitHub\MyvarUI\Src\obj\Debug\netcoreapp1.1\Src.dll
+D:\GitHub\MyvarUI\Src\obj\Debug\netcoreapp1.1\Src.pdb
+D:\GitHub\MyvarUI\Src\bin\Debug\netcoreapp1.1\Libs\Linux\libSDL2-2.0.so.0.4.0
+D:\GitHub\MyvarUI\Src\bin\Debug\netcoreapp1.1\Libs\Linux\libSDL2_ttf-2.0.so.0.14.0
+D:\GitHub\MyvarUI\Src\bin\Debug\netcoreapp1.1\Libs\Mac\SDL2-2.0.5.dmg
+D:\GitHub\MyvarUI\Src\bin\Debug\netcoreapp1.1\Libs\Mac\SDL2_ttf-2.0.14.dmg
+D:\GitHub\MyvarUI\Src\bin\Debug\netcoreapp1.1\Libs\Windows\libfreetype-6.dll
+D:\GitHub\MyvarUI\Src\bin\Debug\netcoreapp1.1\Libs\Windows\SDL2.dll
+D:\GitHub\MyvarUI\Src\bin\Debug\netcoreapp1.1\Libs\Windows\SDL2_ttf.dll
+D:\GitHub\MyvarUI\Src\bin\Debug\netcoreapp1.1\Libs\Windows\zlib1.dll

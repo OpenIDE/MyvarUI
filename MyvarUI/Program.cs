@@ -10,7 +10,7 @@ namespace MyvarUI
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("This is a lib, and is not ment to be executed");
+            Console.WriteLine("NOTE: This is a library and is not supposed to be executed.");
 
             //for debugging
 
@@ -31,7 +31,7 @@ namespace MyvarUI
             b1.MouseHover += MouseHover;
             f.Controls.Add(b1);
             
-            var lbl = new Lable();
+            var lbl = new Label();
             lbl.Y = 75;
             f.Controls.Add(lbl);
 
@@ -41,6 +41,7 @@ namespace MyvarUI
 
             while (true)
             {
+                f.Update();
                 f.Draw();
             }
         }

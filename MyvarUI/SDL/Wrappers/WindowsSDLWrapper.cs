@@ -5,8 +5,8 @@ namespace MyvarUI.SDL.Wrappers
 {
     public unsafe class WindowsSDLWrapper
     {
-        public const string _libsdl = "./Libs/Windows/SDL2.dll";
-        public const string _libsdl_ttf = "./Libs/Windows/SDL2_ttf.dll";
+        public const string _libsdl = "\\Libs\\Windows\\SDL2.dll";
+        public const string _libsdl_ttf = "\\Libs\\Windows\\SDL2_ttf.dll";
 
         [DllImport(_libsdl)]
         public static extern byte* SDL_GetKeyboardState(ref int numkeys);
@@ -101,5 +101,8 @@ namespace MyvarUI.SDL.Wrappers
 
         [DllImport(_libsdl)]
         public static extern void* SDL_CreateWindow(string title, int x, int y, int w, int h, uint flags);
+
+        [DllImport("user32.dll", EntryPoint = "GetSysColor", CallingConvention = CallingConvention.StdCall)]
+        internal static extern uint Win32GetSysColor(GetSysColorIndex index);
     }
 }
