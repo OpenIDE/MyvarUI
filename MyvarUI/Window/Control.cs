@@ -1,7 +1,7 @@
-using MyvarUI.Drawing;
-using MyvarUI.Events;
+using MyVarUI.Drawing;
+using MyVarUI.Events;
 
-namespace MyvarUI.Window
+namespace MyVarUI.Window
 {
     public abstract class Control
     {
@@ -10,10 +10,10 @@ namespace MyvarUI.Window
         public int Width { get; set; }
         public int Height { get; set; }
 
-        public Rectangle Rectangle => new Rectangle(new Point(X, Y), new Point(X + Width, Y + Height));
-
         public bool Focused { get; set; } = false;
-        public bool Visible { get; set; } = true;
+        public bool Hidden { get; set; }
+
+        public Control Parent { get; set; }
 
         public delegate void MouseClickEvent(object sender, MouseEventArgs args);
         public delegate void MouseUpEvent(object sender, MouseEventArgs args);
@@ -27,7 +27,7 @@ namespace MyvarUI.Window
         private MouseState _lastState = MouseState.None; // click even should only fire once
         
         
-        public virtual void FireKeyboardEvents(KeybordEventArgs args)
+        public virtual void FireKeybordEvents(KeybordEventArgs args)
         {
             
         }
@@ -76,6 +76,5 @@ namespace MyvarUI.Window
         }
 
         public abstract void Draw(Graphics g);
-        public virtual void Update() { }
     }
 }

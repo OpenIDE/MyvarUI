@@ -1,7 +1,7 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "/home/kenny/.nuget/packages"
+      "C:\\Users\\Admin\\.nuget\\packages"
     ]
   }
 }

@@ -1,8 +1,7 @@
-using System;
-using MyvarUI.Drawing;
-using MyvarUI.Events;
+using MyVarUI.Drawing;
+using MyVarUI.Events;
 
-namespace MyvarUI.Window.Controls
+namespace MyVarUI.Window.Controls
 {
     public class TextBox : Control
     {
@@ -17,10 +16,10 @@ namespace MyvarUI.Window.Controls
             Height = 25;
         }
 
-        public override void FireKeyboardEvents(KeybordEventArgs args)
+        public override void FireKeybordEvents(KeybordEventArgs args)
         {
 
-            if(args.State == KeyboardState.TextInput)
+            if(args.State == KeybordState.TextInput)
             {
               /*  foreach(var c in args.Input)
                 {
@@ -29,7 +28,7 @@ namespace MyvarUI.Window.Controls
                 Text += args.Input[0];
             }
 
-            base.FireKeyboardEvents(args);
+            base.FireKeybordEvents(args);
         }
 
         public override void Draw(Graphics g)

@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using MyvarUI.Drawing;
-using MyvarUI.Events;
-using MyvarUI.SDL;
+using MyVarUI.Drawing;
+using MyVarUI.Events;
+using MyVarUI.SDL;
 
-namespace MyvarUI.Window
+namespace MyVarUI.Window
 {
     public class Form
     {
@@ -18,20 +18,18 @@ namespace MyvarUI.Window
 
         public bool Hidden { get; set; } = true;
 
-        private string _title;
+        private string _Title;
         public string Title
         {
-            get { return _title; }
+            get { return _Title; }
             set
             {
-                _title = value;
+                _Title = value;
                 displayPort.SetTitle(value);
             }
         }
 
-        public Color BackgroundColor { get; set; } = Color.FromKnownColor(KnownColor.AppWorkspace);
-
-        public List<Control> Controls { get; set; } = new List<Control>();
+        public ControlContainer Controls { get; private set; }
 
         public Form()
         {
@@ -52,10 +50,16 @@ namespace MyvarUI.Window
             {
                  displayPort = new WindowsSdl();
             }
-
            
             displayPort.Init();
             Graphics = new Graphics(displayPort);
+            Controls = new FormControlsContainer(this, displayPort)
+            {
+                X = 0,
+                Y = 0,
+                Width = Width,
+                Height = Height
+            };
         }
 
         public void Show()
@@ -78,13 +82,13 @@ namespace MyvarUI.Window
                         switch (x)
                         {
                             case SDL_EventType.SDL_KEYUP:
-                                kbst.State = KeyboardState.KeyUp;
+                                kbst.State = KeybordState.KeyUp;
                                 break;
                             case SDL_EventType.SDL_TEXTINPUT:
-                                kbst.State = KeyboardState.TextInput;
+                                kbst.State = KeybordState.TextInput;
                                 break;
                             case SDL_EventType.SDL_KEYDOWN:
-                                kbst.State = KeyboardState.KeyDown;
+                                kbst.State = KeybordState.KeyDown;
                                 break;
                         }
 
@@ -92,7 +96,7 @@ namespace MyvarUI.Window
                         {
                             kbst.Input = kState;
 
-                            i.FireKeyboardEvents(kbst);
+                            i.FireKeybordEvents(kbst);
                         }
                     }
                 }
@@ -102,57 +106,12 @@ namespace MyvarUI.Window
         public void Draw()
         {
             //clear displayPort
-            displayPort.Clear(BackgroundColor);
+            displayPort.Clear(Color.Gray);
 
-            Control[] controls = Controls.ToArray();
-            //draw controls
-            foreach (var i in controls)
-            {
-                if (i.Visible) //If visible, draw
-                {
-                    i.Draw(Graphics);
-                }
-            }
+            Controls.Draw(Graphics);
 
             //swap buffer
             displayPort.SwapBuffer();
-        }
-
-        public void Update()
-        {
-            var mLoc = displayPort.GetMouseLocation();
-            var mState = displayPort.GetMouseState();
-
-            Control oldFocus = null;
-            bool focusChanged = false;
-            Control[] controls = Controls.ToArray();
-            foreach (var control in controls)
-            {
-                if (control.Focused)
-                {
-                    if (focusChanged)
-                    {
-                        control.Focused = false;
-                    }
-                    oldFocus = control;
-                }
-
-                if (control.Rectangle.Contains(mLoc))
-                {
-                    if (mState != MouseState.None && !control.Focused)
-                    {
-                        control.Focused = true;
-                        focusChanged = true;
-
-                        if (oldFocus != null)
-                        {
-                            oldFocus.Focused = false;
-                        }
-                    }
-
-                    control.FireMouseEvents(new MouseEventArgs() { MouseState = mState, X = mLoc.X, Y = mLoc.Y });
-                }
-            }
         }
     }
 }

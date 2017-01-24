@@ -4,9 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using MyvarUI.SDL.Wrappers;
+using MyVarUI.SDL.Wrappers;
 
-namespace MyvarUI.SDL
+namespace MyVarUI.SDL
 {
     public unsafe class LinuxSdl : ISDL
     {
@@ -110,7 +110,7 @@ namespace MyvarUI.SDL
 
             var afont = LinuxSDLWrapper.TTF_OpenFont(Path.GetFullPath("./Fonts/SourceCodePro.ttf"), sizept);
 
-            var surface = LinuxSDLWrapper.TTF_RenderText_Solid(afont, text, c.ToStruct());
+            var surface = LinuxSDLWrapper.TTF_RenderText_Solid(afont, text, c);
             SDL_Surface WHRef = (SDL_Surface)Marshal.PtrToStructure(new IntPtr(surface), typeof(SDL_Surface));
             var texture = LinuxSDLWrapper.SDL_CreateTextureFromSurface(renderer, surface);
             var rect = new SDL_Rect()
@@ -129,7 +129,7 @@ namespace MyvarUI.SDL
         {
             var afont = LinuxSDLWrapper.TTF_OpenFont(Path.GetFullPath("./Fonts/SourceCodePro.ttf"), sizept);
 
-            var surface = LinuxSDLWrapper.TTF_RenderText_Solid(afont, text, Color.White.ToStruct());
+            var surface = LinuxSDLWrapper.TTF_RenderText_Solid(afont, text, Color.White);
             SDL_Surface WHRef = (SDL_Surface)Marshal.PtrToStructure(new IntPtr(surface), typeof(SDL_Surface));
 
 

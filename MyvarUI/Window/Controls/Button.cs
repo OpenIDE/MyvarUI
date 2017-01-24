@@ -1,8 +1,6 @@
-using System;
-using MyvarUI.Drawing;
-using MyvarUI.Events;
+using MyVarUI.Drawing;
 
-namespace MyvarUI.Window.Controls
+namespace MyVarUI.Window.Controls
 {
     public class Button : Control
     {
@@ -28,8 +26,8 @@ namespace MyvarUI.Window.Controls
             //calulate text size offset
             var sTxT = g.CalulateTextSize(Text, "", 15);
             
-            g.DrawText(Text, X + (Width / 2 - (sTxT.Width / 2)),
-             Y + (Height / 2 - (sTxT.Height / 2)), "", FontSize,
+            g.DrawText(Text, X + (Width / 2 - (sTxT.W / 2)),
+             Y + (Height / 2 - (sTxT.H / 2)), "", FontSize,
               Color.Black);
 
             if (Focused)

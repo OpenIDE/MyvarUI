@@ -1,16 +1,15 @@
 ﻿using System;
-using MyvarUI.Events;
-using MyvarUI.SDL;
-using MyvarUI.Window;
-using MyvarUI.Window.Controls;
+using MyVarUI.Events;
+using MyVarUI.Window;
+using MyVarUI.Window.Controls;
 
-namespace MyvarUI
+namespace MyVarUI
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("NOTE: This is a library and is not supposed to be executed.");
+            Console.WriteLine("This is a lib, and is not ment to be executed");
 
             //for debugging
 
@@ -31,7 +30,7 @@ namespace MyvarUI
             b1.MouseHover += MouseHover;
             f.Controls.Add(b1);
             
-            var lbl = new Label();
+            var lbl = new Lable();
             lbl.Y = 75;
             f.Controls.Add(lbl);
 
@@ -41,7 +40,6 @@ namespace MyvarUI
 
             while (true)
             {
-                f.Update();
                 f.Draw();
             }
         }

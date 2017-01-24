@@ -1,8 +1,8 @@
-namespace MyvarUI.Events
+namespace MyVarUI.Events
 {
     public class KeybordEventArgs : Event
     {
-        public KeyboardState State { get; set; }
+        public KeybordState State { get; set; }
         public char[] Input { get; set; }
     }
 }
