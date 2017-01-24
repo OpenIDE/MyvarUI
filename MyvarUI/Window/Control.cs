@@ -1,7 +1,7 @@
-using MyVarUI.Drawing;
-using MyVarUI.Events;
+using MyvarUI.Drawing;
+using MyvarUI.Events;
 
-namespace MyVarUI.Window
+namespace MyvarUI.Window
 {
     public abstract class Control
     {

@@ -1,6 +1,6 @@
-using MyVarUI.SDL;
+using MyvarUI.SDL;
 
-namespace MyVarUI.Drawing
+namespace MyvarUI.Drawing
 {
     public class Graphics
     {

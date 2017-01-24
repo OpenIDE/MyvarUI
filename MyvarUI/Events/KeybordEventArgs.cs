@@ -1,4 +1,4 @@
-namespace MyVarUI.Events
+namespace MyvarUI.Events
 {
     public class KeybordEventArgs : Event
     {

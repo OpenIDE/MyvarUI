@@ -1,4 +1,4 @@
-namespace MyVarUI
+namespace MyvarUI
 {
     public enum KeybordState
     {

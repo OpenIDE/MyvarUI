@@ -1,6 +1,6 @@
 using System;
 
-namespace MyVarUI
+namespace MyvarUI
 {
     // Authors:
     // 	Dennis Hayes (dennish@raytek.com)

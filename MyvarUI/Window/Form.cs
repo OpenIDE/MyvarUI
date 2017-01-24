@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using MyVarUI.Drawing;
-using MyVarUI.Events;
-using MyVarUI.SDL;
+using MyvarUI.Drawing;
+using MyvarUI.Events;
+using MyvarUI.SDL;
 
-namespace MyVarUI.Window
+namespace MyvarUI.Window
 {
     public class Form
     {
@@ -15,6 +15,8 @@ namespace MyVarUI.Window
         public int Y { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
+
+        public Color BackgroundColor { get; set; } = Color.FromKnownColor(KnownColor.Control);
 
         public bool Hidden { get; set; } = true;
 
@@ -106,7 +108,7 @@ namespace MyVarUI.Window
         public void Draw()
         {
             //clear displayPort
-            displayPort.Clear(Color.Gray);
+            displayPort.Clear(BackgroundColor);
 
             Controls.Draw(Graphics);
 

@@ -1,4 +1,4 @@
-﻿namespace MyVarUI.Window
+﻿namespace MyvarUI.Window
 {
     public interface IContainerControl
     {

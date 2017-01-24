@@ -1,6 +1,6 @@
-using MyVarUI.Drawing;
+using MyvarUI.Drawing;
 
-namespace MyVarUI.Window.Controls
+namespace MyvarUI.Window.Controls
 {
     public class Button : Control
     {

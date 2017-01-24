@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using MyVarUI.SDL.Wrappers;
+using MyvarUI.SDL.Wrappers;
 
-namespace MyVarUI
+namespace MyvarUI
 {
     internal static class KnownColors
     {

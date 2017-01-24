@@ -1,9 +1,9 @@
 ﻿using System;
-using MyVarUI.Events;
-using MyVarUI.Window;
-using MyVarUI.Window.Controls;
+using MyvarUI.Events;
+using MyvarUI.Window;
+using MyvarUI.Window.Controls;
 
-namespace MyVarUI
+namespace MyvarUI
 {
     public class Program
     {

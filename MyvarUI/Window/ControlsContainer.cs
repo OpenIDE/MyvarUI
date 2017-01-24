@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using MyVarUI.Drawing;
+using MyvarUI.Drawing;
 
-namespace MyVarUI.Window
+namespace MyvarUI.Window
 {
     public class ControlContainer : Control, IContainerControl, IEnumerable<Control>
     {

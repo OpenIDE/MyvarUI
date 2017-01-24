@@ -1,8 +1,8 @@
-﻿using MyVarUI.Drawing;
-using MyVarUI.Events;
-using MyVarUI.SDL;
+﻿using MyvarUI.Drawing;
+using MyvarUI.Events;
+using MyvarUI.SDL;
 
-namespace MyVarUI.Window
+namespace MyvarUI.Window
 {
     internal class FormControlsContainer : ControlContainer
     {

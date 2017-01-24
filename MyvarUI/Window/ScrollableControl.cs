@@ -1,7 +1,7 @@
 ﻿using System;
-using MyVarUI.Drawing;
+using MyvarUI.Drawing;
 
-namespace MyVarUI.Window
+namespace MyvarUI.Window
 {
     public class ScrollableControl : Control
     {

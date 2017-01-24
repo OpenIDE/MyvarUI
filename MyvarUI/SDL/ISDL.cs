@@ -1,6 +1,6 @@
 using System;
 
-namespace MyVarUI.SDL
+namespace MyvarUI.SDL
 {
     public interface ISDL
     {
