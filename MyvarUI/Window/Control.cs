@@ -15,6 +15,10 @@ namespace MyvarUI.Window
 
         public Control Parent { get; set; }
 
+        public Color BackgroundColor { get; set; } = Color.FromKnownColor(KnownColor.Control);
+        public Color ForegroundColor { get; set; } = Color.FromKnownColor(KnownColor.ControlText);
+
+
         public delegate void MouseClickEvent(object sender, MouseEventArgs args);
         public delegate void MouseUpEvent(object sender, MouseEventArgs args);
         public delegate void MouseDownEvent(object sender, MouseEventArgs args);

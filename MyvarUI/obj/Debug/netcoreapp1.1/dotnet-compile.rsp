@@ -114,5 +114,7 @@
 /home/myvar/Desktop/GitHub/MyvarUI/MyvarUI/Window/Control.cs
 /home/myvar/Desktop/GitHub/MyvarUI/MyvarUI/Window/Controls/Lable.cs
 /home/myvar/Desktop/GitHub/MyvarUI/MyvarUI/Window/Controls/PictureBox.cs
+/home/myvar/Desktop/GitHub/MyvarUI/MyvarUI/Window/Controls/ContextMenu.cs
+/home/myvar/Desktop/GitHub/MyvarUI/MyvarUI/Window/Controls/ContextMenuButton.cs
 /home/myvar/Desktop/GitHub/MyvarUI/MyvarUI/Window/Controls/TextBox.cs
 /home/myvar/Desktop/GitHub/MyvarUI/MyvarUI/Window/Controls/Button.cs

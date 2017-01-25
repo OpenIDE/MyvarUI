@@ -15,7 +15,7 @@ namespace MyvarUI.Window.Controls
         }
         public override void Draw(Graphics g)
         {
-            g.DrawText(Text, X, Y, "", FontSize, FontColor);
+            g.DrawText(Text, 0, 0, "", FontSize, FontColor);
         }
     }
 }

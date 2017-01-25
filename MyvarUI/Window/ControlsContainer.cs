@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using MyvarUI.Drawing;
+using MyvarUI.Events;
 
 namespace MyvarUI.Window
 {
@@ -43,12 +44,65 @@ namespace MyvarUI.Window
 
         public void Add(Control control)
         {
+            control.Parent = this;
             Controls.Add(control);
         }
 
         public bool Remove(Control control)
         {
             return Controls.Remove(control);
+        }
+
+        public virtual void Update(Point mLoc, MouseState mState, Point Offset)
+        {
+
+            bool mouseWasOverControl = false;
+            int count = Controls.Count;
+
+            for (int c = 0; c < count; c++)
+            {
+                if (c > Controls.Count) break; //Prevent index out of range exceptions if the controls change.
+                var i = Controls[c];
+                if(i is ControlContainer)
+                {
+                    var x = i as ControlContainer;
+                    x.Update(mLoc, mState, Offset);
+                }
+
+                //calualte Keybord events
+
+                //calulate mouse events
+                if (mLoc.X >= i.X && mLoc.X <= i.X + i.Width)
+                {
+                    if (mLoc.Y >= i.Y && mLoc.Y <= i.Y + i.Height)
+                    {
+                        mouseWasOverControl = true;
+                        if (mState != MouseState.None)
+                        {
+                            foreach (var ctrl in Controls)
+                            {
+                                ctrl.Focused = false;
+                            }
+
+                            i.Focused = true;
+                        }
+
+                        i.FireMouseEvents(new MouseEventArgs() { MouseState = mState, X = mLoc.X, Y = mLoc.Y });
+                    }
+
+                }
+            }
+
+            if (!mouseWasOverControl)
+            {
+                foreach (var ctrl in Controls)
+                {
+                    if (mState != MouseState.None)
+                    {
+                        ctrl.Focused = false;
+                    }
+                }
+            }
         }
 
         public override void Draw(Graphics g)
@@ -59,6 +113,8 @@ namespace MyvarUI.Window
             {
                 if (c > Controls.Count) break; //Prevent index out of range exceptions if the controls change.
                 var i = Controls[c];
+
+                g.SetOffset(i.X, i.Y);
 
                 i.Draw(g);
             }

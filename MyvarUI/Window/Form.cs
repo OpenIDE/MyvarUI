@@ -35,6 +35,8 @@ namespace MyvarUI.Window
 
         public Form()
         {
+            Font.Init();
+            
             X = 100;
             Y = 100;
 
@@ -54,7 +56,7 @@ namespace MyvarUI.Window
             }
            
             displayPort.Init();
-            Graphics = new Graphics(displayPort);
+            Graphics = new Graphics(displayPort, 0, 0);
             Controls = new FormControlsContainer(this, displayPort)
             {
                 X = 0,

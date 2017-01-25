@@ -5,10 +5,25 @@ namespace MyvarUI.Drawing
     public class Graphics
     {
         private ISDL displayPort;
+        private int _xOffset;
+        private int _yOfsset;
 
-        public Graphics(ISDL displayport)
+        public Graphics(ISDL displayport, int xOffset, int yOffset)
         {
             displayPort = displayport;
+            _xOffset = xOffset;
+            _yOfsset = yOffset;
+        }
+
+        public void SetOffset(int x, int y)
+        {
+            _xOffset = x;
+            _yOfsset = y;
+        }
+
+        public Point GetOffset()
+        {
+            return new Point(_xOffset, _yOfsset);
         }
 
         public void Clear(Color c)
@@ -18,12 +33,12 @@ namespace MyvarUI.Drawing
 
         public void SetPixel(int x, int y, Color c)
         {
-            displayPort.SetPixel(x, y, c);
+            displayPort.SetPixel(x + _xOffset, y + _yOfsset, c);
         }
 
         public void DrawText(string text, int x, int y, string font, int sizept, Color c)
         {
-            displayPort.DrawText(text, x, y, "", sizept, c);
+            displayPort.DrawText(text, x + _xOffset, y + _yOfsset, "", sizept, c);
         }
 
         public Size CalulateTextSize(string text, string font, int sizept)

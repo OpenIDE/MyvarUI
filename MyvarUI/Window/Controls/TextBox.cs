@@ -35,17 +35,17 @@ namespace MyvarUI.Window.Controls
         {
 
             //draw white box where button should be
-            g.DrawFillRectangle(X, Y, Width, Height, Color.White);
+            g.DrawFillRectangle(0, 0, Width, Height, Color.White);
 
             if (!string.IsNullOrEmpty(Text))
             {
                 //draw text
-                g.DrawText(Text, X, Y, "", 15, Color.Black);
+                g.DrawText(Text, 0, 0, "", 15, Color.Black);
             }
 
             if (Focused)
             {
-                g.DrawRectangle(X, Y, Width - 1, Height - 1, Color.Blue);
+                g.DrawRectangle(0, 0, Width - 1, Height - 1, Color.Blue);
             }
         }
     }
