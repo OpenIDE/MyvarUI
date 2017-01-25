@@ -36,12 +36,12 @@ namespace MyvarUI.Drawing
             displayPort.SetPixel(x + _xOffset, y + _yOfsset, c);
         }
 
-        public void DrawText(string text, int x, int y, string font, int sizept, Color c)
+        public void DrawText(string text, int x, int y, Font font, int sizept, Color c)
         {
-            displayPort.DrawText(text, x + _xOffset, y + _yOfsset, "", sizept, c);
+            displayPort.DrawText(text, x + _xOffset, y + _yOfsset, font, sizept, c);
         }
 
-        public Size CalulateTextSize(string text, string font, int sizept)
+        public Size CalulateTextSize(string text, Font font, int sizept)
         {
             return displayPort.CalulateTextSize(text, font, sizept);
         }

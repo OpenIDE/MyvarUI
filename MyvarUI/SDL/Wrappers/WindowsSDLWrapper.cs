@@ -17,6 +17,8 @@ namespace MyvarUI.SDL.Wrappers
 
         [DllImport(_libsdl)]
         public static extern uint SDL_GetMouseState(ref int x, ref int y);
+        [DllImport(_libsdl_ttf)]
+        public static extern void* TTF_RenderText_Blended(void* font, [MarshalAs(UnmanagedType.LPStr)] string text, ColorStruct fg);
 
 
         [DllImport(_libsdl_ttf)]
@@ -25,6 +27,8 @@ namespace MyvarUI.SDL.Wrappers
         [DllImport(_libsdl)]
         public static extern int SDL_BlitSurface(void* src, void* srcrect, void* dst, void* dstrect);
 
+        [DllImport(_libsdl_ttf)]
+        public static extern string TTF_FontFaceFamilyName(void* font);
 
         [DllImport(_libsdl)]
         public static extern void* SDL_RWFromFile([MarshalAs(UnmanagedType.LPStr)] string file, [MarshalAs(UnmanagedType.LPStr)] string mode);

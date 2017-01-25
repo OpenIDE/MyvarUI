@@ -35,8 +35,6 @@ namespace MyvarUI.Window
 
         public Form()
         {
-            Font.Init();
-            
             X = 100;
             Y = 100;
 
@@ -46,16 +44,17 @@ namespace MyvarUI.Window
             bool isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
             bool isLinux = RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
 
-            if(isLinux)
+            if (isLinux)
             {
-                 displayPort = new LinuxSdl();
+                displayPort = new LinuxSdl();
             }
-            else if(isWindows)
+            else if (isWindows)
             {
-                 displayPort = new WindowsSdl();
+                displayPort = new WindowsSdl();
             }
-           
+
             displayPort.Init();
+            Font.Init(displayPort);
             Graphics = new Graphics(displayPort, 0, 0);
             Controls = new FormControlsContainer(this, displayPort)
             {

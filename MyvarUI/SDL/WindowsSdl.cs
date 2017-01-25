@@ -106,12 +106,9 @@ namespace MyvarUI.SDL
             WindowsSDLWrapper.SDL_SetWindowTitle(window, title);
         }
 
-        public void DrawText(string text, int x, int y, string font, int sizept, Color c)
+        public void DrawText(string text, int x, int y, Font font, int sizept, Color c)
         {
-
-            var afont = WindowsSDLWrapper.TTF_OpenFont(Path.GetFullPath("./Fonts/SourceCodePro.ttf"), sizept);
-
-            var surface = WindowsSDLWrapper.TTF_RenderText_Solid(afont, text, c);
+            var surface = WindowsSDLWrapper.TTF_RenderText_Blended(font.TTF_Font, text, c);
             SDL_Surface WHRef = (SDL_Surface)Marshal.PtrToStructure(new IntPtr(surface), typeof(SDL_Surface));
             var texture = WindowsSDLWrapper.SDL_CreateTextureFromSurface(renderer, surface);
             var rect = new SDL_Rect()
@@ -126,11 +123,16 @@ namespace MyvarUI.SDL
 
         }
 
-        public Size CalulateTextSize(string text, string font, int sizept)
+        public void InitFont(string File,ref Dictionary<string, Font> index)
         {
-            var afont = WindowsSDLWrapper.TTF_OpenFont(Path.GetFullPath("./Fonts/SourceCodePro.ttf"), sizept);
+            var afont = WindowsSDLWrapper.TTF_OpenFont(File, 12);
+            var nm = WindowsSDLWrapper.TTF_FontFaceFamilyName(afont);
+            index.Add(nm, new Font(nm, afont));
+        }
 
-            var surface = WindowsSDLWrapper.TTF_RenderText_Solid(afont, text, Color.White);
+        public Size CalulateTextSize(string text, Font font, int sizept)
+        {
+            var surface = WindowsSDLWrapper.TTF_RenderText_Solid(font.TTF_Font, text, Color.White);
             SDL_Surface WHRef = (SDL_Surface)Marshal.PtrToStructure(new IntPtr(surface), typeof(SDL_Surface));
 
 

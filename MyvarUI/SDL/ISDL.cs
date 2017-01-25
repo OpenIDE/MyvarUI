@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace MyvarUI.SDL
 {
@@ -15,7 +16,7 @@ namespace MyvarUI.SDL
 
         void SetTitle(string title);
 
-        void DrawText(string text, int x, int y, string font, int sizept, Color c);
+        void DrawText(string text, int x, int y, Font font, int sizept, Color c);
 
         Point GetMouseLocation();
 
@@ -23,7 +24,10 @@ namespace MyvarUI.SDL
 
         char[] KeyPresses();
 
-        Size CalulateTextSize(string text, string font, int sizept);
+        Size CalulateTextSize(string text, Font font, int sizept);
+
+        void InitFont(string File,ref Dictionary<string, Font> index);
+        
 
         void SwapBuffer();
     }

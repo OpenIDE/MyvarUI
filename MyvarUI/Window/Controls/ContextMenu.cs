@@ -23,7 +23,8 @@ namespace MyvarUI.Window.Controls
                 var i = Controls[c];
 
                 g.SetOffset(xOffset, 3);
-
+                i.X = xOffset;
+                i.Y = 3;
                 xOffset += i.Width + 2;
 
                 i.Draw(g);

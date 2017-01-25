@@ -60,10 +60,16 @@ namespace MyvarUI.SDL.Wrappers
         public static extern void* TTF_RenderText_Solid(void* font, [MarshalAs(UnmanagedType.LPStr)] string text, ColorStruct fg);
 
         [DllImport(_libsdl_ttf)]
+        public static extern void* TTF_RenderText_Blended(void* font, [MarshalAs(UnmanagedType.LPStr)] string text, ColorStruct fg);
+
+        [DllImport(_libsdl_ttf)]
         public static extern void* TTF_OpenFont(string filename, int ptsize);
 
         [DllImport(_libsdl)]
         public static extern int SDL_Init(UInt32 flags);
+
+        [DllImport(_libsdl_ttf)]
+        public static extern  string TTF_FontFaceFamilyName(void* font);
 
         [DllImport(_libsdl)]
         public static extern int SDL_CreateWindowAndRenderer(int width, int height, uint window_flags, void** window, void** renderer);

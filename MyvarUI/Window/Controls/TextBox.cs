@@ -7,6 +7,8 @@ namespace MyvarUI.Window.Controls
     {
         public string Text { get; set; } = "";
 
+        public Font Font { get; set; } = Font.FontFromName("Source Code Pro");
+
         public TextBox()
         {
             X = 10;
@@ -40,7 +42,7 @@ namespace MyvarUI.Window.Controls
             if (!string.IsNullOrEmpty(Text))
             {
                 //draw text
-                g.DrawText(Text, 0, 0, "", 15, Color.Black);
+                g.DrawText(Text, 0, 0, Font, 15, Color.Black);
             }
 
             if (Focused)

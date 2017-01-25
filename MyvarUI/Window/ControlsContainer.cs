@@ -88,6 +88,7 @@ namespace MyvarUI.Window
                         }
 
                         i.FireMouseEvents(new MouseEventArgs() { MouseState = mState, X = mLoc.X, Y = mLoc.Y });
+                        
                     }
 
                 }

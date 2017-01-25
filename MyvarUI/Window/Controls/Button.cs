@@ -7,6 +7,8 @@ namespace MyvarUI.Window.Controls
         public string Text { get; set; } = "Button";
         public int FontSize { get; set; } = 15;
 
+        public Font Font { get; set; } = Font.FontFromName("Source Code Pro");
+
         public Button()
         {
             X = 10;
@@ -24,11 +26,11 @@ namespace MyvarUI.Window.Controls
             //draw text
 
             //calulate text size offset
-            var sTxT = g.CalulateTextSize(Text, "", 15);
+            var sTxT = g.CalulateTextSize(Text, Font, 15);
             
             
             g.DrawText(Text, (Width / 2 - (sTxT.W / 2)),
-            (Height / 2 - (sTxT.H / 2)), "", FontSize,
+            (Height / 2 - (sTxT.H / 2)), Font, FontSize,
               Color.Black);
 
             if (Focused)

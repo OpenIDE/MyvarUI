@@ -9,7 +9,12 @@ namespace MyvarUI.Window.Controls
         public string Text { get; set; } = "Button";
         public int FontSize { get; set; } = 15;
 
-        public bool ShowDropDown { get; set; }
+        public Font Font { get; set; } = Font.FontFromName("Source Code Pro");
+
+        public Color HighlightColor { get; set; } = Color.Gray;
+
+        private bool ShowDropDown { get; set; }
+        private bool Hover { get; set; }
 
         public ContextMenuButton()
         {
@@ -20,11 +25,17 @@ namespace MyvarUI.Window.Controls
             Height = 25;
 
             this.MouseClick += InternalClick;
+            this.MouseHover += InternalMouseHover;
         }
 
         private void InternalClick(object sender, MouseEventArgs args)
         {
             ShowDropDown = !ShowDropDown;
+        }
+
+         private void InternalMouseHover(object sender, MouseEventArgs args)
+        {
+            this.Hover = true;
         }
 
         public override void Draw(Graphics g)
@@ -42,15 +53,17 @@ namespace MyvarUI.Window.Controls
             }
 
             //draw white box where button should be
-            g.DrawFillRectangle(0, 0, Width, Height, BackgroundColor);
+            g.DrawFillRectangle(0, 0, Width, Height, Hover ? HighlightColor : BackgroundColor);
+
+            Hover = false;
 
             //calulate text size offset
-            var sTxT = g.CalulateTextSize(Text, "", 15);
+            var sTxT = g.CalulateTextSize(Text, Font, 15);
 
             Width = sTxT.W + 10;
 
             g.DrawText(Text, 0 + (Width / 2 - (sTxT.W / 2)),
-             0 + (Height / 2 - (sTxT.H / 2)), "", FontSize,
+             0 + (Height / 2 - (sTxT.H / 2)), Font, FontSize,
               ForegroundColor);
 
             if (Focused)
@@ -74,6 +87,7 @@ namespace MyvarUI.Window.Controls
                     var i = Controls[c];
                     i.X = X;
                     i.Y = yOffset;
+                    i.Width = Width;
                     g.SetOffset(X, yOffset);
 
                     yOffset += i.Height;
