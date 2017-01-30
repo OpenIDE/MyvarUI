@@ -7,6 +7,6 @@ namespace MyvarUI
         Middle = 2,
         Right = 3,
         Wheelup = 4,
-        wheeldown = 5
+        Wheeldown = 5
     }
 }

@@ -4,13 +4,13 @@ namespace MyvarUI.Drawing
 {
     public class Graphics
     {
-        private ISDL displayPort;
+        private ISDL _displayPort;
         private int _xOffset;
         private int _yOfsset;
 
         public Graphics(ISDL displayport, int xOffset, int yOffset)
         {
-            displayPort = displayport;
+            _displayPort = displayport;
             _xOffset = xOffset;
             _yOfsset = yOffset;
         }
@@ -28,22 +28,22 @@ namespace MyvarUI.Drawing
 
         public void Clear(Color c)
         {
-            displayPort.Clear(c);
+            _displayPort.Clear(c);
         }
 
         public void SetPixel(int x, int y, Color c)
         {
-            displayPort.SetPixel(x + _xOffset, y + _yOfsset, c);
+            _displayPort.SetPixel(x + _xOffset, y + _yOfsset, c);
         }
 
         public void DrawText(string text, int x, int y, Font font, int sizept, Color c)
         {
-            displayPort.DrawText(text, x + _xOffset, y + _yOfsset, font, sizept, c);
+            _displayPort.DrawText(text, x + _xOffset, y + _yOfsset, font, sizept, c);
         }
 
         public Size CalulateTextSize(string text, Font font, int sizept)
         {
-            return displayPort.CalulateTextSize(text, font, sizept);
+            return _displayPort.CalulateTextSize(text, font, sizept);
         }
 
 
@@ -52,16 +52,20 @@ namespace MyvarUI.Drawing
             int w = x2 - x;
             int h = y2 - y;
             int dx1 = 0, dy1 = 0, dx2 = 0, dy2 = 0;
-            if (w < 0) dx1 = -1; else if (w > 0) dx1 = 1;
-            if (h < 0) dy1 = -1; else if (h > 0) dy1 = 1;
-            if (w < 0) dx2 = -1; else if (w > 0) dx2 = 1;
+            if (w < 0) dx1 = -1;
+            else if (w > 0) dx1 = 1;
+            if (h < 0) dy1 = -1;
+            else if (h > 0) dy1 = 1;
+            if (w < 0) dx2 = -1;
+            else if (w > 0) dx2 = 1;
             int longest = w;
             int shortest = h;
             if (!(longest > shortest))
             {
                 longest = h;
                 shortest = w;
-                if (h < 0) dy2 = -1; else if (h > 0) dy2 = 1;
+                if (h < 0) dy2 = -1;
+                else if (h > 0) dy2 = 1;
                 dx2 = 0;
             }
             int numerator = longest >> 1;
@@ -101,6 +105,5 @@ namespace MyvarUI.Drawing
                 }
             }
         }
-
     }
 }

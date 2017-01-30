@@ -5,7 +5,7 @@ namespace MyvarUI.SDL
 {
     public interface ISDL
     {
-        Action<SDL_EventType> HookEvents { get; set; }
+        Action<SdlEventType> HookEvents { get; set; }
 
         void Init();
         void CreateWindow(string name, int x, int y, int width, int height);
@@ -26,9 +26,13 @@ namespace MyvarUI.SDL
 
         Size CalulateTextSize(string text, Font font, int sizept);
 
-        void InitFont(string File,ref Dictionary<string, Font> index);
-        
+        void InitFont(string file, ref Dictionary<string, Font> index);
+
 
         void SwapBuffer();
+
+        IntPtr Malloc(IntPtr size);
+        IntPtr Realloc(IntPtr mem, IntPtr size);
+        void Free(IntPtr memblock);
     }
 }

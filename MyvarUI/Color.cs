@@ -12,7 +12,7 @@ namespace MyvarUI
     public struct Color
     {
         // Private transparency (A) and R,G,B fields.
-        private long value;
+        private long _value;
 
         // The specs also indicate that all three of these properties are true
         // if created with FromKnownColor or FromNamedColor, false otherwise (FromARGB).
@@ -21,13 +21,13 @@ namespace MyvarUI
         {
             Empty = 0,
             Known = 1,
-            ARGB = 2,
+            Argb = 2,
             Named = 4,
             System = 8
         }
 
-        internal short state;
-        internal short knownColor;
+        internal short State;
+        internal short KnownColor;
         // #if ONLY_1_1
         // Mono bug #324144 is holding this change
         // MS 1.1 requires this member to be present for serialization (not so in 2.0)
@@ -50,7 +50,7 @@ namespace MyvarUI
                 {
                     // Can happen with stuff deserialized from MS
                     if (IsNamedColor)
-                        name = KnownColors.GetName(knownColor);
+                        name = KnownColors.GetName(KnownColor);
                     else
                         name = string.Format("{0:x}", ToArgb());
                 }
@@ -61,26 +61,17 @@ namespace MyvarUI
 
         public bool IsKnownColor
         {
-            get
-            {
-                return (state & ((short)ColorType.Known)) != 0;
-            }
+            get { return (State & ((short) ColorType.Known)) != 0; }
         }
 
         public bool IsSystemColor
         {
-            get
-            {
-                return (state & ((short)ColorType.System)) != 0;
-            }
+            get { return (State & ((short) ColorType.System)) != 0; }
         }
 
         public bool IsNamedColor
         {
-            get
-            {
-                return (state & (short)(ColorType.Known | ColorType.Named)) != 0;
-            }
+            get { return (State & (short) (ColorType.Known | ColorType.Named)) != 0; }
         }
 
         internal long Value
@@ -89,13 +80,13 @@ namespace MyvarUI
             {
                 // Optimization for known colors that were deserialized
                 // from an MS serialized stream.  
-                if (value == 0 && IsKnownColor)
+                if (_value == 0 && IsKnownColor)
                 {
-                    value = KnownColors.FromKnownColor((KnownColor)knownColor).ToArgb() & 0xFFFFFFFF;
+                    _value = KnownColors.FromKnownColor((KnownColor) KnownColor).ToArgb() & 0xFFFFFFFF;
                 }
-                return value;
+                return _value;
             }
-            set { this.value = value; }
+            set { this._value = value; }
         }
 
         public static Color FromArgb(int red, int green, int blue)
@@ -105,16 +96,16 @@ namespace MyvarUI
 
         public static Color FromArgb(int alpha, int red, int green, int blue)
         {
-            CheckARGBValues(alpha, red, green, blue);
+            CheckArgbValues(alpha, red, green, blue);
             Color color = new Color();
-            color.state = (short)ColorType.ARGB;
-            color.Value = (int)((uint)alpha << 24) + (red << 16) + (green << 8) + blue;
+            color.State = (short) ColorType.Argb;
+            color.Value = (int) ((uint) alpha << 24) + (red << 16) + (green << 8) + blue;
             return color;
         }
 
         public int ToArgb()
         {
-            return (int)Value;
+            return (int) Value;
         }
 
         public static Color FromArgb(int alpha, Color baseColor)
@@ -136,7 +127,7 @@ namespace MyvarUI
         {
             try
             {
-                KnownColor kc = (KnownColor)Enum.Parse(typeof(KnownColor), name, true);
+                KnownColor kc = (KnownColor) Enum.Parse(typeof(KnownColor), name, true);
                 return KnownColors.FromKnownColor(kc);
             }
             catch
@@ -144,7 +135,7 @@ namespace MyvarUI
                 // This is what it returns! 	 
                 Color d = FromArgb(0, 0, 0, 0);
                 d.name = name;
-                d.state |= (short)ColorType.Named;
+                d.State |= (short) ColorType.Named;
                 return d;
             }
         }
@@ -161,7 +152,6 @@ namespace MyvarUI
         /// <remarks>
         ///	An uninitialized Color Structure
         /// </remarks>
-
         public static readonly Color Empty;
 
         /// <summary>
@@ -173,7 +163,6 @@ namespace MyvarUI
         ///	based on the equivalence of the A,R,G,B properties 
         ///	of the two Colors.
         /// </remarks>
-
         public static bool operator ==(Color left, Color right)
         {
             if (left.Value != right.Value)
@@ -203,7 +192,6 @@ namespace MyvarUI
         ///	based on the equivalence of the A,R,G,B properties 
         ///	of the two colors.
         /// </remarks>
-
         public static bool operator !=(Color left, Color right)
         {
             return !(left == right);
@@ -214,13 +202,13 @@ namespace MyvarUI
             byte minval = Math.Min(R, Math.Min(G, B));
             byte maxval = Math.Max(R, Math.Max(G, B));
 
-            return (float)(maxval + minval) / 510;
+            return (float) (maxval + minval) / 510;
         }
 
         public float GetSaturation()
         {
-            byte minval = (byte)Math.Min(R, Math.Min(G, B));
-            byte maxval = (byte)Math.Max(R, Math.Max(G, B));
+            byte minval = (byte) Math.Min(R, Math.Min(G, B));
+            byte maxval = (byte) Math.Max(R, Math.Max(G, B));
 
             if (maxval == minval)
                 return 0.0f;
@@ -229,7 +217,7 @@ namespace MyvarUI
             if (sum > 255)
                 sum = 510 - sum;
 
-            return (float)(maxval - minval) / sum;
+            return (float) (maxval - minval) / sum;
         }
 
         public float GetHue()
@@ -237,13 +225,13 @@ namespace MyvarUI
             int r = R;
             int g = G;
             int b = B;
-            byte minval = (byte)Math.Min(r, Math.Min(g, b));
-            byte maxval = (byte)Math.Max(r, Math.Max(g, b));
+            byte minval = (byte) Math.Min(r, Math.Min(g, b));
+            byte maxval = (byte) Math.Max(r, Math.Max(g, b));
 
             if (maxval == minval)
                 return 0.0f;
 
-            float diff = (float)(maxval - minval);
+            float diff = (float) (maxval - minval);
             float rnorm = (maxval - r) / diff;
             float gnorm = (maxval - g) / diff;
             float bnorm = (maxval - b) / diff;
@@ -274,7 +262,7 @@ namespace MyvarUI
         /// </remarks>
         public KnownColor ToKnownColor()
         {
-            return (KnownColor)knownColor;
+            return (KnownColor) KnownColor;
         }
 
         /// <summary>
@@ -284,33 +272,29 @@ namespace MyvarUI
         /// <remarks>
         ///	Indicates transparent black. R,G,B = 0; A=0?
         /// </remarks>
-
         public bool IsEmpty
         {
-            get
-            {
-                return state == (short)ColorType.Empty;
-            }
+            get { return State == (short) ColorType.Empty; }
         }
 
         public byte A
         {
-            get { return (byte)(Value >> 24); }
+            get { return (byte) (Value >> 24); }
         }
 
         public byte R
         {
-            get { return (byte)(Value >> 16); }
+            get { return (byte) (Value >> 16); }
         }
 
         public byte G
         {
-            get { return (byte)(Value >> 8); }
+            get { return (byte) (Value >> 8); }
         }
 
         public byte B
         {
-            get { return (byte)Value; }
+            get { return (byte) Value; }
         }
 
         /// <summary>
@@ -320,12 +304,11 @@ namespace MyvarUI
         /// <remarks>
         ///	Checks equivalence of this Color and another object.
         /// </remarks>
-
         public override bool Equals(object obj)
         {
             if (!(obj is Color))
                 return false;
-            Color c = (Color)obj;
+            Color c = (Color) obj;
             return this == c;
         }
 
@@ -343,9 +326,6 @@ namespace MyvarUI
         //	if (!(o is Color))return false;
         //	return (this == (Color) o);
         //}
-
-
-
         /// <summary>
         ///	GetHashCode Method
         /// </summary>
@@ -353,10 +333,9 @@ namespace MyvarUI
         /// <remarks>
         ///	Calculates a hashing value.
         /// </remarks>
-
         public override int GetHashCode()
         {
-            int hc = (int)(Value ^ (Value >> 32) ^ state ^ (knownColor >> 16));
+            int hc = (int) (Value ^ (Value >> 32) ^ State ^ (KnownColor >> 16));
             if (IsNamedColor)
                 hc ^= Name.GetHashCode();
             return hc;
@@ -369,7 +348,6 @@ namespace MyvarUI
         /// <remarks>
         ///	Formats the Color as a string in ARGB notation.
         /// </remarks>
-
         public override string ToString()
         {
             if (IsEmpty)
@@ -382,7 +360,7 @@ namespace MyvarUI
             return string.Format("Color [A={0}, R={1}, G={2}, B={3}]", A, R, G, B);
         }
 
-        private static void CheckRGBValues(int red, int green, int blue)
+        private static void CheckRgbValues(int red, int green, int blue)
         {
             if ((red > 255) || (red < 0))
                 throw CreateColorArgumentException(red, "red");
@@ -395,721 +373,721 @@ namespace MyvarUI
         private static ArgumentException CreateColorArgumentException(int value, string color)
         {
             return new ArgumentException(string.Format("'{0}' is not a valid"
-                + " value for '{1}'. '{1}' should be greater or equal to 0 and"
-                + " less than or equal to 255.", value, color));
+                                                       + " value for '{1}'. '{1}' should be greater or equal to 0 and"
+                                                       + " less than or equal to 255.", value, color));
         }
 
-        private static void CheckARGBValues(int alpha, int red, int green, int blue)
+        private static void CheckArgbValues(int alpha, int red, int green, int blue)
         {
             if ((alpha > 255) || (alpha < 0))
                 throw CreateColorArgumentException(alpha, "alpha");
-            CheckRGBValues(red, green, blue);
+            CheckRgbValues(red, green, blue);
         }
 
 
         static public Color Transparent
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Transparent); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Transparent); }
         }
 
         static public Color AliceBlue
         {
-            get { return KnownColors.FromKnownColor(KnownColor.AliceBlue); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.AliceBlue); }
         }
 
         static public Color AntiqueWhite
         {
-            get { return KnownColors.FromKnownColor(KnownColor.AntiqueWhite); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.AntiqueWhite); }
         }
 
         static public Color Aqua
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Aqua); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Aqua); }
         }
 
         static public Color Aquamarine
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Aquamarine); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Aquamarine); }
         }
 
         static public Color Azure
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Azure); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Azure); }
         }
 
         static public Color Beige
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Beige); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Beige); }
         }
 
         static public Color Bisque
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Bisque); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Bisque); }
         }
 
         static public Color Black
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Black); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Black); }
         }
 
         static public Color BlanchedAlmond
         {
-            get { return KnownColors.FromKnownColor(KnownColor.BlanchedAlmond); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.BlanchedAlmond); }
         }
 
         static public Color Blue
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Blue); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Blue); }
         }
 
         static public Color BlueViolet
         {
-            get { return KnownColors.FromKnownColor(KnownColor.BlueViolet); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.BlueViolet); }
         }
 
         static public Color Brown
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Brown); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Brown); }
         }
 
         static public Color BurlyWood
         {
-            get { return KnownColors.FromKnownColor(KnownColor.BurlyWood); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.BurlyWood); }
         }
 
         static public Color CadetBlue
         {
-            get { return KnownColors.FromKnownColor(KnownColor.CadetBlue); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.CadetBlue); }
         }
 
         static public Color Chartreuse
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Chartreuse); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Chartreuse); }
         }
 
         static public Color Chocolate
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Chocolate); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Chocolate); }
         }
 
         static public Color Coral
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Coral); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Coral); }
         }
 
         static public Color CornflowerBlue
         {
-            get { return KnownColors.FromKnownColor(KnownColor.CornflowerBlue); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.CornflowerBlue); }
         }
 
         static public Color Cornsilk
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Cornsilk); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Cornsilk); }
         }
 
         static public Color Crimson
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Crimson); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Crimson); }
         }
 
         static public Color Cyan
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Cyan); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Cyan); }
         }
 
         static public Color DarkBlue
         {
-            get { return KnownColors.FromKnownColor(KnownColor.DarkBlue); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.DarkBlue); }
         }
 
         static public Color DarkCyan
         {
-            get { return KnownColors.FromKnownColor(KnownColor.DarkCyan); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.DarkCyan); }
         }
 
         static public Color DarkGoldenrod
         {
-            get { return KnownColors.FromKnownColor(KnownColor.DarkGoldenrod); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.DarkGoldenrod); }
         }
 
         static public Color DarkGray
         {
-            get { return KnownColors.FromKnownColor(KnownColor.DarkGray); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.DarkGray); }
         }
 
         static public Color DarkGreen
         {
-            get { return KnownColors.FromKnownColor(KnownColor.DarkGreen); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.DarkGreen); }
         }
 
         static public Color DarkKhaki
         {
-            get { return KnownColors.FromKnownColor(KnownColor.DarkKhaki); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.DarkKhaki); }
         }
 
         static public Color DarkMagenta
         {
-            get { return KnownColors.FromKnownColor(KnownColor.DarkMagenta); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.DarkMagenta); }
         }
 
         static public Color DarkOliveGreen
         {
-            get { return KnownColors.FromKnownColor(KnownColor.DarkOliveGreen); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.DarkOliveGreen); }
         }
 
         static public Color DarkOrange
         {
-            get { return KnownColors.FromKnownColor(KnownColor.DarkOrange); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.DarkOrange); }
         }
 
         static public Color DarkOrchid
         {
-            get { return KnownColors.FromKnownColor(KnownColor.DarkOrchid); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.DarkOrchid); }
         }
 
         static public Color DarkRed
         {
-            get { return KnownColors.FromKnownColor(KnownColor.DarkRed); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.DarkRed); }
         }
 
         static public Color DarkSalmon
         {
-            get { return KnownColors.FromKnownColor(KnownColor.DarkSalmon); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.DarkSalmon); }
         }
 
         static public Color DarkSeaGreen
         {
-            get { return KnownColors.FromKnownColor(KnownColor.DarkSeaGreen); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.DarkSeaGreen); }
         }
 
         static public Color DarkSlateBlue
         {
-            get { return KnownColors.FromKnownColor(KnownColor.DarkSlateBlue); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.DarkSlateBlue); }
         }
 
         static public Color DarkSlateGray
         {
-            get { return KnownColors.FromKnownColor(KnownColor.DarkSlateGray); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.DarkSlateGray); }
         }
 
         static public Color DarkTurquoise
         {
-            get { return KnownColors.FromKnownColor(KnownColor.DarkTurquoise); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.DarkTurquoise); }
         }
 
         static public Color DarkViolet
         {
-            get { return KnownColors.FromKnownColor(KnownColor.DarkViolet); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.DarkViolet); }
         }
 
         static public Color DeepPink
         {
-            get { return KnownColors.FromKnownColor(KnownColor.DeepPink); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.DeepPink); }
         }
 
         static public Color DeepSkyBlue
         {
-            get { return KnownColors.FromKnownColor(KnownColor.DeepSkyBlue); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.DeepSkyBlue); }
         }
 
         static public Color DimGray
         {
-            get { return KnownColors.FromKnownColor(KnownColor.DimGray); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.DimGray); }
         }
 
         static public Color DodgerBlue
         {
-            get { return KnownColors.FromKnownColor(KnownColor.DodgerBlue); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.DodgerBlue); }
         }
 
         static public Color Firebrick
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Firebrick); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Firebrick); }
         }
 
         static public Color FloralWhite
         {
-            get { return KnownColors.FromKnownColor(KnownColor.FloralWhite); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.FloralWhite); }
         }
 
         static public Color ForestGreen
         {
-            get { return KnownColors.FromKnownColor(KnownColor.ForestGreen); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.ForestGreen); }
         }
 
         static public Color Fuchsia
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Fuchsia); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Fuchsia); }
         }
 
         static public Color Gainsboro
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Gainsboro); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Gainsboro); }
         }
 
         static public Color GhostWhite
         {
-            get { return KnownColors.FromKnownColor(KnownColor.GhostWhite); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.GhostWhite); }
         }
 
         static public Color Gold
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Gold); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Gold); }
         }
 
         static public Color Goldenrod
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Goldenrod); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Goldenrod); }
         }
 
         static public Color Gray
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Gray); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Gray); }
         }
 
         static public Color Green
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Green); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Green); }
         }
 
         static public Color GreenYellow
         {
-            get { return KnownColors.FromKnownColor(KnownColor.GreenYellow); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.GreenYellow); }
         }
 
         static public Color Honeydew
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Honeydew); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Honeydew); }
         }
 
         static public Color HotPink
         {
-            get { return KnownColors.FromKnownColor(KnownColor.HotPink); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.HotPink); }
         }
 
         static public Color IndianRed
         {
-            get { return KnownColors.FromKnownColor(KnownColor.IndianRed); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.IndianRed); }
         }
 
         static public Color Indigo
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Indigo); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Indigo); }
         }
 
         static public Color Ivory
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Ivory); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Ivory); }
         }
 
         static public Color Khaki
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Khaki); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Khaki); }
         }
 
         static public Color Lavender
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Lavender); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Lavender); }
         }
 
         static public Color LavenderBlush
         {
-            get { return KnownColors.FromKnownColor(KnownColor.LavenderBlush); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.LavenderBlush); }
         }
 
         static public Color LawnGreen
         {
-            get { return KnownColors.FromKnownColor(KnownColor.LawnGreen); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.LawnGreen); }
         }
 
         static public Color LemonChiffon
         {
-            get { return KnownColors.FromKnownColor(KnownColor.LemonChiffon); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.LemonChiffon); }
         }
 
         static public Color LightBlue
         {
-            get { return KnownColors.FromKnownColor(KnownColor.LightBlue); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.LightBlue); }
         }
 
         static public Color LightCoral
         {
-            get { return KnownColors.FromKnownColor(KnownColor.LightCoral); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.LightCoral); }
         }
 
         static public Color LightCyan
         {
-            get { return KnownColors.FromKnownColor(KnownColor.LightCyan); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.LightCyan); }
         }
 
         static public Color LightGoldenrodYellow
         {
-            get { return KnownColors.FromKnownColor(KnownColor.LightGoldenrodYellow); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.LightGoldenrodYellow); }
         }
 
         static public Color LightGreen
         {
-            get { return KnownColors.FromKnownColor(KnownColor.LightGreen); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.LightGreen); }
         }
 
         static public Color LightGray
         {
-            get { return KnownColors.FromKnownColor(KnownColor.LightGray); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.LightGray); }
         }
 
         static public Color LightPink
         {
-            get { return KnownColors.FromKnownColor(KnownColor.LightPink); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.LightPink); }
         }
 
         static public Color LightSalmon
         {
-            get { return KnownColors.FromKnownColor(KnownColor.LightSalmon); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.LightSalmon); }
         }
 
         static public Color LightSeaGreen
         {
-            get { return KnownColors.FromKnownColor(KnownColor.LightSeaGreen); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.LightSeaGreen); }
         }
 
         static public Color LightSkyBlue
         {
-            get { return KnownColors.FromKnownColor(KnownColor.LightSkyBlue); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.LightSkyBlue); }
         }
 
         static public Color LightSlateGray
         {
-            get { return KnownColors.FromKnownColor(KnownColor.LightSlateGray); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.LightSlateGray); }
         }
 
         static public Color LightSteelBlue
         {
-            get { return KnownColors.FromKnownColor(KnownColor.LightSteelBlue); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.LightSteelBlue); }
         }
 
         static public Color LightYellow
         {
-            get { return KnownColors.FromKnownColor(KnownColor.LightYellow); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.LightYellow); }
         }
 
         static public Color Lime
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Lime); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Lime); }
         }
 
         static public Color LimeGreen
         {
-            get { return KnownColors.FromKnownColor(KnownColor.LimeGreen); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.LimeGreen); }
         }
 
         static public Color Linen
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Linen); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Linen); }
         }
 
         static public Color Magenta
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Magenta); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Magenta); }
         }
 
         static public Color Maroon
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Maroon); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Maroon); }
         }
 
         static public Color MediumAquamarine
         {
-            get { return KnownColors.FromKnownColor(KnownColor.MediumAquamarine); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.MediumAquamarine); }
         }
 
         static public Color MediumBlue
         {
-            get { return KnownColors.FromKnownColor(KnownColor.MediumBlue); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.MediumBlue); }
         }
 
         static public Color MediumOrchid
         {
-            get { return KnownColors.FromKnownColor(KnownColor.MediumOrchid); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.MediumOrchid); }
         }
 
         static public Color MediumPurple
         {
-            get { return KnownColors.FromKnownColor(KnownColor.MediumPurple); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.MediumPurple); }
         }
 
         static public Color MediumSeaGreen
         {
-            get { return KnownColors.FromKnownColor(KnownColor.MediumSeaGreen); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.MediumSeaGreen); }
         }
 
         static public Color MediumSlateBlue
         {
-            get { return KnownColors.FromKnownColor(KnownColor.MediumSlateBlue); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.MediumSlateBlue); }
         }
 
         static public Color MediumSpringGreen
         {
-            get { return KnownColors.FromKnownColor(KnownColor.MediumSpringGreen); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.MediumSpringGreen); }
         }
 
         static public Color MediumTurquoise
         {
-            get { return KnownColors.FromKnownColor(KnownColor.MediumTurquoise); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.MediumTurquoise); }
         }
 
         static public Color MediumVioletRed
         {
-            get { return KnownColors.FromKnownColor(KnownColor.MediumVioletRed); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.MediumVioletRed); }
         }
 
         static public Color MidnightBlue
         {
-            get { return KnownColors.FromKnownColor(KnownColor.MidnightBlue); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.MidnightBlue); }
         }
 
         static public Color MintCream
         {
-            get { return KnownColors.FromKnownColor(KnownColor.MintCream); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.MintCream); }
         }
 
         static public Color MistyRose
         {
-            get { return KnownColors.FromKnownColor(KnownColor.MistyRose); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.MistyRose); }
         }
 
         static public Color Moccasin
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Moccasin); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Moccasin); }
         }
 
         static public Color NavajoWhite
         {
-            get { return KnownColors.FromKnownColor(KnownColor.NavajoWhite); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.NavajoWhite); }
         }
 
         static public Color Navy
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Navy); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Navy); }
         }
 
         static public Color OldLace
         {
-            get { return KnownColors.FromKnownColor(KnownColor.OldLace); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.OldLace); }
         }
 
         static public Color Olive
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Olive); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Olive); }
         }
 
         static public Color OliveDrab
         {
-            get { return KnownColors.FromKnownColor(KnownColor.OliveDrab); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.OliveDrab); }
         }
 
         static public Color Orange
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Orange); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Orange); }
         }
 
         static public Color OrangeRed
         {
-            get { return KnownColors.FromKnownColor(KnownColor.OrangeRed); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.OrangeRed); }
         }
 
         static public Color Orchid
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Orchid); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Orchid); }
         }
 
         static public Color PaleGoldenrod
         {
-            get { return KnownColors.FromKnownColor(KnownColor.PaleGoldenrod); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.PaleGoldenrod); }
         }
 
         static public Color PaleGreen
         {
-            get { return KnownColors.FromKnownColor(KnownColor.PaleGreen); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.PaleGreen); }
         }
 
         static public Color PaleTurquoise
         {
-            get { return KnownColors.FromKnownColor(KnownColor.PaleTurquoise); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.PaleTurquoise); }
         }
 
         static public Color PaleVioletRed
         {
-            get { return KnownColors.FromKnownColor(KnownColor.PaleVioletRed); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.PaleVioletRed); }
         }
 
         static public Color PapayaWhip
         {
-            get { return KnownColors.FromKnownColor(KnownColor.PapayaWhip); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.PapayaWhip); }
         }
 
         static public Color PeachPuff
         {
-            get { return KnownColors.FromKnownColor(KnownColor.PeachPuff); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.PeachPuff); }
         }
 
         static public Color Peru
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Peru); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Peru); }
         }
 
         static public Color Pink
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Pink); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Pink); }
         }
 
         static public Color Plum
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Plum); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Plum); }
         }
 
         static public Color PowderBlue
         {
-            get { return KnownColors.FromKnownColor(KnownColor.PowderBlue); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.PowderBlue); }
         }
 
         static public Color Purple
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Purple); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Purple); }
         }
 
         static public Color Red
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Red); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Red); }
         }
 
         static public Color RosyBrown
         {
-            get { return KnownColors.FromKnownColor(KnownColor.RosyBrown); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.RosyBrown); }
         }
 
         static public Color RoyalBlue
         {
-            get { return KnownColors.FromKnownColor(KnownColor.RoyalBlue); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.RoyalBlue); }
         }
 
         static public Color SaddleBrown
         {
-            get { return KnownColors.FromKnownColor(KnownColor.SaddleBrown); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.SaddleBrown); }
         }
 
         static public Color Salmon
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Salmon); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Salmon); }
         }
 
         static public Color SandyBrown
         {
-            get { return KnownColors.FromKnownColor(KnownColor.SandyBrown); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.SandyBrown); }
         }
 
         static public Color SeaGreen
         {
-            get { return KnownColors.FromKnownColor(KnownColor.SeaGreen); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.SeaGreen); }
         }
 
         static public Color SeaShell
         {
-            get { return KnownColors.FromKnownColor(KnownColor.SeaShell); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.SeaShell); }
         }
 
         static public Color Sienna
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Sienna); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Sienna); }
         }
 
         static public Color Silver
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Silver); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Silver); }
         }
 
         static public Color SkyBlue
         {
-            get { return KnownColors.FromKnownColor(KnownColor.SkyBlue); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.SkyBlue); }
         }
 
         static public Color SlateBlue
         {
-            get { return KnownColors.FromKnownColor(KnownColor.SlateBlue); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.SlateBlue); }
         }
 
         static public Color SlateGray
         {
-            get { return KnownColors.FromKnownColor(KnownColor.SlateGray); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.SlateGray); }
         }
 
         static public Color Snow
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Snow); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Snow); }
         }
 
         static public Color SpringGreen
         {
-            get { return KnownColors.FromKnownColor(KnownColor.SpringGreen); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.SpringGreen); }
         }
 
         static public Color SteelBlue
         {
-            get { return KnownColors.FromKnownColor(KnownColor.SteelBlue); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.SteelBlue); }
         }
 
         static public Color Tan
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Tan); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Tan); }
         }
 
         static public Color Teal
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Teal); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Teal); }
         }
 
         static public Color Thistle
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Thistle); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Thistle); }
         }
 
         static public Color Tomato
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Tomato); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Tomato); }
         }
 
         static public Color Turquoise
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Turquoise); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Turquoise); }
         }
 
         static public Color Violet
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Violet); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Violet); }
         }
 
         static public Color Wheat
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Wheat); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Wheat); }
         }
 
         static public Color White
         {
-            get { return KnownColors.FromKnownColor(KnownColor.White); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.White); }
         }
 
         static public Color WhiteSmoke
         {
-            get { return KnownColors.FromKnownColor(KnownColor.WhiteSmoke); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.WhiteSmoke); }
         }
 
         static public Color Yellow
         {
-            get { return KnownColors.FromKnownColor(KnownColor.Yellow); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.Yellow); }
         }
 
         static public Color YellowGreen
         {
-            get { return KnownColors.FromKnownColor(KnownColor.YellowGreen); }
+            get { return KnownColors.FromKnownColor(MyvarUI.KnownColor.YellowGreen); }
         }
 
         public static implicit operator ColorStruct(Color c)

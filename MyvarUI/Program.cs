@@ -29,7 +29,7 @@ namespace MyvarUI
             b1.MouseUp += MouseUp;
             b1.MouseHover += MouseHover;
             f.Controls.Add(b1);
-            
+
             var lbl = new Lable();
             lbl.Y = 75;
             f.Controls.Add(lbl);

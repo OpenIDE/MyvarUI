@@ -29,7 +29,6 @@ namespace MyvarUI.Window.Controls
 
                 i.Draw(g);
             }
-
         }
     }
 }

@@ -27,11 +27,11 @@ namespace MyvarUI.Window.Controls
 
             //calulate text size offset
             var sTxT = g.CalulateTextSize(Text, Font, 15);
-            
-            
+
+
             g.DrawText(Text, (Width / 2 - (sTxT.W / 2)),
-            (Height / 2 - (sTxT.H / 2)), Font, FontSize,
-              Color.Black);
+                (Height / 2 - (sTxT.H / 2)), Font, FontSize,
+                Color.Black);
 
             if (Focused)
             {

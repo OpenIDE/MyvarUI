@@ -33,15 +33,14 @@ namespace MyvarUI.Window.Controls
             ShowDropDown = !ShowDropDown;
         }
 
-         private void InternalMouseHover(object sender, MouseEventArgs args)
+        private void InternalMouseHover(object sender, MouseEventArgs args)
         {
             this.Hover = true;
         }
 
         public override void Draw(Graphics g)
         {
-
-            if(Hidden)
+            if (Hidden)
             {
                 return;
             }
@@ -63,8 +62,8 @@ namespace MyvarUI.Window.Controls
             Width = sTxT.W + 10;
 
             g.DrawText(Text, 0 + (Width / 2 - (sTxT.W / 2)),
-             0 + (Height / 2 - (sTxT.H / 2)), Font, FontSize,
-              ForegroundColor);
+                0 + (Height / 2 - (sTxT.H / 2)), Font, FontSize,
+                ForegroundColor);
 
             if (Focused)
             {
@@ -77,7 +76,7 @@ namespace MyvarUI.Window.Controls
                 g.DrawRectangle(0, 0, Width - 1, Height - 1, hcolor);
             }
 
-           // if (ShowDropDown)
+            // if (ShowDropDown)
             {
                 int count = Controls.Count;
                 int yOffset = Height;

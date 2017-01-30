@@ -20,13 +20,12 @@ namespace MyvarUI.Window.Controls
 
         public override void FireKeybordEvents(KeybordEventArgs args)
         {
-
-            if(args.State == KeybordState.TextInput)
+            if (args.State == KeybordState.TextInput)
             {
-              /*  foreach(var c in args.Input)
-                {
-                    Text += c;
-                }*/
+                /*  foreach(var c in args.Input)
+                  {
+                      Text += c;
+                  }*/
                 Text += args.Input[0];
             }
 
@@ -35,7 +34,6 @@ namespace MyvarUI.Window.Controls
 
         public override void Draw(Graphics g)
         {
-
             //draw white box where button should be
             g.DrawFillRectangle(0, 0, Width, Height, Color.White);
 

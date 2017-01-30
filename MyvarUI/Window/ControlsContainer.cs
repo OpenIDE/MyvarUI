@@ -11,6 +11,7 @@ namespace MyvarUI.Window
         private object _activeLock = new object();
 
         protected List<Control> Controls { get; }
+
         public ControlContainer()
         {
             Controls = new List<Control>();
@@ -18,10 +19,7 @@ namespace MyvarUI.Window
 
         public Control ActiveControl
         {
-            get
-            {
-                return _activeControl;
-            }
+            get { return _activeControl; }
             set { ActivateControl(value); }
         }
 
@@ -53,9 +51,8 @@ namespace MyvarUI.Window
             return Controls.Remove(control);
         }
 
-        public virtual void Update(Point mLoc, MouseState mState, Point Offset)
+        public virtual void Update(Point mLoc, MouseState mState, Point offset)
         {
-
             bool mouseWasOverControl = false;
             int count = Controls.Count;
 
@@ -63,10 +60,10 @@ namespace MyvarUI.Window
             {
                 if (c > Controls.Count) break; //Prevent index out of range exceptions if the controls change.
                 var i = Controls[c];
-                if(i is ControlContainer)
+                if (i is ControlContainer)
                 {
                     var x = i as ControlContainer;
-                    x.Update(mLoc, mState, Offset);
+                    x.Update(mLoc, mState, offset);
                 }
 
                 //calualte Keybord events
@@ -87,10 +84,8 @@ namespace MyvarUI.Window
                             i.Focused = true;
                         }
 
-                        i.FireMouseEvents(new MouseEventArgs() { MouseState = mState, X = mLoc.X, Y = mLoc.Y });
-                        
+                        i.FireMouseEvents(new MouseEventArgs() {MouseState = mState, X = mLoc.X, Y = mLoc.Y});
                     }
-
                 }
             }
 
@@ -109,7 +104,7 @@ namespace MyvarUI.Window
         public override void Draw(Graphics g)
         {
             int count = Controls.Count;
-            
+
             for (int c = 0; c < count; c++)
             {
                 if (c > Controls.Count) break; //Prevent index out of range exceptions if the controls change.

@@ -8,7 +8,7 @@ namespace MyvarUI.Window
 {
     public class Form
     {
-        private ISDL displayPort;
+        private ISDL _displayPort;
         public Graphics Graphics { get; set; }
 
         public int X { get; set; }
@@ -20,14 +20,15 @@ namespace MyvarUI.Window
 
         public bool Hidden { get; set; } = true;
 
-        private string _Title;
+        private string _title;
+
         public string Title
         {
-            get { return _Title; }
+            get { return _title; }
             set
             {
-                _Title = value;
-                displayPort.SetTitle(value);
+                _title = value;
+                _displayPort.SetTitle(value);
             }
         }
 
@@ -41,22 +42,12 @@ namespace MyvarUI.Window
             Width = 800;
             Height = 600;
 
-            bool isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
-            bool isLinux = RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
+            _displayPort = Globals.Isdl;
 
-            if (isLinux)
-            {
-                displayPort = new LinuxSdl();
-            }
-            else if (isWindows)
-            {
-                displayPort = new WindowsSdl();
-            }
-
-            displayPort.Init();
-            Font.Init(displayPort);
-            Graphics = new Graphics(displayPort, 0, 0);
-            Controls = new FormControlsContainer(this, displayPort)
+            _displayPort.Init();
+            Font.Init(_displayPort);
+            Graphics = new Graphics(_displayPort, 0, 0);
+            Controls = new FormControlsContainer(this, _displayPort)
             {
                 X = 0,
                 Y = 0,
@@ -68,15 +59,15 @@ namespace MyvarUI.Window
         public void Show()
         {
             Hidden = false;
-            displayPort.CreateWindow(Title, X, Y, Width, Height);
+            _displayPort.CreateWindow(Title, X, Y, Width, Height);
 
-            displayPort.HookEvents = (x) =>
+            _displayPort.HookEvents = (x) =>
             {
-                if (x == SDL_EventType.SDL_KEYUP
-                || x == SDL_EventType.SDL_TEXTINPUT
-                || x == SDL_EventType.SDL_KEYDOWN)
+                if (x == SdlEventType.SdlKeyup
+                    || x == SdlEventType.SdlTextinput
+                    || x == SdlEventType.SdlKeydown)
                 {
-                    var kState = displayPort.KeyPresses();
+                    var kState = _displayPort.KeyPresses();
 
                     foreach (var i in Controls)
                     {
@@ -84,13 +75,13 @@ namespace MyvarUI.Window
 
                         switch (x)
                         {
-                            case SDL_EventType.SDL_KEYUP:
+                            case SdlEventType.SdlKeyup:
                                 kbst.State = KeybordState.KeyUp;
                                 break;
-                            case SDL_EventType.SDL_TEXTINPUT:
+                            case SdlEventType.SdlTextinput:
                                 kbst.State = KeybordState.TextInput;
                                 break;
-                            case SDL_EventType.SDL_KEYDOWN:
+                            case SdlEventType.SdlKeydown:
                                 kbst.State = KeybordState.KeyDown;
                                 break;
                         }
@@ -109,12 +100,12 @@ namespace MyvarUI.Window
         public void Draw()
         {
             //clear displayPort
-            displayPort.Clear(BackgroundColor);
+            _displayPort.Clear(BackgroundColor);
 
             Controls.Draw(Graphics);
 
             //swap buffer
-            displayPort.SwapBuffer();
+            _displayPort.SwapBuffer();
         }
     }
 }

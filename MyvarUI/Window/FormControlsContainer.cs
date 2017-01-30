@@ -22,7 +22,7 @@ namespace MyvarUI.Window
             var mLoc = _displayPort.GetMouseLocation();
             var mState = _displayPort.GetMouseState();
 
-            Update(mLoc, mState, g.GetOffset());            
+            Update(mLoc, mState, g.GetOffset());
         }
     }
 }

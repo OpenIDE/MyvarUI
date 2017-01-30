@@ -16,14 +16,13 @@ namespace MyvarUI.Window.Controls
 
         public override void Draw(Graphics g)
         {
-            if(Hidden)
+            if (Hidden)
             {
                 return;
             }
 
             //draw white box where button should be
             g.DrawFillRectangle(0, 0, Width, Height, BackgroundColor);
-
         }
     }
 }

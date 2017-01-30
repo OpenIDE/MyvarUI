@@ -20,20 +20,23 @@ namespace MyvarUI.Window
 
 
         public delegate void MouseClickEvent(object sender, MouseEventArgs args);
+
         public delegate void MouseUpEvent(object sender, MouseEventArgs args);
+
         public delegate void MouseDownEvent(object sender, MouseEventArgs args);
+
         public delegate void MouseHoverEvent(object sender, MouseEventArgs args);
+
         public event MouseClickEvent MouseClick;
         public event MouseUpEvent MouseUp;
         public event MouseDownEvent MouseDown;
         public event MouseHoverEvent MouseHover;
 
         private MouseState _lastState = MouseState.None; // click even should only fire once
-        
-        
+
+
         public virtual void FireKeybordEvents(KeybordEventArgs args)
         {
-            
         }
 
         public void FireMouseEvents(MouseEventArgs args)
@@ -74,7 +77,6 @@ namespace MyvarUI.Window
                         MouseDown(this, args);
                     }
                     break;
-
             }
             _lastState = args.MouseState;
         }

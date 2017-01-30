@@ -3,769 +3,775 @@ using System.Runtime.InteropServices;
 
 namespace MyvarUI.SDL
 {
-   
-        public enum SDL_Scancode
-		{
-			SDL_SCANCODE_UNKNOWN = 0,
+    public enum SdlScancode
+    {
+        SdlScancodeUnknown = 0,
 
-			SDL_SCANCODE_A = 4,
-			SDL_SCANCODE_B = 5,
-			SDL_SCANCODE_C = 6,
-			SDL_SCANCODE_D = 7,
-			SDL_SCANCODE_E = 8,
-			SDL_SCANCODE_F = 9,
-			SDL_SCANCODE_G = 10,
-			SDL_SCANCODE_H = 11,
-			SDL_SCANCODE_I = 12,
-			SDL_SCANCODE_J = 13,
-			SDL_SCANCODE_K = 14,
-			SDL_SCANCODE_L = 15,
-			SDL_SCANCODE_M = 16,
-			SDL_SCANCODE_N = 17,
-			SDL_SCANCODE_O = 18,
-			SDL_SCANCODE_P = 19,
-			SDL_SCANCODE_Q = 20,
-			SDL_SCANCODE_R = 21,
-			SDL_SCANCODE_S = 22,
-			SDL_SCANCODE_T = 23,
-			SDL_SCANCODE_U = 24,
-			SDL_SCANCODE_V = 25,
-			SDL_SCANCODE_W = 26,
-			SDL_SCANCODE_X = 27,
-			SDL_SCANCODE_Y = 28,
-			SDL_SCANCODE_Z = 29,
+        SdlScancodeA = 4,
+        SdlScancodeB = 5,
+        SdlScancodeC = 6,
+        SdlScancodeD = 7,
+        SdlScancodeE = 8,
+        SdlScancodeF = 9,
+        SdlScancodeG = 10,
+        SdlScancodeH = 11,
+        SdlScancodeI = 12,
+        SdlScancodeJ = 13,
+        SdlScancodeK = 14,
+        SdlScancodeL = 15,
+        SdlScancodeM = 16,
+        SdlScancodeN = 17,
+        SdlScancodeO = 18,
+        SdlScancodeP = 19,
+        SdlScancodeQ = 20,
+        SdlScancodeR = 21,
+        SdlScancodeS = 22,
+        SdlScancodeT = 23,
+        SdlScancodeU = 24,
+        SdlScancodeV = 25,
+        SdlScancodeW = 26,
+        SdlScancodeX = 27,
+        SdlScancodeY = 28,
+        SdlScancodeZ = 29,
 
-			SDL_SCANCODE_1 = 30,
-			SDL_SCANCODE_2 = 31,
-			SDL_SCANCODE_3 = 32,
-			SDL_SCANCODE_4 = 33,
-			SDL_SCANCODE_5 = 34,
-			SDL_SCANCODE_6 = 35,
-			SDL_SCANCODE_7 = 36,
-			SDL_SCANCODE_8 = 37,
-			SDL_SCANCODE_9 = 38,
-			SDL_SCANCODE_0 = 39,
+        SdlScancode1 = 30,
+        SdlScancode2 = 31,
+        SdlScancode3 = 32,
+        SdlScancode4 = 33,
+        SdlScancode5 = 34,
+        SdlScancode6 = 35,
+        SdlScancode7 = 36,
+        SdlScancode8 = 37,
+        SdlScancode9 = 38,
+        SdlScancode0 = 39,
 
-			SDL_SCANCODE_RETURN = 40,
-			SDL_SCANCODE_ESCAPE = 41,
-			SDL_SCANCODE_BACKSPACE = 42,
-			SDL_SCANCODE_TAB = 43,
-			SDL_SCANCODE_SPACE = 44,
+        SdlScancodeReturn = 40,
+        SdlScancodeEscape = 41,
+        SdlScancodeBackspace = 42,
+        SdlScancodeTab = 43,
+        SdlScancodeSpace = 44,
 
-			SDL_SCANCODE_MINUS = 45,
-			SDL_SCANCODE_EQUALS = 46,
-			SDL_SCANCODE_LEFTBRACKET = 47,
-			SDL_SCANCODE_RIGHTBRACKET = 48,
-			SDL_SCANCODE_BACKSLASH = 49,
-			SDL_SCANCODE_NONUSHASH = 50,
-			SDL_SCANCODE_SEMICOLON = 51,
-			SDL_SCANCODE_APOSTROPHE = 52,
-			SDL_SCANCODE_GRAVE = 53,
-			SDL_SCANCODE_COMMA = 54,
-			SDL_SCANCODE_PERIOD = 55,
-			SDL_SCANCODE_SLASH = 56,
+        SdlScancodeMinus = 45,
+        SdlScancodeEquals = 46,
+        SdlScancodeLeftbracket = 47,
+        SdlScancodeRightbracket = 48,
+        SdlScancodeBackslash = 49,
+        SdlScancodeNonushash = 50,
+        SdlScancodeSemicolon = 51,
+        SdlScancodeApostrophe = 52,
+        SdlScancodeGrave = 53,
+        SdlScancodeComma = 54,
+        SdlScancodePeriod = 55,
+        SdlScancodeSlash = 56,
 
-			SDL_SCANCODE_CAPSLOCK = 57,
+        SdlScancodeCapslock = 57,
 
-			SDL_SCANCODE_F1 = 58,
-			SDL_SCANCODE_F2 = 59,
-			SDL_SCANCODE_F3 = 60,
-			SDL_SCANCODE_F4 = 61,
-			SDL_SCANCODE_F5 = 62,
-			SDL_SCANCODE_F6 = 63,
-			SDL_SCANCODE_F7 = 64,
-			SDL_SCANCODE_F8 = 65,
-			SDL_SCANCODE_F9 = 66,
-			SDL_SCANCODE_F10 = 67,
-			SDL_SCANCODE_F11 = 68,
-			SDL_SCANCODE_F12 = 69,
+        SdlScancodeF1 = 58,
+        SdlScancodeF2 = 59,
+        SdlScancodeF3 = 60,
+        SdlScancodeF4 = 61,
+        SdlScancodeF5 = 62,
+        SdlScancodeF6 = 63,
+        SdlScancodeF7 = 64,
+        SdlScancodeF8 = 65,
+        SdlScancodeF9 = 66,
+        SdlScancodeF10 = 67,
+        SdlScancodeF11 = 68,
+        SdlScancodeF12 = 69,
 
-			SDL_SCANCODE_PRINTSCREEN = 70,
-			SDL_SCANCODE_SCROLLLOCK = 71,
-			SDL_SCANCODE_PAUSE = 72,
-			SDL_SCANCODE_INSERT = 73,
-			SDL_SCANCODE_HOME = 74,
-			SDL_SCANCODE_PAGEUP = 75,
-			SDL_SCANCODE_DELETE = 76,
-			SDL_SCANCODE_END = 77,
-			SDL_SCANCODE_PAGEDOWN = 78,
-			SDL_SCANCODE_RIGHT = 79,
-			SDL_SCANCODE_LEFT = 80,
-			SDL_SCANCODE_DOWN = 81,
-			SDL_SCANCODE_UP = 82,
+        SdlScancodePrintscreen = 70,
+        SdlScancodeScrolllock = 71,
+        SdlScancodePause = 72,
+        SdlScancodeInsert = 73,
+        SdlScancodeHome = 74,
+        SdlScancodePageup = 75,
+        SdlScancodeDelete = 76,
+        SdlScancodeEnd = 77,
+        SdlScancodePagedown = 78,
+        SdlScancodeRight = 79,
+        SdlScancodeLeft = 80,
+        SdlScancodeDown = 81,
+        SdlScancodeUp = 82,
 
-			SDL_SCANCODE_NUMLOCKCLEAR = 83,
-			SDL_SCANCODE_KP_DIVIDE = 84,
-			SDL_SCANCODE_KP_MULTIPLY = 85,
-			SDL_SCANCODE_KP_MINUS = 86,
-			SDL_SCANCODE_KP_PLUS = 87,
-			SDL_SCANCODE_KP_ENTER = 88,
-			SDL_SCANCODE_KP_1 = 89,
-			SDL_SCANCODE_KP_2 = 90,
-			SDL_SCANCODE_KP_3 = 91,
-			SDL_SCANCODE_KP_4 = 92,
-			SDL_SCANCODE_KP_5 = 93,
-			SDL_SCANCODE_KP_6 = 94,
-			SDL_SCANCODE_KP_7 = 95,
-			SDL_SCANCODE_KP_8 = 96,
-			SDL_SCANCODE_KP_9 = 97,
-			SDL_SCANCODE_KP_0 = 98,
-			SDL_SCANCODE_KP_PERIOD = 99,
+        SdlScancodeNumlockclear = 83,
+        SdlScancodeKpDivide = 84,
+        SdlScancodeKpMultiply = 85,
+        SdlScancodeKpMinus = 86,
+        SdlScancodeKpPlus = 87,
+        SdlScancodeKpEnter = 88,
+        SdlScancodeKp1 = 89,
+        SdlScancodeKp2 = 90,
+        SdlScancodeKp3 = 91,
+        SdlScancodeKp4 = 92,
+        SdlScancodeKp5 = 93,
+        SdlScancodeKp6 = 94,
+        SdlScancodeKp7 = 95,
+        SdlScancodeKp8 = 96,
+        SdlScancodeKp9 = 97,
+        SdlScancodeKp0 = 98,
+        SdlScancodeKpPeriod = 99,
 
-			SDL_SCANCODE_NONUSBACKSLASH = 100,
-			SDL_SCANCODE_APPLICATION = 101,
-			SDL_SCANCODE_POWER = 102,
-			SDL_SCANCODE_KP_EQUALS = 103,
-			SDL_SCANCODE_F13 = 104,
-			SDL_SCANCODE_F14 = 105,
-			SDL_SCANCODE_F15 = 106,
-			SDL_SCANCODE_F16 = 107,
-			SDL_SCANCODE_F17 = 108,
-			SDL_SCANCODE_F18 = 109,
-			SDL_SCANCODE_F19 = 110,
-			SDL_SCANCODE_F20 = 111,
-			SDL_SCANCODE_F21 = 112,
-			SDL_SCANCODE_F22 = 113,
-			SDL_SCANCODE_F23 = 114,
-			SDL_SCANCODE_F24 = 115,
-			SDL_SCANCODE_EXECUTE = 116,
-			SDL_SCANCODE_HELP = 117,
-			SDL_SCANCODE_MENU = 118,
-			SDL_SCANCODE_SELECT = 119,
-			SDL_SCANCODE_STOP = 120,
-			SDL_SCANCODE_AGAIN = 121,
-			SDL_SCANCODE_UNDO = 122,
-			SDL_SCANCODE_CUT = 123,
-			SDL_SCANCODE_COPY = 124,
-			SDL_SCANCODE_PASTE = 125,
-			SDL_SCANCODE_FIND = 126,
-			SDL_SCANCODE_MUTE = 127,
-			SDL_SCANCODE_VOLUMEUP = 128,
-			SDL_SCANCODE_VOLUMEDOWN = 129,
-			/* not sure whether there's a reason to enable these */
-			/*	SDL_SCANCODE_LOCKINGCAPSLOCK = 130, */
-			/*	SDL_SCANCODE_LOCKINGNUMLOCK = 131, */
-			/*	SDL_SCANCODE_LOCKINGSCROLLLOCK = 132, */
-			SDL_SCANCODE_KP_COMMA = 133,
-			SDL_SCANCODE_KP_EQUALSAS400 = 134,
+        SdlScancodeNonusbackslash = 100,
+        SdlScancodeApplication = 101,
+        SdlScancodePower = 102,
+        SdlScancodeKpEquals = 103,
+        SdlScancodeF13 = 104,
+        SdlScancodeF14 = 105,
+        SdlScancodeF15 = 106,
+        SdlScancodeF16 = 107,
+        SdlScancodeF17 = 108,
+        SdlScancodeF18 = 109,
+        SdlScancodeF19 = 110,
+        SdlScancodeF20 = 111,
+        SdlScancodeF21 = 112,
+        SdlScancodeF22 = 113,
+        SdlScancodeF23 = 114,
+        SdlScancodeF24 = 115,
+        SdlScancodeExecute = 116,
+        SdlScancodeHelp = 117,
+        SdlScancodeMenu = 118,
+        SdlScancodeSelect = 119,
+        SdlScancodeStop = 120,
+        SdlScancodeAgain = 121,
+        SdlScancodeUndo = 122,
+        SdlScancodeCut = 123,
+        SdlScancodeCopy = 124,
+        SdlScancodePaste = 125,
+        SdlScancodeFind = 126,
+        SdlScancodeMute = 127,
+        SdlScancodeVolumeup = 128,
+        SdlScancodeVolumedown = 129,
+        /* not sure whether there's a reason to enable these */
+        /*	SDL_SCANCODE_LOCKINGCAPSLOCK = 130, */
+        /*	SDL_SCANCODE_LOCKINGNUMLOCK = 131, */
+        /*	SDL_SCANCODE_LOCKINGSCROLLLOCK = 132, */
+        SdlScancodeKpComma = 133,
+        SdlScancodeKpEqualsas400 = 134,
 
-			SDL_SCANCODE_INTERNATIONAL1 = 135,
-			SDL_SCANCODE_INTERNATIONAL2 = 136,
-			SDL_SCANCODE_INTERNATIONAL3 = 137,
-			SDL_SCANCODE_INTERNATIONAL4 = 138,
-			SDL_SCANCODE_INTERNATIONAL5 = 139,
-			SDL_SCANCODE_INTERNATIONAL6 = 140,
-			SDL_SCANCODE_INTERNATIONAL7 = 141,
-			SDL_SCANCODE_INTERNATIONAL8 = 142,
-			SDL_SCANCODE_INTERNATIONAL9 = 143,
-			SDL_SCANCODE_LANG1 = 144,
-			SDL_SCANCODE_LANG2 = 145,
-			SDL_SCANCODE_LANG3 = 146,
-			SDL_SCANCODE_LANG4 = 147,
-			SDL_SCANCODE_LANG5 = 148,
-			SDL_SCANCODE_LANG6 = 149,
-			SDL_SCANCODE_LANG7 = 150,
-			SDL_SCANCODE_LANG8 = 151,
-			SDL_SCANCODE_LANG9 = 152,
+        SdlScancodeInternational1 = 135,
+        SdlScancodeInternational2 = 136,
+        SdlScancodeInternational3 = 137,
+        SdlScancodeInternational4 = 138,
+        SdlScancodeInternational5 = 139,
+        SdlScancodeInternational6 = 140,
+        SdlScancodeInternational7 = 141,
+        SdlScancodeInternational8 = 142,
+        SdlScancodeInternational9 = 143,
+        SdlScancodeLang1 = 144,
+        SdlScancodeLang2 = 145,
+        SdlScancodeLang3 = 146,
+        SdlScancodeLang4 = 147,
+        SdlScancodeLang5 = 148,
+        SdlScancodeLang6 = 149,
+        SdlScancodeLang7 = 150,
+        SdlScancodeLang8 = 151,
+        SdlScancodeLang9 = 152,
 
-			SDL_SCANCODE_ALTERASE = 153,
-			SDL_SCANCODE_SYSREQ = 154,
-			SDL_SCANCODE_CANCEL = 155,
-			SDL_SCANCODE_CLEAR = 156,
-			SDL_SCANCODE_PRIOR = 157,
-			SDL_SCANCODE_RETURN2 = 158,
-			SDL_SCANCODE_SEPARATOR = 159,
-			SDL_SCANCODE_OUT = 160,
-			SDL_SCANCODE_OPER = 161,
-			SDL_SCANCODE_CLEARAGAIN = 162,
-			SDL_SCANCODE_CRSEL = 163,
-			SDL_SCANCODE_EXSEL = 164,
+        SdlScancodeAlterase = 153,
+        SdlScancodeSysreq = 154,
+        SdlScancodeCancel = 155,
+        SdlScancodeClear = 156,
+        SdlScancodePrior = 157,
+        SdlScancodeReturn2 = 158,
+        SdlScancodeSeparator = 159,
+        SdlScancodeOut = 160,
+        SdlScancodeOper = 161,
+        SdlScancodeClearagain = 162,
+        SdlScancodeCrsel = 163,
+        SdlScancodeExsel = 164,
 
-			SDL_SCANCODE_KP_00 = 176,
-			SDL_SCANCODE_KP_000 = 177,
-			SDL_SCANCODE_THOUSANDSSEPARATOR = 178,
-			SDL_SCANCODE_DECIMALSEPARATOR = 179,
-			SDL_SCANCODE_CURRENCYUNIT = 180,
-			SDL_SCANCODE_CURRENCYSUBUNIT = 181,
-			SDL_SCANCODE_KP_LEFTPAREN = 182,
-			SDL_SCANCODE_KP_RIGHTPAREN = 183,
-			SDL_SCANCODE_KP_LEFTBRACE = 184,
-			SDL_SCANCODE_KP_RIGHTBRACE = 185,
-			SDL_SCANCODE_KP_TAB = 186,
-			SDL_SCANCODE_KP_BACKSPACE = 187,
-			SDL_SCANCODE_KP_A = 188,
-			SDL_SCANCODE_KP_B = 189,
-			SDL_SCANCODE_KP_C = 190,
-			SDL_SCANCODE_KP_D = 191,
-			SDL_SCANCODE_KP_E = 192,
-			SDL_SCANCODE_KP_F = 193,
-			SDL_SCANCODE_KP_XOR = 194,
-			SDL_SCANCODE_KP_POWER = 195,
-			SDL_SCANCODE_KP_PERCENT = 196,
-			SDL_SCANCODE_KP_LESS = 197,
-			SDL_SCANCODE_KP_GREATER = 198,
-			SDL_SCANCODE_KP_AMPERSAND = 199,
-			SDL_SCANCODE_KP_DBLAMPERSAND = 200,
-			SDL_SCANCODE_KP_VERTICALBAR = 201,
-			SDL_SCANCODE_KP_DBLVERTICALBAR = 202,
-			SDL_SCANCODE_KP_COLON = 203,
-			SDL_SCANCODE_KP_HASH = 204,
-			SDL_SCANCODE_KP_SPACE = 205,
-			SDL_SCANCODE_KP_AT = 206,
-			SDL_SCANCODE_KP_EXCLAM = 207,
-			SDL_SCANCODE_KP_MEMSTORE = 208,
-			SDL_SCANCODE_KP_MEMRECALL = 209,
-			SDL_SCANCODE_KP_MEMCLEAR = 210,
-			SDL_SCANCODE_KP_MEMADD = 211,
-			SDL_SCANCODE_KP_MEMSUBTRACT = 212,
-			SDL_SCANCODE_KP_MEMMULTIPLY = 213,
-			SDL_SCANCODE_KP_MEMDIVIDE = 214,
-			SDL_SCANCODE_KP_PLUSMINUS = 215,
-			SDL_SCANCODE_KP_CLEAR = 216,
-			SDL_SCANCODE_KP_CLEARENTRY = 217,
-			SDL_SCANCODE_KP_BINARY = 218,
-			SDL_SCANCODE_KP_OCTAL = 219,
-			SDL_SCANCODE_KP_DECIMAL = 220,
-			SDL_SCANCODE_KP_HEXADECIMAL = 221,
+        SdlScancodeKp00 = 176,
+        SdlScancodeKp000 = 177,
+        SdlScancodeThousandsseparator = 178,
+        SdlScancodeDecimalseparator = 179,
+        SdlScancodeCurrencyunit = 180,
+        SdlScancodeCurrencysubunit = 181,
+        SdlScancodeKpLeftparen = 182,
+        SdlScancodeKpRightparen = 183,
+        SdlScancodeKpLeftbrace = 184,
+        SdlScancodeKpRightbrace = 185,
+        SdlScancodeKpTab = 186,
+        SdlScancodeKpBackspace = 187,
+        SdlScancodeKpA = 188,
+        SdlScancodeKpB = 189,
+        SdlScancodeKpC = 190,
+        SdlScancodeKpD = 191,
+        SdlScancodeKpE = 192,
+        SdlScancodeKpF = 193,
+        SdlScancodeKpXor = 194,
+        SdlScancodeKpPower = 195,
+        SdlScancodeKpPercent = 196,
+        SdlScancodeKpLess = 197,
+        SdlScancodeKpGreater = 198,
+        SdlScancodeKpAmpersand = 199,
+        SdlScancodeKpDblampersand = 200,
+        SdlScancodeKpVerticalbar = 201,
+        SdlScancodeKpDblverticalbar = 202,
+        SdlScancodeKpColon = 203,
+        SdlScancodeKpHash = 204,
+        SdlScancodeKpSpace = 205,
+        SdlScancodeKpAt = 206,
+        SdlScancodeKpExclam = 207,
+        SdlScancodeKpMemstore = 208,
+        SdlScancodeKpMemrecall = 209,
+        SdlScancodeKpMemclear = 210,
+        SdlScancodeKpMemadd = 211,
+        SdlScancodeKpMemsubtract = 212,
+        SdlScancodeKpMemmultiply = 213,
+        SdlScancodeKpMemdivide = 214,
+        SdlScancodeKpPlusminus = 215,
+        SdlScancodeKpClear = 216,
+        SdlScancodeKpClearentry = 217,
+        SdlScancodeKpBinary = 218,
+        SdlScancodeKpOctal = 219,
+        SdlScancodeKpDecimal = 220,
+        SdlScancodeKpHexadecimal = 221,
 
-			SDL_SCANCODE_LCTRL = 224,
-			SDL_SCANCODE_LSHIFT = 225,
-			SDL_SCANCODE_LALT = 226,
-			SDL_SCANCODE_LGUI = 227,
-			SDL_SCANCODE_RCTRL = 228,
-			SDL_SCANCODE_RSHIFT = 229,
-			SDL_SCANCODE_RALT = 230,
-			SDL_SCANCODE_RGUI = 231,
+        SdlScancodeLctrl = 224,
+        SdlScancodeLshift = 225,
+        SdlScancodeLalt = 226,
+        SdlScancodeLgui = 227,
+        SdlScancodeRctrl = 228,
+        SdlScancodeRshift = 229,
+        SdlScancodeRalt = 230,
+        SdlScancodeRgui = 231,
 
-			SDL_SCANCODE_MODE = 257,
+        SdlScancodeMode = 257,
 
-			/* These come from the USB consumer page (0x0C) */
-			SDL_SCANCODE_AUDIONEXT = 258,
-			SDL_SCANCODE_AUDIOPREV = 259,
-			SDL_SCANCODE_AUDIOSTOP = 260,
-			SDL_SCANCODE_AUDIOPLAY = 261,
-			SDL_SCANCODE_AUDIOMUTE = 262,
-			SDL_SCANCODE_MEDIASELECT = 263,
-			SDL_SCANCODE_WWW = 264,
-			SDL_SCANCODE_MAIL = 265,
-			SDL_SCANCODE_CALCULATOR = 266,
-			SDL_SCANCODE_COMPUTER = 267,
-			SDL_SCANCODE_AC_SEARCH = 268,
-			SDL_SCANCODE_AC_HOME = 269,
-			SDL_SCANCODE_AC_BACK = 270,
-			SDL_SCANCODE_AC_FORWARD = 271,
-			SDL_SCANCODE_AC_STOP = 272,
-			SDL_SCANCODE_AC_REFRESH = 273,
-			SDL_SCANCODE_AC_BOOKMARKS = 274,
+        /* These come from the USB consumer page (0x0C) */
+        SdlScancodeAudionext = 258,
+        SdlScancodeAudioprev = 259,
+        SdlScancodeAudiostop = 260,
+        SdlScancodeAudioplay = 261,
+        SdlScancodeAudiomute = 262,
+        SdlScancodeMediaselect = 263,
+        SdlScancodeWww = 264,
+        SdlScancodeMail = 265,
+        SdlScancodeCalculator = 266,
+        SdlScancodeComputer = 267,
+        SdlScancodeAcSearch = 268,
+        SdlScancodeAcHome = 269,
+        SdlScancodeAcBack = 270,
+        SdlScancodeAcForward = 271,
+        SdlScancodeAcStop = 272,
+        SdlScancodeAcRefresh = 273,
+        SdlScancodeAcBookmarks = 274,
 
-			/* These come from other sources, and are mostly mac related */
-			SDL_SCANCODE_BRIGHTNESSDOWN = 275,
-			SDL_SCANCODE_BRIGHTNESSUP = 276,
-			SDL_SCANCODE_DISPLAYSWITCH = 277,
-			SDL_SCANCODE_KBDILLUMTOGGLE = 278,
-			SDL_SCANCODE_KBDILLUMDOWN = 279,
-			SDL_SCANCODE_KBDILLUMUP = 280,
-			SDL_SCANCODE_EJECT = 281,
-			SDL_SCANCODE_SLEEP = 282,
+        /* These come from other sources, and are mostly mac related */
+        SdlScancodeBrightnessdown = 275,
+        SdlScancodeBrightnessup = 276,
+        SdlScancodeDisplayswitch = 277,
+        SdlScancodeKbdillumtoggle = 278,
+        SdlScancodeKbdillumdown = 279,
+        SdlScancodeKbdillumup = 280,
+        SdlScancodeEject = 281,
+        SdlScancodeSleep = 282,
 
-			SDL_SCANCODE_APP1 = 283,
-			SDL_SCANCODE_APP2 = 284,
+        SdlScancodeApp1 = 283,
+        SdlScancodeApp2 = 284,
 
-			/* This is not a key, simply marks the number of scancodes
-			 * so that you know how big to make your arrays. */
-			SDL_NUM_SCANCODES = 512
-}
-
-		
-		public enum SDL_Keycode
-		{
-			SDLK_UNKNOWN = 0,
-
-			SDLK_RETURN = '\r',
-			SDLK_ESCAPE = 27, // '\033'
-			SDLK_BACKSPACE = '\b',
-			SDLK_TAB = '\t',
-			SDLK_SPACE = ' ',
-			SDLK_EXCLAIM = '!',
-			SDLK_QUOTEDBL = '"',
-			SDLK_HASH = '#',
-			SDLK_PERCENT = '%',
-			SDLK_DOLLAR = '$',
-			SDLK_AMPERSAND = '&',
-			SDLK_QUOTE = '\'',
-			SDLK_LEFTPAREN = '(',
-			SDLK_RIGHTPAREN = ')',
-			SDLK_ASTERISK = '*',
-			SDLK_PLUS = '+',
-			SDLK_COMMA = ',',
-			SDLK_MINUS = '-',
-			SDLK_PERIOD = '.',
-			SDLK_SLASH = '/',
-			SDLK_0 = '0',
-			SDLK_1 = '1',
-			SDLK_2 = '2',
-			SDLK_3 = '3',
-			SDLK_4 = '4',
-			SDLK_5 = '5',
-			SDLK_6 = '6',
-			SDLK_7 = '7',
-			SDLK_8 = '8',
-			SDLK_9 = '9',
-			SDLK_COLON = ':',
-			SDLK_SEMICOLON = ';',
-			SDLK_LESS = '<',
-			SDLK_EQUALS = '=',
-			SDLK_GREATER = '>',
-			SDLK_QUESTION = '?',
-			SDLK_AT = '@',
-			/*
-			Skip uppercase letters
-			*/
-			SDLK_LEFTBRACKET = '[',
-			SDLK_BACKSLASH = '\\',
-			SDLK_RIGHTBRACKET = ']',
-			SDLK_CARET = '^',
-			SDLK_UNDERSCORE = '_',
-			SDLK_BACKQUOTE = '`',
-			SDLK_a = 'a',
-			SDLK_b = 'b',
-			SDLK_c = 'c',
-			SDLK_d = 'd',
-			SDLK_e = 'e',
-			SDLK_f = 'f',
-			SDLK_g = 'g',
-			SDLK_h = 'h',
-			SDLK_i = 'i',
-			SDLK_j = 'j',
-			SDLK_k = 'k',
-			SDLK_l = 'l',
-			SDLK_m = 'm',
-			SDLK_n = 'n',
-			SDLK_o = 'o',
-			SDLK_p = 'p',
-			SDLK_q = 'q',
-			SDLK_r = 'r',
-			SDLK_s = 's',
-			SDLK_t = 't',
-			SDLK_u = 'u',
-			SDLK_v = 'v',
-			SDLK_w = 'w',
-			SDLK_x = 'x',
-			SDLK_y = 'y',
-			SDLK_z = 'z',
-
-			SDLK_CAPSLOCK = (int)SDL_Scancode.SDL_SCANCODE_CAPSLOCK | (1 << 30),
-
-			SDLK_F1 = (int)SDL_Scancode.SDL_SCANCODE_F1 | (1 << 30),
-			SDLK_F2 = (int)SDL_Scancode.SDL_SCANCODE_F2 | (1 << 30),
-			SDLK_F3 = (int)SDL_Scancode.SDL_SCANCODE_F3 | (1 << 30),
-			SDLK_F4 = (int)SDL_Scancode.SDL_SCANCODE_F4 | (1 << 30),
-			SDLK_F5 = (int)SDL_Scancode.SDL_SCANCODE_F5 | (1 << 30),
-			SDLK_F6 = (int)SDL_Scancode.SDL_SCANCODE_F6 | (1 << 30),
-			SDLK_F7 = (int)SDL_Scancode.SDL_SCANCODE_F7 | (1 << 30),
-			SDLK_F8 = (int)SDL_Scancode.SDL_SCANCODE_F8 | (1 << 30),
-			SDLK_F9 = (int)SDL_Scancode.SDL_SCANCODE_F9 | (1 << 30),
-			SDLK_F10 = (int)SDL_Scancode.SDL_SCANCODE_F10 | (1 << 30),
-			SDLK_F11 = (int)SDL_Scancode.SDL_SCANCODE_F11 | (1 << 30),
-			SDLK_F12 = (int)SDL_Scancode.SDL_SCANCODE_F12 | (1 << 30),
-
-			SDLK_PRINTSCREEN = (int)SDL_Scancode.SDL_SCANCODE_PRINTSCREEN | (1 << 30),
-			SDLK_SCROLLLOCK = (int)SDL_Scancode.SDL_SCANCODE_SCROLLLOCK | (1 << 30),
-			SDLK_PAUSE = (int)SDL_Scancode.SDL_SCANCODE_PAUSE | (1 << 30),
-			SDLK_INSERT = (int)SDL_Scancode.SDL_SCANCODE_INSERT | (1 << 30),
-			SDLK_HOME = (int)SDL_Scancode.SDL_SCANCODE_HOME | (1 << 30),
-			SDLK_PAGEUP = (int)SDL_Scancode.SDL_SCANCODE_PAGEUP | (1 << 30),
-			SDLK_DELETE = 127,
-			SDLK_END = (int)SDL_Scancode.SDL_SCANCODE_END | (1 << 30),
-			SDLK_PAGEDOWN = (int)SDL_Scancode.SDL_SCANCODE_PAGEDOWN | (1 << 30),
-			SDLK_RIGHT = (int)SDL_Scancode.SDL_SCANCODE_RIGHT | (1 << 30),
-			SDLK_LEFT = (int)SDL_Scancode.SDL_SCANCODE_LEFT | (1 << 30),
-			SDLK_DOWN = (int)SDL_Scancode.SDL_SCANCODE_DOWN | (1 << 30),
-			SDLK_UP = (int)SDL_Scancode.SDL_SCANCODE_UP | (1 << 30),
-
-			SDLK_NUMLOCKCLEAR = (int)SDL_Scancode.SDL_SCANCODE_NUMLOCKCLEAR | (1 << 30),
-			SDLK_KP_DIVIDE = (int)SDL_Scancode.SDL_SCANCODE_KP_DIVIDE | (1 << 30),
-			SDLK_KP_MULTIPLY = (int)SDL_Scancode.SDL_SCANCODE_KP_MULTIPLY | (1 << 30),
-			SDLK_KP_MINUS = (int)SDL_Scancode.SDL_SCANCODE_KP_MINUS | (1 << 30),
-			SDLK_KP_PLUS = (int)SDL_Scancode.SDL_SCANCODE_KP_PLUS | (1 << 30),
-			SDLK_KP_ENTER = (int)SDL_Scancode.SDL_SCANCODE_KP_ENTER | (1 << 30),
-			SDLK_KP_1 = (int)SDL_Scancode.SDL_SCANCODE_KP_1 | (1 << 30),
-			SDLK_KP_2 = (int)SDL_Scancode.SDL_SCANCODE_KP_2 | (1 << 30),
-			SDLK_KP_3 = (int)SDL_Scancode.SDL_SCANCODE_KP_3 | (1 << 30),
-			SDLK_KP_4 = (int)SDL_Scancode.SDL_SCANCODE_KP_4 | (1 << 30),
-			SDLK_KP_5 = (int)SDL_Scancode.SDL_SCANCODE_KP_5 | (1 << 30),
-			SDLK_KP_6 = (int)SDL_Scancode.SDL_SCANCODE_KP_6 | (1 << 30),
-			SDLK_KP_7 = (int)SDL_Scancode.SDL_SCANCODE_KP_7 | (1 << 30),
-			SDLK_KP_8 = (int)SDL_Scancode.SDL_SCANCODE_KP_8 | (1 << 30),
-			SDLK_KP_9 = (int)SDL_Scancode.SDL_SCANCODE_KP_9 | (1 << 30),
-			SDLK_KP_0 = (int)SDL_Scancode.SDL_SCANCODE_KP_0 | (1 << 30),
-			SDLK_KP_PERIOD = (int)SDL_Scancode.SDL_SCANCODE_KP_PERIOD | (1 << 30),
-
-			SDLK_APPLICATION = (int)SDL_Scancode.SDL_SCANCODE_APPLICATION | (1 << 30),
-			SDLK_POWER = (int)SDL_Scancode.SDL_SCANCODE_POWER | (1 << 30),
-			SDLK_KP_EQUALS = (int)SDL_Scancode.SDL_SCANCODE_KP_EQUALS | (1 << 30),
-			SDLK_F13 = (int)SDL_Scancode.SDL_SCANCODE_F13 | (1 << 30),
-			SDLK_F14 = (int)SDL_Scancode.SDL_SCANCODE_F14 | (1 << 30),
-			SDLK_F15 = (int)SDL_Scancode.SDL_SCANCODE_F15 | (1 << 30),
-			SDLK_F16 = (int)SDL_Scancode.SDL_SCANCODE_F16 | (1 << 30),
-			SDLK_F17 = (int)SDL_Scancode.SDL_SCANCODE_F17 | (1 << 30),
-			SDLK_F18 = (int)SDL_Scancode.SDL_SCANCODE_F18 | (1 << 30),
-			SDLK_F19 = (int)SDL_Scancode.SDL_SCANCODE_F19 | (1 << 30),
-			SDLK_F20 = (int)SDL_Scancode.SDL_SCANCODE_F20 | (1 << 30),
-			SDLK_F21 = (int)SDL_Scancode.SDL_SCANCODE_F21 | (1 << 30),
-			SDLK_F22 = (int)SDL_Scancode.SDL_SCANCODE_F22 | (1 << 30),
-			SDLK_F23 = (int)SDL_Scancode.SDL_SCANCODE_F23 | (1 << 30),
-			SDLK_F24 = (int)SDL_Scancode.SDL_SCANCODE_F24 | (1 << 30),
-			SDLK_EXECUTE = (int)SDL_Scancode.SDL_SCANCODE_EXECUTE | (1 << 30),
-			SDLK_HELP = (int)SDL_Scancode.SDL_SCANCODE_HELP | (1 << 30),
-			SDLK_MENU = (int)SDL_Scancode.SDL_SCANCODE_MENU | (1 << 30),
-			SDLK_SELECT = (int)SDL_Scancode.SDL_SCANCODE_SELECT | (1 << 30),
-			SDLK_STOP = (int)SDL_Scancode.SDL_SCANCODE_STOP | (1 << 30),
-			SDLK_AGAIN = (int)SDL_Scancode.SDL_SCANCODE_AGAIN | (1 << 30),
-			SDLK_UNDO = (int)SDL_Scancode.SDL_SCANCODE_UNDO | (1 << 30),
-			SDLK_CUT = (int)SDL_Scancode.SDL_SCANCODE_CUT | (1 << 30),
-			SDLK_COPY = (int)SDL_Scancode.SDL_SCANCODE_COPY | (1 << 30),
-			SDLK_PASTE = (int)SDL_Scancode.SDL_SCANCODE_PASTE | (1 << 30),
-			SDLK_FIND = (int)SDL_Scancode.SDL_SCANCODE_FIND | (1 << 30),
-			SDLK_MUTE = (int)SDL_Scancode.SDL_SCANCODE_MUTE | (1 << 30),
-			SDLK_VOLUMEUP = (int)SDL_Scancode.SDL_SCANCODE_VOLUMEUP | (1 << 30),
-			SDLK_VOLUMEDOWN = (int)SDL_Scancode.SDL_SCANCODE_VOLUMEDOWN | (1 << 30),
-			SDLK_KP_COMMA = (int)SDL_Scancode.SDL_SCANCODE_KP_COMMA | (1 << 30),
-			SDLK_KP_EQUALSAS400 =
-			(int)SDL_Scancode.SDL_SCANCODE_KP_EQUALSAS400 | (1 << 30),
-
-			SDLK_ALTERASE = (int)SDL_Scancode.SDL_SCANCODE_ALTERASE | (1 << 30),
-			SDLK_SYSREQ = (int)SDL_Scancode.SDL_SCANCODE_SYSREQ | (1 << 30),
-			SDLK_CANCEL = (int)SDL_Scancode.SDL_SCANCODE_CANCEL | (1 << 30),
-			SDLK_CLEAR = (int)SDL_Scancode.SDL_SCANCODE_CLEAR | (1 << 30),
-			SDLK_PRIOR = (int)SDL_Scancode.SDL_SCANCODE_PRIOR | (1 << 30),
-			SDLK_RETURN2 = (int)SDL_Scancode.SDL_SCANCODE_RETURN2 | (1 << 30),
-			SDLK_SEPARATOR = (int)SDL_Scancode.SDL_SCANCODE_SEPARATOR | (1 << 30),
-			SDLK_OUT = (int)SDL_Scancode.SDL_SCANCODE_OUT | (1 << 30),
-			SDLK_OPER = (int)SDL_Scancode.SDL_SCANCODE_OPER | (1 << 30),
-			SDLK_CLEARAGAIN = (int)SDL_Scancode.SDL_SCANCODE_CLEARAGAIN | (1 << 30),
-			SDLK_CRSEL = (int)SDL_Scancode.SDL_SCANCODE_CRSEL | (1 << 30),
-			SDLK_EXSEL = (int)SDL_Scancode.SDL_SCANCODE_EXSEL | (1 << 30),
-
-			SDLK_KP_00 = (int)SDL_Scancode.SDL_SCANCODE_KP_00 | (1 << 30),
-			SDLK_KP_000 = (int)SDL_Scancode.SDL_SCANCODE_KP_000 | (1 << 30),
-			SDLK_THOUSANDSSEPARATOR =
-			(int)SDL_Scancode.SDL_SCANCODE_THOUSANDSSEPARATOR | (1 << 30),
-			SDLK_DECIMALSEPARATOR =
-			(int)SDL_Scancode.SDL_SCANCODE_DECIMALSEPARATOR | (1 << 30),
-			SDLK_CURRENCYUNIT = (int)SDL_Scancode.SDL_SCANCODE_CURRENCYUNIT | (1 << 30),
-			SDLK_CURRENCYSUBUNIT =
-			(int)SDL_Scancode.SDL_SCANCODE_CURRENCYSUBUNIT | (1 << 30),
-			SDLK_KP_LEFTPAREN = (int)SDL_Scancode.SDL_SCANCODE_KP_LEFTPAREN | (1 << 30),
-			SDLK_KP_RIGHTPAREN = (int)SDL_Scancode.SDL_SCANCODE_KP_RIGHTPAREN | (1 << 30),
-			SDLK_KP_LEFTBRACE = (int)SDL_Scancode.SDL_SCANCODE_KP_LEFTBRACE | (1 << 30),
-			SDLK_KP_RIGHTBRACE = (int)SDL_Scancode.SDL_SCANCODE_KP_RIGHTBRACE | (1 << 30),
-			SDLK_KP_TAB = (int)SDL_Scancode.SDL_SCANCODE_KP_TAB | (1 << 30),
-			SDLK_KP_BACKSPACE = (int)SDL_Scancode.SDL_SCANCODE_KP_BACKSPACE | (1 << 30),
-			SDLK_KP_A = (int)SDL_Scancode.SDL_SCANCODE_KP_A | (1 << 30),
-			SDLK_KP_B = (int)SDL_Scancode.SDL_SCANCODE_KP_B | (1 << 30),
-			SDLK_KP_C = (int)SDL_Scancode.SDL_SCANCODE_KP_C | (1 << 30),
-			SDLK_KP_D = (int)SDL_Scancode.SDL_SCANCODE_KP_D | (1 << 30),
-			SDLK_KP_E = (int)SDL_Scancode.SDL_SCANCODE_KP_E | (1 << 30),
-			SDLK_KP_F = (int)SDL_Scancode.SDL_SCANCODE_KP_F | (1 << 30),
-			SDLK_KP_XOR = (int)SDL_Scancode.SDL_SCANCODE_KP_XOR | (1 << 30),
-			SDLK_KP_POWER = (int)SDL_Scancode.SDL_SCANCODE_KP_POWER | (1 << 30),
-			SDLK_KP_PERCENT = (int)SDL_Scancode.SDL_SCANCODE_KP_PERCENT | (1 << 30),
-			SDLK_KP_LESS = (int)SDL_Scancode.SDL_SCANCODE_KP_LESS | (1 << 30),
-			SDLK_KP_GREATER = (int)SDL_Scancode.SDL_SCANCODE_KP_GREATER | (1 << 30),
-			SDLK_KP_AMPERSAND = (int)SDL_Scancode.SDL_SCANCODE_KP_AMPERSAND | (1 << 30),
-			SDLK_KP_DBLAMPERSAND =
-			(int)SDL_Scancode.SDL_SCANCODE_KP_DBLAMPERSAND | (1 << 30),
-			SDLK_KP_VERTICALBAR =
-			(int)SDL_Scancode.SDL_SCANCODE_KP_VERTICALBAR | (1 << 30),
-			SDLK_KP_DBLVERTICALBAR =
-			(int)SDL_Scancode.SDL_SCANCODE_KP_DBLVERTICALBAR | (1 << 30),
-			SDLK_KP_COLON = (int)SDL_Scancode.SDL_SCANCODE_KP_COLON | (1 << 30),
-			SDLK_KP_HASH = (int)SDL_Scancode.SDL_SCANCODE_KP_HASH | (1 << 30),
-			SDLK_KP_SPACE = (int)SDL_Scancode.SDL_SCANCODE_KP_SPACE | (1 << 30),
-			SDLK_KP_AT = (int)SDL_Scancode.SDL_SCANCODE_KP_AT | (1 << 30),
-			SDLK_KP_EXCLAM = (int)SDL_Scancode.SDL_SCANCODE_KP_EXCLAM | (1 << 30),
-			SDLK_KP_MEMSTORE = (int)SDL_Scancode.SDL_SCANCODE_KP_MEMSTORE | (1 << 30),
-			SDLK_KP_MEMRECALL = (int)SDL_Scancode.SDL_SCANCODE_KP_MEMRECALL | (1 << 30),
-			SDLK_KP_MEMCLEAR = (int)SDL_Scancode.SDL_SCANCODE_KP_MEMCLEAR | (1 << 30),
-			SDLK_KP_MEMADD = (int)SDL_Scancode.SDL_SCANCODE_KP_MEMADD | (1 << 30),
-			SDLK_KP_MEMSUBTRACT =
-			(int)SDL_Scancode.SDL_SCANCODE_KP_MEMSUBTRACT | (1 << 30),
-			SDLK_KP_MEMMULTIPLY =
-			(int)SDL_Scancode.SDL_SCANCODE_KP_MEMMULTIPLY | (1 << 30),
-			SDLK_KP_MEMDIVIDE = (int)SDL_Scancode.SDL_SCANCODE_KP_MEMDIVIDE | (1 << 30),
-			SDLK_KP_PLUSMINUS = (int)SDL_Scancode.SDL_SCANCODE_KP_PLUSMINUS | (1 << 30),
-			SDLK_KP_CLEAR = (int)SDL_Scancode.SDL_SCANCODE_KP_CLEAR | (1 << 30),
-			SDLK_KP_CLEARENTRY = (int)SDL_Scancode.SDL_SCANCODE_KP_CLEARENTRY | (1 << 30),
-			SDLK_KP_BINARY = (int)SDL_Scancode.SDL_SCANCODE_KP_BINARY | (1 << 30),
-			SDLK_KP_OCTAL = (int)SDL_Scancode.SDL_SCANCODE_KP_OCTAL | (1 << 30),
-			SDLK_KP_DECIMAL = (int)SDL_Scancode.SDL_SCANCODE_KP_DECIMAL | (1 << 30),
-			SDLK_KP_HEXADECIMAL =
-			(int)SDL_Scancode.SDL_SCANCODE_KP_HEXADECIMAL | (1 << 30),
-
-			SDLK_LCTRL = (int)SDL_Scancode.SDL_SCANCODE_LCTRL | (1 << 30),
-			SDLK_LSHIFT = (int)SDL_Scancode.SDL_SCANCODE_LSHIFT | (1 << 30),
-			SDLK_LALT = (int)SDL_Scancode.SDL_SCANCODE_LALT | (1 << 30),
-			SDLK_LGUI = (int)SDL_Scancode.SDL_SCANCODE_LGUI | (1 << 30),
-			SDLK_RCTRL = (int)SDL_Scancode.SDL_SCANCODE_RCTRL | (1 << 30),
-			SDLK_RSHIFT = (int)SDL_Scancode.SDL_SCANCODE_RSHIFT | (1 << 30),
-			SDLK_RALT = (int)SDL_Scancode.SDL_SCANCODE_RALT | (1 << 30),
-			SDLK_RGUI = (int)SDL_Scancode.SDL_SCANCODE_RGUI | (1 << 30),
-
-			SDLK_MODE = (int)SDL_Scancode.SDL_SCANCODE_MODE | (1 << 30),
-
-			SDLK_AUDIONEXT = (int)SDL_Scancode.SDL_SCANCODE_AUDIONEXT | (1 << 30),
-			SDLK_AUDIOPREV = (int)SDL_Scancode.SDL_SCANCODE_AUDIOPREV | (1 << 30),
-			SDLK_AUDIOSTOP = (int)SDL_Scancode.SDL_SCANCODE_AUDIOSTOP | (1 << 30),
-			SDLK_AUDIOPLAY = (int)SDL_Scancode.SDL_SCANCODE_AUDIOPLAY | (1 << 30),
-			SDLK_AUDIOMUTE = (int)SDL_Scancode.SDL_SCANCODE_AUDIOMUTE | (1 << 30),
-			SDLK_MEDIASELECT = (int)SDL_Scancode.SDL_SCANCODE_MEDIASELECT | (1 << 30),
-			SDLK_WWW = (int)SDL_Scancode.SDL_SCANCODE_WWW | (1 << 30),
-			SDLK_MAIL = (int)SDL_Scancode.SDL_SCANCODE_MAIL | (1 << 30),
-			SDLK_CALCULATOR = (int)SDL_Scancode.SDL_SCANCODE_CALCULATOR | (1 << 30),
-			SDLK_COMPUTER = (int)SDL_Scancode.SDL_SCANCODE_COMPUTER | (1 << 30),
-			SDLK_AC_SEARCH = (int)SDL_Scancode.SDL_SCANCODE_AC_SEARCH | (1 << 30),
-			SDLK_AC_HOME = (int)SDL_Scancode.SDL_SCANCODE_AC_HOME | (1 << 30),
-			SDLK_AC_BACK = (int)SDL_Scancode.SDL_SCANCODE_AC_BACK | (1 << 30),
-			SDLK_AC_FORWARD = (int)SDL_Scancode.SDL_SCANCODE_AC_FORWARD | (1 << 30),
-			SDLK_AC_STOP = (int)SDL_Scancode.SDL_SCANCODE_AC_STOP | (1 << 30),
-			SDLK_AC_REFRESH = (int)SDL_Scancode.SDL_SCANCODE_AC_REFRESH | (1 << 30),
-			SDLK_AC_BOOKMARKS = (int)SDL_Scancode.SDL_SCANCODE_AC_BOOKMARKS | (1 << 30),
-
-			SDLK_BRIGHTNESSDOWN =
-			(int)SDL_Scancode.SDL_SCANCODE_BRIGHTNESSDOWN | (1 << 30),
-			SDLK_BRIGHTNESSUP = (int)SDL_Scancode.SDL_SCANCODE_BRIGHTNESSUP | (1 << 30),
-			SDLK_DISPLAYSWITCH = (int)SDL_Scancode.SDL_SCANCODE_DISPLAYSWITCH | (1 << 30),
-			SDLK_KBDILLUMTOGGLE =
-			(int)SDL_Scancode.SDL_SCANCODE_KBDILLUMTOGGLE | (1 << 30),
-			SDLK_KBDILLUMDOWN = (int)SDL_Scancode.SDL_SCANCODE_KBDILLUMDOWN | (1 << 30),
-			SDLK_KBDILLUMUP = (int)SDL_Scancode.SDL_SCANCODE_KBDILLUMUP | (1 << 30),
-			SDLK_EJECT = (int)SDL_Scancode.SDL_SCANCODE_EJECT | (1 << 30),
-			SDLK_SLEEP = (int)SDL_Scancode.SDL_SCANCODE_SLEEP | (1 << 30)
-}
+        /* This is not a key, simply marks the number of scancodes
+         * so that you know how big to make your arrays. */
+        SdlNumScancodes = 512
+    }
 
 
-       
-        public unsafe struct SDL_Surface
-        {
-            public uint flags;               /**< Read-only */
-            public void* format;    /**< Read-only */
-            public int w, h;                   /**< Read-only */
-            public int pitch;                  /**< Read-only */
-            public void* pixels;               /**< Read-write */
+    public enum SdlKeycode
+    {
+        SdlkUnknown = 0,
 
-            /** Application data associated with the surface */
-            public void* userdata;             /**< Read-write */
+        SdlkReturn = '\r',
+        SdlkEscape = 27, // '\033'
+        SdlkBackspace = '\b',
+        SdlkTab = '\t',
+        SdlkSpace = ' ',
+        SdlkExclaim = '!',
+        SdlkQuotedbl = '"',
+        SdlkHash = '#',
+        SdlkPercent = '%',
+        SdlkDollar = '$',
+        SdlkAmpersand = '&',
+        SdlkQuote = '\'',
+        SdlkLeftparen = '(',
+        SdlkRightparen = ')',
+        SdlkAsterisk = '*',
+        SdlkPlus = '+',
+        SdlkComma = ',',
+        SdlkMinus = '-',
+        SdlkPeriod = '.',
+        SdlkSlash = '/',
+        Sdlk0 = '0',
+        Sdlk1 = '1',
+        Sdlk2 = '2',
+        Sdlk3 = '3',
+        Sdlk4 = '4',
+        Sdlk5 = '5',
+        Sdlk6 = '6',
+        Sdlk7 = '7',
+        Sdlk8 = '8',
+        Sdlk9 = '9',
+        SdlkColon = ':',
+        SdlkSemicolon = ';',
+        SdlkLess = '<',
+        SdlkEquals = '=',
+        SdlkGreater = '>',
+        SdlkQuestion = '?',
+        SdlkAt = '@',
+        /*
+        Skip uppercase letters
+        */
+        SdlkLeftbracket = '[',
+        SdlkBackslash = '\\',
+        SdlkRightbracket = ']',
+        SdlkCaret = '^',
+        SdlkUnderscore = '_',
+        SdlkBackquote = '`',
+        SdlkA = 'a',
+        SdlkB = 'b',
+        SdlkC = 'c',
+        SdlkD = 'd',
+        SdlkE = 'e',
+        SdlkF = 'f',
+        SdlkG = 'g',
+        SdlkH = 'h',
+        SdlkI = 'i',
+        SdlkJ = 'j',
+        SdlkK = 'k',
+        SdlkL = 'l',
+        SdlkM = 'm',
+        SdlkN = 'n',
+        SdlkO = 'o',
+        SdlkP = 'p',
+        SdlkQ = 'q',
+        SdlkR = 'r',
+        SdlkS = 's',
+        SdlkT = 't',
+        SdlkU = 'u',
+        SdlkV = 'v',
+        SdlkW = 'w',
+        SdlkX = 'x',
+        SdlkY = 'y',
+        SdlkZ = 'z',
 
-            /** information needed for surfaces requiring locks */
-            public int locked;                 /**< Read-only */
-            public void* lock_data;            /**< Read-only */
+        SdlkCapslock = (int) SdlScancode.SdlScancodeCapslock | (1 << 30),
 
-            /** clipping information */
-            public SDL_Rect clip_rect;         /**< Read-only */
+        SdlkF1 = (int) SdlScancode.SdlScancodeF1 | (1 << 30),
+        SdlkF2 = (int) SdlScancode.SdlScancodeF2 | (1 << 30),
+        SdlkF3 = (int) SdlScancode.SdlScancodeF3 | (1 << 30),
+        SdlkF4 = (int) SdlScancode.SdlScancodeF4 | (1 << 30),
+        SdlkF5 = (int) SdlScancode.SdlScancodeF5 | (1 << 30),
+        SdlkF6 = (int) SdlScancode.SdlScancodeF6 | (1 << 30),
+        SdlkF7 = (int) SdlScancode.SdlScancodeF7 | (1 << 30),
+        SdlkF8 = (int) SdlScancode.SdlScancodeF8 | (1 << 30),
+        SdlkF9 = (int) SdlScancode.SdlScancodeF9 | (1 << 30),
+        SdlkF10 = (int) SdlScancode.SdlScancodeF10 | (1 << 30),
+        SdlkF11 = (int) SdlScancode.SdlScancodeF11 | (1 << 30),
+        SdlkF12 = (int) SdlScancode.SdlScancodeF12 | (1 << 30),
 
-            /** info for fast blit mapping to other surfaces */
-            public void* map;    /**< Private */
+        SdlkPrintscreen = (int) SdlScancode.SdlScancodePrintscreen | (1 << 30),
+        SdlkScrolllock = (int) SdlScancode.SdlScancodeScrolllock | (1 << 30),
+        SdlkPause = (int) SdlScancode.SdlScancodePause | (1 << 30),
+        SdlkInsert = (int) SdlScancode.SdlScancodeInsert | (1 << 30),
+        SdlkHome = (int) SdlScancode.SdlScancodeHome | (1 << 30),
+        SdlkPageup = (int) SdlScancode.SdlScancodePageup | (1 << 30),
+        SdlkDelete = 127,
+        SdlkEnd = (int) SdlScancode.SdlScancodeEnd | (1 << 30),
+        SdlkPagedown = (int) SdlScancode.SdlScancodePagedown | (1 << 30),
+        SdlkRight = (int) SdlScancode.SdlScancodeRight | (1 << 30),
+        SdlkLeft = (int) SdlScancode.SdlScancodeLeft | (1 << 30),
+        SdlkDown = (int) SdlScancode.SdlScancodeDown | (1 << 30),
+        SdlkUp = (int) SdlScancode.SdlScancodeUp | (1 << 30),
 
-            /** Reference count -- used when freeing surface */
-            public int refcount;               /**< Read-mostly */
-        }
+        SdlkNumlockclear = (int) SdlScancode.SdlScancodeNumlockclear | (1 << 30),
+        SdlkKpDivide = (int) SdlScancode.SdlScancodeKpDivide | (1 << 30),
+        SdlkKpMultiply = (int) SdlScancode.SdlScancodeKpMultiply | (1 << 30),
+        SdlkKpMinus = (int) SdlScancode.SdlScancodeKpMinus | (1 << 30),
+        SdlkKpPlus = (int) SdlScancode.SdlScancodeKpPlus | (1 << 30),
+        SdlkKpEnter = (int) SdlScancode.SdlScancodeKpEnter | (1 << 30),
+        SdlkKp1 = (int) SdlScancode.SdlScancodeKp1 | (1 << 30),
+        SdlkKp2 = (int) SdlScancode.SdlScancodeKp2 | (1 << 30),
+        SdlkKp3 = (int) SdlScancode.SdlScancodeKp3 | (1 << 30),
+        SdlkKp4 = (int) SdlScancode.SdlScancodeKp4 | (1 << 30),
+        SdlkKp5 = (int) SdlScancode.SdlScancodeKp5 | (1 << 30),
+        SdlkKp6 = (int) SdlScancode.SdlScancodeKp6 | (1 << 30),
+        SdlkKp7 = (int) SdlScancode.SdlScancodeKp7 | (1 << 30),
+        SdlkKp8 = (int) SdlScancode.SdlScancodeKp8 | (1 << 30),
+        SdlkKp9 = (int) SdlScancode.SdlScancodeKp9 | (1 << 30),
+        SdlkKp0 = (int) SdlScancode.SdlScancodeKp0 | (1 << 30),
+        SdlkKpPeriod = (int) SdlScancode.SdlScancodeKpPeriod | (1 << 30),
 
-        public struct SDL_Rect
-        {
-            public int x, y;
-            public int w, h;
-        }
+        SdlkApplication = (int) SdlScancode.SdlScancodeApplication | (1 << 30),
+        SdlkPower = (int) SdlScancode.SdlScancodePower | (1 << 30),
+        SdlkKpEquals = (int) SdlScancode.SdlScancodeKpEquals | (1 << 30),
+        SdlkF13 = (int) SdlScancode.SdlScancodeF13 | (1 << 30),
+        SdlkF14 = (int) SdlScancode.SdlScancodeF14 | (1 << 30),
+        SdlkF15 = (int) SdlScancode.SdlScancodeF15 | (1 << 30),
+        SdlkF16 = (int) SdlScancode.SdlScancodeF16 | (1 << 30),
+        SdlkF17 = (int) SdlScancode.SdlScancodeF17 | (1 << 30),
+        SdlkF18 = (int) SdlScancode.SdlScancodeF18 | (1 << 30),
+        SdlkF19 = (int) SdlScancode.SdlScancodeF19 | (1 << 30),
+        SdlkF20 = (int) SdlScancode.SdlScancodeF20 | (1 << 30),
+        SdlkF21 = (int) SdlScancode.SdlScancodeF21 | (1 << 30),
+        SdlkF22 = (int) SdlScancode.SdlScancodeF22 | (1 << 30),
+        SdlkF23 = (int) SdlScancode.SdlScancodeF23 | (1 << 30),
+        SdlkF24 = (int) SdlScancode.SdlScancodeF24 | (1 << 30),
+        SdlkExecute = (int) SdlScancode.SdlScancodeExecute | (1 << 30),
+        SdlkHelp = (int) SdlScancode.SdlScancodeHelp | (1 << 30),
+        SdlkMenu = (int) SdlScancode.SdlScancodeMenu | (1 << 30),
+        SdlkSelect = (int) SdlScancode.SdlScancodeSelect | (1 << 30),
+        SdlkStop = (int) SdlScancode.SdlScancodeStop | (1 << 30),
+        SdlkAgain = (int) SdlScancode.SdlScancodeAgain | (1 << 30),
+        SdlkUndo = (int) SdlScancode.SdlScancodeUndo | (1 << 30),
+        SdlkCut = (int) SdlScancode.SdlScancodeCut | (1 << 30),
+        SdlkCopy = (int) SdlScancode.SdlScancodeCopy | (1 << 30),
+        SdlkPaste = (int) SdlScancode.SdlScancodePaste | (1 << 30),
+        SdlkFind = (int) SdlScancode.SdlScancodeFind | (1 << 30),
+        SdlkMute = (int) SdlScancode.SdlScancodeMute | (1 << 30),
+        SdlkVolumeup = (int) SdlScancode.SdlScancodeVolumeup | (1 << 30),
+        SdlkVolumedown = (int) SdlScancode.SdlScancodeVolumedown | (1 << 30),
+        SdlkKpComma = (int) SdlScancode.SdlScancodeKpComma | (1 << 30),
+
+        SdlkKpEqualsas400 =
+            (int) SdlScancode.SdlScancodeKpEqualsas400 | (1 << 30),
+
+        SdlkAlterase = (int) SdlScancode.SdlScancodeAlterase | (1 << 30),
+        SdlkSysreq = (int) SdlScancode.SdlScancodeSysreq | (1 << 30),
+        SdlkCancel = (int) SdlScancode.SdlScancodeCancel | (1 << 30),
+        SdlkClear = (int) SdlScancode.SdlScancodeClear | (1 << 30),
+        SdlkPrior = (int) SdlScancode.SdlScancodePrior | (1 << 30),
+        SdlkReturn2 = (int) SdlScancode.SdlScancodeReturn2 | (1 << 30),
+        SdlkSeparator = (int) SdlScancode.SdlScancodeSeparator | (1 << 30),
+        SdlkOut = (int) SdlScancode.SdlScancodeOut | (1 << 30),
+        SdlkOper = (int) SdlScancode.SdlScancodeOper | (1 << 30),
+        SdlkClearagain = (int) SdlScancode.SdlScancodeClearagain | (1 << 30),
+        SdlkCrsel = (int) SdlScancode.SdlScancodeCrsel | (1 << 30),
+        SdlkExsel = (int) SdlScancode.SdlScancodeExsel | (1 << 30),
+
+        SdlkKp00 = (int) SdlScancode.SdlScancodeKp00 | (1 << 30),
+        SdlkKp000 = (int) SdlScancode.SdlScancodeKp000 | (1 << 30),
+
+        SdlkThousandsseparator =
+            (int) SdlScancode.SdlScancodeThousandsseparator | (1 << 30),
+
+        SdlkDecimalseparator =
+            (int) SdlScancode.SdlScancodeDecimalseparator | (1 << 30),
+        SdlkCurrencyunit = (int) SdlScancode.SdlScancodeCurrencyunit | (1 << 30),
+
+        SdlkCurrencysubunit =
+            (int) SdlScancode.SdlScancodeCurrencysubunit | (1 << 30),
+        SdlkKpLeftparen = (int) SdlScancode.SdlScancodeKpLeftparen | (1 << 30),
+        SdlkKpRightparen = (int) SdlScancode.SdlScancodeKpRightparen | (1 << 30),
+        SdlkKpLeftbrace = (int) SdlScancode.SdlScancodeKpLeftbrace | (1 << 30),
+        SdlkKpRightbrace = (int) SdlScancode.SdlScancodeKpRightbrace | (1 << 30),
+        SdlkKpTab = (int) SdlScancode.SdlScancodeKpTab | (1 << 30),
+        SdlkKpBackspace = (int) SdlScancode.SdlScancodeKpBackspace | (1 << 30),
+        SdlkKpA = (int) SdlScancode.SdlScancodeKpA | (1 << 30),
+        SdlkKpB = (int) SdlScancode.SdlScancodeKpB | (1 << 30),
+        SdlkKpC = (int) SdlScancode.SdlScancodeKpC | (1 << 30),
+        SdlkKpD = (int) SdlScancode.SdlScancodeKpD | (1 << 30),
+        SdlkKpE = (int) SdlScancode.SdlScancodeKpE | (1 << 30),
+        SdlkKpF = (int) SdlScancode.SdlScancodeKpF | (1 << 30),
+        SdlkKpXor = (int) SdlScancode.SdlScancodeKpXor | (1 << 30),
+        SdlkKpPower = (int) SdlScancode.SdlScancodeKpPower | (1 << 30),
+        SdlkKpPercent = (int) SdlScancode.SdlScancodeKpPercent | (1 << 30),
+        SdlkKpLess = (int) SdlScancode.SdlScancodeKpLess | (1 << 30),
+        SdlkKpGreater = (int) SdlScancode.SdlScancodeKpGreater | (1 << 30),
+        SdlkKpAmpersand = (int) SdlScancode.SdlScancodeKpAmpersand | (1 << 30),
+
+        SdlkKpDblampersand =
+            (int) SdlScancode.SdlScancodeKpDblampersand | (1 << 30),
+
+        SdlkKpVerticalbar =
+            (int) SdlScancode.SdlScancodeKpVerticalbar | (1 << 30),
+
+        SdlkKpDblverticalbar =
+            (int) SdlScancode.SdlScancodeKpDblverticalbar | (1 << 30),
+        SdlkKpColon = (int) SdlScancode.SdlScancodeKpColon | (1 << 30),
+        SdlkKpHash = (int) SdlScancode.SdlScancodeKpHash | (1 << 30),
+        SdlkKpSpace = (int) SdlScancode.SdlScancodeKpSpace | (1 << 30),
+        SdlkKpAt = (int) SdlScancode.SdlScancodeKpAt | (1 << 30),
+        SdlkKpExclam = (int) SdlScancode.SdlScancodeKpExclam | (1 << 30),
+        SdlkKpMemstore = (int) SdlScancode.SdlScancodeKpMemstore | (1 << 30),
+        SdlkKpMemrecall = (int) SdlScancode.SdlScancodeKpMemrecall | (1 << 30),
+        SdlkKpMemclear = (int) SdlScancode.SdlScancodeKpMemclear | (1 << 30),
+        SdlkKpMemadd = (int) SdlScancode.SdlScancodeKpMemadd | (1 << 30),
+
+        SdlkKpMemsubtract =
+            (int) SdlScancode.SdlScancodeKpMemsubtract | (1 << 30),
+
+        SdlkKpMemmultiply =
+            (int) SdlScancode.SdlScancodeKpMemmultiply | (1 << 30),
+        SdlkKpMemdivide = (int) SdlScancode.SdlScancodeKpMemdivide | (1 << 30),
+        SdlkKpPlusminus = (int) SdlScancode.SdlScancodeKpPlusminus | (1 << 30),
+        SdlkKpClear = (int) SdlScancode.SdlScancodeKpClear | (1 << 30),
+        SdlkKpClearentry = (int) SdlScancode.SdlScancodeKpClearentry | (1 << 30),
+        SdlkKpBinary = (int) SdlScancode.SdlScancodeKpBinary | (1 << 30),
+        SdlkKpOctal = (int) SdlScancode.SdlScancodeKpOctal | (1 << 30),
+        SdlkKpDecimal = (int) SdlScancode.SdlScancodeKpDecimal | (1 << 30),
+
+        SdlkKpHexadecimal =
+            (int) SdlScancode.SdlScancodeKpHexadecimal | (1 << 30),
+
+        SdlkLctrl = (int) SdlScancode.SdlScancodeLctrl | (1 << 30),
+        SdlkLshift = (int) SdlScancode.SdlScancodeLshift | (1 << 30),
+        SdlkLalt = (int) SdlScancode.SdlScancodeLalt | (1 << 30),
+        SdlkLgui = (int) SdlScancode.SdlScancodeLgui | (1 << 30),
+        SdlkRctrl = (int) SdlScancode.SdlScancodeRctrl | (1 << 30),
+        SdlkRshift = (int) SdlScancode.SdlScancodeRshift | (1 << 30),
+        SdlkRalt = (int) SdlScancode.SdlScancodeRalt | (1 << 30),
+        SdlkRgui = (int) SdlScancode.SdlScancodeRgui | (1 << 30),
+
+        SdlkMode = (int) SdlScancode.SdlScancodeMode | (1 << 30),
+
+        SdlkAudionext = (int) SdlScancode.SdlScancodeAudionext | (1 << 30),
+        SdlkAudioprev = (int) SdlScancode.SdlScancodeAudioprev | (1 << 30),
+        SdlkAudiostop = (int) SdlScancode.SdlScancodeAudiostop | (1 << 30),
+        SdlkAudioplay = (int) SdlScancode.SdlScancodeAudioplay | (1 << 30),
+        SdlkAudiomute = (int) SdlScancode.SdlScancodeAudiomute | (1 << 30),
+        SdlkMediaselect = (int) SdlScancode.SdlScancodeMediaselect | (1 << 30),
+        SdlkWww = (int) SdlScancode.SdlScancodeWww | (1 << 30),
+        SdlkMail = (int) SdlScancode.SdlScancodeMail | (1 << 30),
+        SdlkCalculator = (int) SdlScancode.SdlScancodeCalculator | (1 << 30),
+        SdlkComputer = (int) SdlScancode.SdlScancodeComputer | (1 << 30),
+        SdlkAcSearch = (int) SdlScancode.SdlScancodeAcSearch | (1 << 30),
+        SdlkAcHome = (int) SdlScancode.SdlScancodeAcHome | (1 << 30),
+        SdlkAcBack = (int) SdlScancode.SdlScancodeAcBack | (1 << 30),
+        SdlkAcForward = (int) SdlScancode.SdlScancodeAcForward | (1 << 30),
+        SdlkAcStop = (int) SdlScancode.SdlScancodeAcStop | (1 << 30),
+        SdlkAcRefresh = (int) SdlScancode.SdlScancodeAcRefresh | (1 << 30),
+        SdlkAcBookmarks = (int) SdlScancode.SdlScancodeAcBookmarks | (1 << 30),
+
+        SdlkBrightnessdown =
+            (int) SdlScancode.SdlScancodeBrightnessdown | (1 << 30),
+        SdlkBrightnessup = (int) SdlScancode.SdlScancodeBrightnessup | (1 << 30),
+        SdlkDisplayswitch = (int) SdlScancode.SdlScancodeDisplayswitch | (1 << 30),
+
+        SdlkKbdillumtoggle =
+            (int) SdlScancode.SdlScancodeKbdillumtoggle | (1 << 30),
+        SdlkKbdillumdown = (int) SdlScancode.SdlScancodeKbdillumdown | (1 << 30),
+        SdlkKbdillumup = (int) SdlScancode.SdlScancodeKbdillumup | (1 << 30),
+        SdlkEject = (int) SdlScancode.SdlScancodeEject | (1 << 30),
+        SdlkSleep = (int) SdlScancode.SdlScancodeSleep | (1 << 30)
+    }
 
 
-        [Flags]
-        public enum SDL_RendererFlags
-        {
-            SDL_RENDERER_SOFTWARE = 0x00000001,         /**< The renderer is a software fallback */
-            SDL_RENDERER_ACCELERATED = 0x00000002,      /**< The renderer uses hardware
+    public unsafe struct SdlSurface
+    {
+        public uint Flags; /**< Read-only */
+        public void* Format; /**< Read-only */
+        public int W, H; /**< Read-only */
+        public int Pitch; /**< Read-only */
+        public void* Pixels; /**< Read-write */
+
+        /** Application data associated with the surface */
+        public void* Userdata; /**< Read-write */
+
+        /** information needed for surfaces requiring locks */
+        public int Locked; /**< Read-only */
+        public void* LockData; /**< Read-only */
+
+        /** clipping information */
+        public SdlRect ClipRect; /**< Read-only */
+
+        /** info for fast blit mapping to other surfaces */
+        public void* Map; /**< Private */
+
+        /** Reference count -- used when freeing surface */
+        public int Refcount; /**< Read-mostly */
+    }
+
+    public struct SdlRect
+    {
+        public int X, Y;
+        public int W, H;
+    }
+
+
+    [Flags]
+    public enum SdlRendererFlags
+    {
+        SdlRendererSoftware = 0x00000001, /**< The renderer is a software fallback */
+        SdlRendererAccelerated = 0x00000002, /**< The renderer uses hardware
                                                      acceleration */
-            SDL_RENDERER_PRESENTVSYNC = 0x00000004,     /**< Present is synchronized
+        SdlRendererPresentvsync = 0x00000004, /**< Present is synchronized
                                                      with the refresh rate */
-            SDL_RENDERER_TARGETTEXTURE = 0x00000008     /**< The renderer supports
+        SdlRendererTargettexture = 0x00000008 /**< The renderer supports
                                                      rendering to texture */
-        }
+    }
 
-        public enum SdlInit
-        {
-            SDL_INIT_VIDEO = 0x00000020
-        }
+    public enum SdlInit
+    {
+        SdlInitVideo = 0x00000020
+    }
 
-        [Flags]
-        public enum SDL_WindowFlags
-        {
-            SDL_WINDOW_FULLSCREEN = 0x00000001,         /**< fullscreen window */
-            SDL_WINDOW_OPENGL = 0x00000002,             /**< window usable with OpenGL context */
-            SDL_WINDOW_SHOWN = 0x00000004,              /**< window is visible */
-            SDL_WINDOW_HIDDEN = 0x00000008,             /**< window is not visible */
-            SDL_WINDOW_BORDERLESS = 0x00000010,         /**< no window decoration */
-            SDL_WINDOW_RESIZABLE = 0x00000020,          /**< window can be resized */
-            SDL_WINDOW_MINIMIZED = 0x00000040,          /**< window is minimized */
-            SDL_WINDOW_MAXIMIZED = 0x00000080,          /**< window is maximized */
-            SDL_WINDOW_INPUT_GRABBED = 0x00000100,      /**< window has grabbed input focus */
-            SDL_WINDOW_INPUT_FOCUS = 0x00000200,        /**< window has input focus */
-            SDL_WINDOW_MOUSE_FOCUS = 0x00000400,        /**< window has mouse focus */
-            SDL_WINDOW_FULLSCREEN_DESKTOP = (SDL_WINDOW_FULLSCREEN | 0x00001000),
-            SDL_WINDOW_FOREIGN = 0x00000800,            /**< window not created by SDL */
-            SDL_WINDOW_ALLOW_HIGHDPI = 0x00002000,      /**< window should be created in high-DPI mode if supported */
-            SDL_WINDOW_MOUSE_CAPTURE = 0x00004000       /**< window has mouse captured (unrelated to INPUT_GRABBED) */
-        }
+    [Flags]
+    public enum SdlWindowFlags
+    {
+        SdlWindowFullscreen = 0x00000001, /**< fullscreen window */
+        SdlWindowOpengl = 0x00000002, /**< window usable with OpenGL context */
+        SdlWindowShown = 0x00000004, /**< window is visible */
+        SdlWindowHidden = 0x00000008, /**< window is not visible */
+        SdlWindowBorderless = 0x00000010, /**< no window decoration */
+        SdlWindowResizable = 0x00000020, /**< window can be resized */
+        SdlWindowMinimized = 0x00000040, /**< window is minimized */
+        SdlWindowMaximized = 0x00000080, /**< window is maximized */
+        SdlWindowInputGrabbed = 0x00000100, /**< window has grabbed input focus */
+        SdlWindowInputFocus = 0x00000200, /**< window has input focus */
+        SdlWindowMouseFocus = 0x00000400, /**< window has mouse focus */
+        SdlWindowFullscreenDesktop = (SdlWindowFullscreen | 0x00001000),
+        SdlWindowForeign = 0x00000800, /**< window not created by Isdl */
+        SdlWindowAllowHighdpi = 0x00002000, /**< window should be created in high-DPI mode if supported */
+        SdlWindowMouseCapture = 0x00004000 /**< window has mouse captured (unrelated to INPUT_GRABBED) */
+    }
 
-        [StructLayout(LayoutKind.Explicit, CharSet = CharSet.Unicode)]
-        public unsafe class SDL_Event
-        {
-            [FieldOffset(0)]
-            public uint type;
-        }
+    [StructLayout(LayoutKind.Explicit, CharSet = CharSet.Unicode)]
+    public unsafe class SdlEvent
+    {
+        [FieldOffset(0)] public uint type;
+    }
 
-        public enum SDL_EventType
-        {
-            SDL_FIRSTEVENT = 0,     /**< Unused (do not remove) */
+    public enum SdlEventType
+    {
+        SdlFirstevent = 0, /**< Unused (do not remove) */
 
-            /* Application events */
-            SDL_QUIT = 0x100, /**< User-requested quit */
+        /* Application events */
+        SdlQuit = 0x100, /**< User-requested quit */
 
-            /* These application events have special meaning on iOS, see README-ios.md for details */
-            SDL_APP_TERMINATING,        /**< The application is being terminated by the OS
+        /* These application events have special meaning on iOS, see README-ios.md for details */
+        SdlAppTerminating, /**< The application is being terminated by the OS
                                      Called on iOS in applicationWillTerminate()
                                      Called on Android in onDestroy()
                                 */
-            SDL_APP_LOWMEMORY,          /**< The application is low on memory, free memory if possible.
+        SdlAppLowmemory, /**< The application is low on memory, free memory if possible.
                                      Called on iOS in applicationDidReceiveMemoryWarning()
                                      Called on Android in onLowMemory()
                                 */
-            SDL_APP_WILLENTERBACKGROUND, /**< The application is about to enter the background
+        SdlAppWillenterbackground, /**< The application is about to enter the background
                                      Called on iOS in applicationWillResignActive()
                                      Called on Android in onPause()
                                 */
-            SDL_APP_DIDENTERBACKGROUND, /**< The application did enter the background and may not get CPU for some time
+        SdlAppDidenterbackground, /**< The application did enter the background and may not get CPU for some time
                                      Called on iOS in applicationDidEnterBackground()
                                      Called on Android in onPause()
                                 */
-            SDL_APP_WILLENTERFOREGROUND, /**< The application is about to enter the foreground
+        SdlAppWillenterforeground, /**< The application is about to enter the foreground
                                      Called on iOS in applicationWillEnterForeground()
                                      Called on Android in onResume()
                                 */
-            SDL_APP_DIDENTERFOREGROUND, /**< The application is now interactive
+        SdlAppDidenterforeground, /**< The application is now interactive
                                      Called on iOS in applicationDidBecomeActive()
                                      Called on Android in onResume()
                                 */
 
-            /* Window events */
-            SDL_WINDOWEVENT = 0x200, /**< Window state change */
-            SDL_SYSWMEVENT,             /**< System specific event */
+        /* Window events */
+        SdlWindowevent = 0x200, /**< Window state change */
+        SdlSyswmevent, /**< System specific event */
 
-            /* Keyboard events */
-            SDL_KEYDOWN = 0x300, /**< Key pressed */
-            SDL_KEYUP,                  /**< Key released */
-            SDL_TEXTEDITING,            /**< Keyboard text editing (composition) */
-            SDL_TEXTINPUT,              /**< Keyboard text input */
-            SDL_KEYMAPCHANGED,          /**< Keymap changed due to a system event such as an
+        /* Keyboard events */
+        SdlKeydown = 0x300, /**< Key pressed */
+        SdlKeyup, /**< Key released */
+        SdlTextediting, /**< Keyboard text editing (composition) */
+        SdlTextinput, /**< Keyboard text input */
+        SdlKeymapchanged, /**< Keymap changed due to a system event such as an
                                      input language or keyboard layout change.
                                 */
 
-            /* Mouse events */
-            SDL_MOUSEMOTION = 0x400, /**< Mouse moved */
-            SDL_MOUSEBUTTONDOWN,        /**< Mouse button pressed */
-            SDL_MOUSEBUTTONUP,          /**< Mouse button released */
-            SDL_MOUSEWHEEL,             /**< Mouse wheel motion */
+        /* Mouse events */
+        SdlMousemotion = 0x400, /**< Mouse moved */
+        SdlMousebuttondown, /**< Mouse button pressed */
+        SdlMousebuttonup, /**< Mouse button released */
+        SdlMousewheel, /**< Mouse wheel motion */
 
-            /* Joystick events */
-            SDL_JOYAXISMOTION = 0x600, /**< Joystick axis motion */
-            SDL_JOYBALLMOTION,          /**< Joystick trackball motion */
-            SDL_JOYHATMOTION,           /**< Joystick hat position change */
-            SDL_JOYBUTTONDOWN,          /**< Joystick button pressed */
-            SDL_JOYBUTTONUP,            /**< Joystick button released */
-            SDL_JOYDEVICEADDED,         /**< A new joystick has been inserted into the system */
-            SDL_JOYDEVICEREMOVED,       /**< An opened joystick has been removed */
+        /* Joystick events */
+        SdlJoyaxismotion = 0x600, /**< Joystick axis motion */
+        SdlJoyballmotion, /**< Joystick trackball motion */
+        SdlJoyhatmotion, /**< Joystick hat position change */
+        SdlJoybuttondown, /**< Joystick button pressed */
+        SdlJoybuttonup, /**< Joystick button released */
+        SdlJoydeviceadded, /**< A new joystick has been inserted into the system */
+        SdlJoydeviceremoved, /**< An opened joystick has been removed */
 
-            /* Game controller events */
-            SDL_CONTROLLERAXISMOTION = 0x650, /**< Game controller axis motion */
-            SDL_CONTROLLERBUTTONDOWN,          /**< Game controller button pressed */
-            SDL_CONTROLLERBUTTONUP,            /**< Game controller button released */
-            SDL_CONTROLLERDEVICEADDED,         /**< A new Game controller has been inserted into the system */
-            SDL_CONTROLLERDEVICEREMOVED,       /**< An opened Game controller has been removed */
-            SDL_CONTROLLERDEVICEREMAPPED,      /**< The controller mapping was updated */
+        /* Game controller events */
+        SdlControlleraxismotion = 0x650, /**< Game controller axis motion */
+        SdlControllerbuttondown, /**< Game controller button pressed */
+        SdlControllerbuttonup, /**< Game controller button released */
+        SdlControllerdeviceadded, /**< A new Game controller has been inserted into the system */
+        SdlControllerdeviceremoved, /**< An opened Game controller has been removed */
+        SdlControllerdeviceremapped, /**< The controller mapping was updated */
 
-            /* Touch events */
-            SDL_FINGERDOWN = 0x700,
-            SDL_FINGERUP,
-            SDL_FINGERMOTION,
+        /* Touch events */
+        SdlFingerdown = 0x700,
+        SdlFingerup,
+        SdlFingermotion,
 
-            /* Gesture events */
-            SDL_DOLLARGESTURE = 0x800,
-            SDL_DOLLARRECORD,
-            SDL_MULTIGESTURE,
+        /* Gesture events */
+        SdlDollargesture = 0x800,
+        SdlDollarrecord,
+        SdlMultigesture,
 
-            /* Clipboard events */
-            SDL_CLIPBOARDUPDATE = 0x900, /**< The clipboard changed */
+        /* Clipboard events */
+        SdlClipboardupdate = 0x900, /**< The clipboard changed */
 
-            /* Drag and drop events */
-            SDL_DROPFILE = 0x1000, /**< The system requests a file open */
+        /* Drag and drop events */
+        SdlDropfile = 0x1000, /**< The system requests a file open */
 
-            /* Audio hotplug events */
-            SDL_AUDIODEVICEADDED = 0x1100, /**< A new audio device is available */
-            SDL_AUDIODEVICEREMOVED,        /**< An audio device has been removed. */
+        /* Audio hotplug events */
+        SdlAudiodeviceadded = 0x1100, /**< A new audio device is available */
+        SdlAudiodeviceremoved, /**< An audio device has been removed. */
 
-            /* Render events */
-            SDL_RENDER_TARGETS_RESET = 0x2000, /**< The render targets have been reset and their contents need to be updated */
-            SDL_RENDER_DEVICE_RESET, /**< The device has been reset and all textures need to be recreated */
+        /* Render events */
+        SdlRenderTargetsReset = 0x2000,
+        /**< The render targets have been reset and their contents need to be updated */
+        SdlRenderDeviceReset, /**< The device has been reset and all textures need to be recreated */
 
-            /** Events ::SDL_USEREVENT through ::SDL_LASTEVENT are for your use,
-             *  and should be allocated with SDL_RegisterEvents()
-             */
-            SDL_USEREVENT = 0x8000,
+        /** Events ::SDL_USEREVENT through ::SDL_LASTEVENT are for your use,
+         *  and should be allocated with SDL_RegisterEvents()
+         */
+        SdlUserevent = 0x8000,
 
-            /**
-             *  This last event is only for bounding internal arrays
-             */
-            SDL_LASTEVENT = 0xFFFF
-        }
+        /**
+         *  This last event is only for bounding internal arrays
+         */
+        SdlLastevent = 0xFFFF
+    }
 
-        unsafe struct SDL_Window
-        {
-            void* magic;
-            uint id;
-            string title;
-            void* icon;
-            int x, y;
-            int w, h;
-            int min_w, min_h;
-            int max_w, max_h;
-            uint flags;
-            uint last_fullscreen_flags;
+    unsafe struct SdlWindow
+    {
+        void* _magic;
+        uint _id;
+        string _title;
+        void* _icon;
+        int _x, _y;
+        int _w, _h;
+        int _minW, _minH;
+        int _maxW, _maxH;
+        uint _flags;
+        uint _lastFullscreenFlags;
 
-            /* Stored position and size for windowed mode */
-            void* windowed;
+        /* Stored position and size for windowed mode */
+        void* _windowed;
 
-            void* fullscreen_mode;
+        void* _fullscreenMode;
 
-            float brightness;
-            UInt16* gamma;
-            UInt16* saved_gamma;        /* (just offset into gamma) */
+        float _brightness;
+        UInt16* _gamma;
+        UInt16* _savedGamma; /* (just offset into gamma) */
 
-            void* surface;
-            void* surface_valid;
+        void* _surface;
+        void* _surfaceValid;
 
-            void* is_hiding;
-            void* is_destroying;
-            void* shaper;
+        void* _isHiding;
+        void* _isDestroying;
+        void* _shaper;
 
-            void* hit_test;
-            void* hit_test_data;
+        void* _hitTest;
+        void* _hitTestData;
 
-            void* data;
+        void* _data;
 
-            void* driverdata;
+        void* _driverdata;
 
-            void* prev;
-            void* next;
-        };
-
-
-
+        void* _prev;
+        void* _next;
+    };
 }
