@@ -619,7 +619,7 @@ namespace MyvarUI.SDL
         SdlWindowInputFocus = 0x00000200, /**< window has input focus */
         SdlWindowMouseFocus = 0x00000400, /**< window has mouse focus */
         SdlWindowFullscreenDesktop = (SdlWindowFullscreen | 0x00001000),
-        SdlWindowForeign = 0x00000800, /**< window not created by Isdl */
+        SdlWindowForeign = 0x00000800, /**< window not created by SDL */
         SdlWindowAllowHighdpi = 0x00002000, /**< window should be created in high-DPI mode if supported */
         SdlWindowMouseCapture = 0x00004000 /**< window has mouse captured (unrelated to INPUT_GRABBED) */
     }

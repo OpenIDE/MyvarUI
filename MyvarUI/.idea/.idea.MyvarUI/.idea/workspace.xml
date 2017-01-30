@@ -252,7 +252,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Isdl/WindowsIsdl.cs">
+    <entry file="file://$PROJECT_DIR$/SDL/WindowsSDL.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
           <caret line="112" column="45" lean-forward="true" selection-start-line="112" selection-start-column="45"
@@ -290,7 +290,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Isdl/IIsdl.cs">
+    <entry file="file://$PROJECT_DIR$/SDL/ISDL.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0"

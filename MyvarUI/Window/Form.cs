@@ -42,9 +42,8 @@ namespace MyvarUI.Window
             Width = 800;
             Height = 600;
 
-            _displayPort = Globals.Isdl;
+            _displayPort = Globals.SDL;
 
-            _displayPort.Init();
             Font.Init(_displayPort);
             Graphics = new Graphics(_displayPort, 0, 0);
             Controls = new FormControlsContainer(this, _displayPort)

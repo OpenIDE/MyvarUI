@@ -42,7 +42,7 @@ namespace MyvarUI.SDL
             if (LinuxSdlWrapper.SDL_Init((UInt32) SdlInit.SdlInitVideo) < 0)
             {
                 DumpErrors();
-                Console.WriteLine("Isdl or TTF Init Failed");
+                Console.WriteLine("SDL or TTF Init Failed");
             }
         }
 

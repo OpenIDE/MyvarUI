@@ -26,7 +26,7 @@ namespace MyvarUI.SDL
             // for small strings (see the implementation of GetUtf8Bytes).
             int nb;
             byte[] bytes = GetUtf8Bytes(s, out nb);
-            IntPtr lPtr = Globals.Isdl.Malloc((IntPtr)(nb + 1));
+            IntPtr lPtr = Globals.SDL.Malloc((IntPtr)(nb + 1));
             if (lPtr == IntPtr.Zero)
             {
                 throw new OutOfMemoryException("Cannot Allocate Utf8String");
@@ -190,7 +190,7 @@ namespace MyvarUI.SDL
                 {
                     // By default increase size by the max of 50% or new capacity nb.
                     int newSize = Math.Max(_capacity + _capacity / 2, nb + 1);
-                    IntPtr lPtr = Globals.Isdl.Realloc(_handle, (IntPtr)newSize);
+                    IntPtr lPtr = Globals.SDL.Realloc(_handle, (IntPtr)newSize);
                     if (lPtr == IntPtr.Zero)
                     {
                         Dispose();
@@ -221,7 +221,7 @@ namespace MyvarUI.SDL
         {
             if (_handle != IntPtr.Zero)
             {
-                Globals.Isdl.Free(_handle);
+                Globals.SDL.Free(_handle);
                 _handle = IntPtr.Zero;
                 _capacity = 0;
                 _count = 0;
