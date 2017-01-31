@@ -5,7 +5,9 @@
     "emitEntryPoint": true,
     "allowUnsafe": true
   },
-  "dependencies": {},
+  "dependencies": {
+    "System.Diagnostics.Contracts" : "*"
+  },
   "frameworks": {
     "netcoreapp1.1": {
       "dependencies": {
