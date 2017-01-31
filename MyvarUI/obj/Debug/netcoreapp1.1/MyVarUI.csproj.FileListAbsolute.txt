@@ -48,3 +48,8 @@ D:\Projects\MyvarUI\MyvarUI\bin\Debug\netcoreapp1.1\Libs\Windows\SDL2_ttf.dll
 D:\Projects\MyvarUI\MyvarUI\bin\Debug\netcoreapp1.1\Libs\Windows\zlib1.dll
 D:\Projects\MyvarUI\MyvarUI\bin\Debug\netcoreapp1.1\MyvarUI.dll
 D:\Projects\MyvarUI\MyvarUI\bin\Debug\netcoreapp1.1\MyvarUI.pdb
+D:\Projects\MyvarUI\MyvarUI\bin\Debug\netcoreapp1.1\Libs\Windows\libjpeg-9.dll
+D:\Projects\MyvarUI\MyvarUI\bin\Debug\netcoreapp1.1\Libs\Windows\libpng16-16.dll
+D:\Projects\MyvarUI\MyvarUI\bin\Debug\netcoreapp1.1\Libs\Windows\libtiff-5.dll
+D:\Projects\MyvarUI\MyvarUI\bin\Debug\netcoreapp1.1\Libs\Windows\libwebp-4.dll
+D:\Projects\MyvarUI\MyvarUI\bin\Debug\netcoreapp1.1\Libs\Windows\SDL2_image.dll

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MyvarUI.Drawing;
 using MyvarUI.Events;
 
 namespace MyvarUI.SDL
@@ -20,6 +21,8 @@ namespace MyvarUI.SDL
 
         void DrawText(string text, int x, int y, Font font, int sizept, Color c);
 
+	    void DrawImage(Image image, int x, int y, int width, int height);
+
         Point GetMouseLocation();
 
         MouseState GetMouseState();
@@ -37,5 +40,8 @@ namespace MyvarUI.SDL
         IntPtr Malloc(IntPtr size);
         IntPtr Realloc(IntPtr mem, IntPtr size);
         void Free(IntPtr memblock);
+
+	    IntPtr CreateTextureFromSurface(IntPtr surface);
+
     }
 }

@@ -4,8 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using MyvarUI.Drawing;
 using MyvarUI.Events;
 using MyvarUI.SDL.Wrappers;
+using MyvarUI.SDL.Wrappers.Windows;
 
 namespace MyvarUI.SDL
 {
@@ -42,6 +44,12 @@ namespace MyvarUI.SDL
                 DumpErrors();
                 Console.WriteLine("SDL or TTF Init Failed");
             }
+
+	        if (
+		        MyvarUI.SDL.Wrappers.Windows.SDLImage.IMG_Init(SDLImage.IMG_InitFlags.IMG_INIT_JPG | SDLImage.IMG_InitFlags.IMG_INIT_PNG) < 0)
+	        {
+				throw new Exception("Failed to initialize SDLImage libraries!");
+	        }
         }
 
         public void SetPixel(int x, int y, Color c)
@@ -87,6 +95,7 @@ namespace MyvarUI.SDL
                 loopc = chr;
                 Console.WriteLine(Encoding.ASCII.GetString(byts.ToArray()));
                 //Console.WriteLine(SDL_GetBasePath());
+
             }
         }
 
@@ -109,6 +118,9 @@ namespace MyvarUI.SDL
             };
 
             var res = WindowsSdlWrapper.SDL_RenderCopy(_renderer, texture, null, &rect);
+
+			WindowsSdlWrapper.SDL_DestroyTexture(texture);
+			WindowsSdlWrapper.SDL_FreeSurface(surface);
         }
 
         public void InitFont(string file, ref Dictionary<string, Font> index)
@@ -123,8 +135,10 @@ namespace MyvarUI.SDL
             var surface = WindowsSdlWrapper.TTF_RenderText_Solid(font.TtfFont, text, Color.White);
             SdlSurface whRef = (SdlSurface) Marshal.PtrToStructure(surface, typeof(SdlSurface));
 
+			Size s = new Size(whRef.W, whRef.H);
 
-            return new Size(whRef.W, whRef.H);
+			WindowsSdlWrapper.SDL_FreeSurface(surface);
+	        return s;
         }
 
         public Point GetMouseLocation()
@@ -170,5 +184,22 @@ namespace MyvarUI.SDL
         {
             return WindowsSdlWrapper.SDL_GetScancodeFromKey(key);
         }
+
+	    public void DrawImage(Image image, int x, int y, int width, int height)
+	    {
+			SdlRect rectangle = new SdlRect()
+			{
+				W = width,
+				H = height,
+				X = x,
+				Y = y
+			};
+			WindowsSdlWrapper.SDL_RenderCopy(_renderer, image.Texture, null, &rectangle);
+		}
+
+		public IntPtr CreateTextureFromSurface(IntPtr surface)
+	    {
+		    return WindowsSdlWrapper.SDL_CreateTextureFromSurface(_renderer, surface);
+	    }
     }
 }

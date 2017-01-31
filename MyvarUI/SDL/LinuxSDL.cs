@@ -4,8 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using MyvarUI.Drawing;
 using MyvarUI.Events;
 using MyvarUI.SDL.Wrappers;
+using MyvarUI.SDL.Wrappers.Linux;
 
 namespace MyvarUI.SDL
 {
@@ -50,7 +52,13 @@ namespace MyvarUI.SDL
                 DumpErrors();
                 Console.WriteLine("SDL or TTF Init Failed");
             }
-        }
+
+			if (
+				MyvarUI.SDL.Wrappers.Linux.SDLImage.IMG_Init(SDLImage.IMG_InitFlags.IMG_INIT_JPG | SDLImage.IMG_InitFlags.IMG_INIT_PNG) < 0)
+			{
+				throw new Exception("Failed to initialize SDLImage libraries!");
+			}
+		}
 
         public void SetPixel(int x, int y, Color c)
         {
@@ -115,6 +123,9 @@ namespace MyvarUI.SDL
             };
 
             var res = LinuxSdlWrapper.SDL_RenderCopy(_renderer, texture, null, &rect);
+
+			LinuxSdlWrapper.SDL_DestroyTexture(texture);
+			LinuxSdlWrapper.SDL_FreeSurface(surface);
         }
 
         public void InitFont(string file, ref Dictionary<string, Font> index)
@@ -126,12 +137,14 @@ namespace MyvarUI.SDL
 
         public Size CalulateTextSize(string text, Font font, int sizept)
         {
-            var surface = LinuxSdlWrapper.TTF_RenderText_Solid(font.TtfFont, text, Color.White);
-            SdlSurface whRef = (SdlSurface) Marshal.PtrToStructure(surface, typeof(SdlSurface));
+			var surface = LinuxSdlWrapper.TTF_RenderText_Solid(font.TtfFont, text, Color.White);
+			SdlSurface whRef = (SdlSurface)Marshal.PtrToStructure(surface, typeof(SdlSurface));
 
+			Size s = new Size(whRef.W, whRef.H);
 
-            return new Size(whRef.W, whRef.H);
-        }
+			LinuxSdlWrapper.SDL_FreeSurface(surface);
+			return s;
+		}
 
         public Point GetMouseLocation()
         {
@@ -176,5 +189,22 @@ namespace MyvarUI.SDL
         {
             return LinuxSdlWrapper.SDL_GetScancodeFromKey(key);
         }
+
+	    public void DrawImage(Image image, int x, int y, int width, int height)
+	    {
+			SdlRect rectangle = new SdlRect()
+			{
+				W = width,
+				H = height,
+				X = x,
+				Y = y
+			};
+			LinuxSdlWrapper.SDL_RenderCopy(_renderer, image.Texture, null, &rectangle);
+		}
+
+	    public IntPtr CreateTextureFromSurface(IntPtr surface)
+	    {
+		    return LinuxSdlWrapper.SDL_CreateTextureFromSurface(_renderer, surface);
+	    }
     }
 }

@@ -11,7 +11,7 @@ namespace MyvarUI.Window
         public int Height { get; set; }
 
         public bool Focused { get; set; } = false;
-        public bool Hidden { get; set; }
+	    public bool Hidden { get; set; } = false;
 
         public Control Parent { get; set; }
 

@@ -1,5 +1,6 @@
 using System;
 using MyvarUI.SDL;
+using MyvarUI.SDL.Wrappers;
 
 namespace MyvarUI.Drawing
 {
@@ -136,5 +137,10 @@ namespace MyvarUI.Drawing
                 }
             }
         }
+
+	    public void DrawImage(int x, int y, int width, int height, Image imaqe)
+	    {
+		    _displayPort.DrawImage(imaqe, x, y, width, height);
+	    }
     }
 }

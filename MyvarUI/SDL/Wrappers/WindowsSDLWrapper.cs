@@ -42,7 +42,10 @@ namespace MyvarUI.SDL.Wrappers
         [DllImport(Libsdl)]
         public static extern int SDL_BlitSurface(IntPtr src, IntPtr srcrect, IntPtr dst, IntPtr dstrect);
 
-        [DllImport(LibsdlTtf, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_FontFaceFamilyName")]
+		[DllImport(Libsdl, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void SDL_FreeSurface(IntPtr surface);
+
+		[DllImport(LibsdlTtf, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_FontFaceFamilyName")]
         public static extern IntPtr TTF_FontFaceFamilyNameNative(IntPtr font);
 
         public static string TTF_FontFaceFamilyName(IntPtr font)
@@ -122,8 +125,10 @@ namespace MyvarUI.SDL.Wrappers
 
         [DllImport(Libsdl)]
         public static extern void SDL_DestroyRenderer(IntPtr renderer);
+		[DllImport(Libsdl)]
+		public static extern void SDL_DestroyTexture(IntPtr texture);
 
-        [DllImport(Libsdl)]
+		[DllImport(Libsdl)]
         public static extern void SDL_DestroyWindow(IntPtr renderer);
 
         [DllImport(Libsdl)]

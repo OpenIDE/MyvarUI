@@ -1384,6 +1384,42 @@ namespace MyvarUI.SDL
         public INTERNAL_GameControllerButtonBind_hat hat;
     }
 
-    #endregion
+	#endregion
 
+	#region SDL_rect.h
+
+	[StructLayout(LayoutKind.Sequential)]
+	public struct SDL_Point
+	{
+		public int x;
+		public int y;
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	public struct SDL_Rect
+	{
+		public int x;
+		public int y;
+		public int w;
+		public int h;
+	}
+
+	#endregion
+
+	[StructLayout(LayoutKind.Sequential)]
+	public struct SDL_Surface
+	{
+		public uint flags;
+		public IntPtr format; // SDL_PixelFormat*
+		public int w;
+		public int h;
+		public int pitch;
+		public IntPtr pixels; // void*
+		public IntPtr userdata; // void*
+		public int locked;
+		public IntPtr lock_data; // void*
+		public SDL_Rect clip_rect;
+		public IntPtr map; // SDL_BlitMap*
+		public int refcount;
+	}
 }

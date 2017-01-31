@@ -2,7 +2,7 @@ using MyvarUI.Drawing;
 
 namespace MyvarUI.Window.Controls
 {
-    public class Lable : Control
+    public class Label : Control
     {
         public string Text { get; set; } = "Lable";
         public int FontSize { get; set; } = 15;
@@ -11,7 +11,7 @@ namespace MyvarUI.Window.Controls
 
         public Color FontColor { get; set; } = Color.White;
 
-        public Lable()
+        public Label()
         {
             X = 10;
             Y = 10;

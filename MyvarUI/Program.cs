@@ -1,4 +1,5 @@
 ﻿using System;
+using MyvarUI.Drawing;
 using MyvarUI.Events;
 using MyvarUI.Window;
 using MyvarUI.Window.Controls;
@@ -9,36 +10,46 @@ namespace MyvarUI
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("This is a lib, and is not ment to be executed");
+            Console.WriteLine("-=MyvarUI=-");
+			Console.WriteLine("This software is not supposed to be executed!");
+			Console.WriteLine("Platform: " + Globals.OS);
+
+			Globals.Init();
 
             //for debugging
 
-            var f = new Form();
-            f.Show();
+	        var f = new Form();
+	        f.Show();
 
-            var b = new Button();
-            b.MouseClick += HandleClick;
-            f.Controls.Add(b);
+	        f.Title = "MyvarUI Form";
 
-            var b1 = new Button();
-            b1.X = 50;
-            b1.Y = 50;
-            b1.Text = "btn 2";
-            b1.MouseClick += HandleClick;
-            b1.MouseDown += MouseDown;
-            b1.MouseUp += MouseUp;
-            b1.MouseHover += MouseHover;
-            f.Controls.Add(b1);
+			var b = new Button();
+			b.ForegroundColor = Color.Black;
+			b.MouseClick += HandleClick;
+			f.Controls.Add(b);
 
-            var lbl = new Lable();
-            lbl.Y = 75;
-            f.Controls.Add(lbl);
+			var b1 = new Button();
+			b1.X = 50;
+			b1.Y = 50;
+			b1.ForegroundColor = Color.Black;
+			b1.Text = "btn 2";
+			b1.MouseClick += HandleClick;
+			b1.MouseDown += MouseDown;
+			b1.MouseUp += MouseUp;
+			b1.MouseHover += MouseHover;
+			f.Controls.Add(b1);
 
-            var txtb = new TextBox();
-            txtb.Y = 100;
-            f.Controls.Add(txtb);
+			var lbl = new Label();
+			lbl.Y = 75;
+	        lbl.Text = "This is a MyvarUI Label";
+	        lbl.FontColor = Color.Red;
+			f.Controls.Add(lbl);
 
-            while (true)
+			var txtb = new TextBox();
+			txtb.Y = 100;
+			f.Controls.Add(txtb);
+
+			while (true)
             {
                 f.Draw();
             }

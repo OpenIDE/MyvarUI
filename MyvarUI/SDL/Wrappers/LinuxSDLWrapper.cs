@@ -36,8 +36,10 @@ namespace MyvarUI.SDL.Wrappers
         [DllImport(Libsdl)]
         public static extern int SDL_BlitSurface(IntPtr src, IntPtr srcrect, IntPtr dst, IntPtr dstrect);
 
+		[DllImport(Libsdl, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void SDL_FreeSurface(IntPtr surface);
 
-        [DllImport(Libsdl)]
+		[DllImport(Libsdl)]
         public static extern IntPtr SDL_RWFromFile([MarshalAs(UnmanagedType.LPStr)] string file,
             [MarshalAs(UnmanagedType.LPStr)] string mode);
 
@@ -113,8 +115,9 @@ namespace MyvarUI.SDL.Wrappers
 
         [DllImport(Libsdl)]
         public static extern void SDL_DestroyRenderer(IntPtr renderer);
-
-        [DllImport(Libsdl)]
+		[DllImport(Libsdl)]
+		public static extern void SDL_DestroyTexture(IntPtr texture);
+		[DllImport(Libsdl)]
         public static extern void SDL_DestroyWindow(IntPtr renderer);
 
         [DllImport(Libsdl)]

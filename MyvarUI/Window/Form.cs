@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using MyvarUI.Drawing;
 using MyvarUI.Events;
 using MyvarUI.SDL;
@@ -16,7 +14,7 @@ namespace MyvarUI.Window
         public int Width { get; set; }
         public int Height { get; set; }
 
-        public Color BackgroundColor { get; set; } = Color.FromKnownColor(KnownColor.Control);
+        public Color BackgroundColor { get; set; } = Color.FromKnownColor(KnownColor.Window);
 
         public bool Hidden { get; set; } = true;
 
@@ -90,10 +88,11 @@ namespace MyvarUI.Window
                             break;
                     }
 
-                    foreach (var i in Controls)
-                    {
-                        i.FireKeyboardEvents(eve);
-                    }
+					Controls.ActiveControl?.FireKeyboardEvents(eve);
+                    //foreach (var i in Controls)
+                    //{
+                        //i.FireKeyboardEvents(eve);
+                    //}
                 }
             };
         }

@@ -7,21 +7,31 @@ namespace MyvarUI
     public static class Globals
     {
         public static ISDL SDL { get; private set; } = null;
+		public static OperatingSystem OS { get; }
+
+	    public static void Init()
+	    {
+		    
+	    }
 
         static Globals()
         {
             if (SDL == null)
             {
-                bool isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
-                bool isLinux = RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
-
-                if (isLinux)
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
                 {
                     SDL = new LinuxSDL();
+					OS = OperatingSystem.Linux;
                 }
-                else if (isWindows)
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     SDL = new WindowsSDL();
+					OS = OperatingSystem.Windows;
+                }
+	            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                {
+					throw new PlatformNotSupportedException();
+	                OS = OperatingSystem.Mac;
                 }
                 else
                 {
@@ -31,4 +41,12 @@ namespace MyvarUI
             }
         }
     }
+
+	public enum OperatingSystem
+	{
+		Windows,
+		Linux,
+		Mac,
+		Other
+	}
 }

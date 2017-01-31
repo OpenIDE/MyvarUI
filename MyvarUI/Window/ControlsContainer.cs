@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using MyvarUI.Drawing;
 using MyvarUI.Events;
@@ -48,7 +49,16 @@ namespace MyvarUI.Window
 
         public bool Remove(Control control)
         {
-            return Controls.Remove(control);
+	        if (Controls.Remove(control))
+	        {
+		        if (_activeControl == control)
+		        {
+			        _activeControl = null;
+		        }
+
+		        return true;
+	        }
+	        return false;
         }
 
         public virtual void Update(Point mLoc, MouseState mState, Point offset)
@@ -60,33 +70,36 @@ namespace MyvarUI.Window
             {
                 if (c > Controls.Count) break; //Prevent index out of range exceptions if the controls change.
                 var i = Controls[c];
+
                 if (i is ControlContainer)
                 {
                     var x = i as ControlContainer;
                     x.Update(mLoc, mState, offset);
                 }
 
-                //calualte Keybord events
+	            if (!i.Hidden) //We only wanna do the mouse events when the control is not hidden from the user.
+	            {
+		            //calulate mouse events
+		            if (mLoc.X >= i.X && mLoc.X <= i.X + i.Width)
+		            {
+			            if (mLoc.Y >= i.Y && mLoc.Y <= i.Y + i.Height)
+			            {
+				            mouseWasOverControl = true;
+				            if (mState != MouseState.None)
+				            {
+					            foreach (var ctrl in Controls)
+					            {
+						            ctrl.Focused = false;
+					            }
 
-                //calulate mouse events
-                if (mLoc.X >= i.X && mLoc.X <= i.X + i.Width)
-                {
-                    if (mLoc.Y >= i.Y && mLoc.Y <= i.Y + i.Height)
-                    {
-                        mouseWasOverControl = true;
-                        if (mState != MouseState.None)
-                        {
-                            foreach (var ctrl in Controls)
-                            {
-                                ctrl.Focused = false;
-                            }
+					            i.Focused = true;
+					            _activeControl = i;
+				            }
 
-                            i.Focused = true;
-                        }
-
-                        i.FireMouseEvents(new MouseEventArgs() {MouseState = mState, X = mLoc.X, Y = mLoc.Y});
-                    }
-                }
+				            i.FireMouseEvents(new MouseEventArgs() {MouseState = mState, X = mLoc.X, Y = mLoc.Y});
+			            }
+		            }
+	            }
             }
 
             if (!mouseWasOverControl)
@@ -109,6 +122,8 @@ namespace MyvarUI.Window
             {
                 if (c > Controls.Count) break; //Prevent index out of range exceptions if the controls change.
                 var i = Controls[c];
+
+				if (i.Hidden) continue; //Do not draw hidden controls.
 
                 g.SetOffset(i.X, i.Y);
 
