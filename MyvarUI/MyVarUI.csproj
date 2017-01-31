@@ -43,6 +43,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Diagnostics.Contracts" Version="4.3.0" />
+  </ItemGroup>
   <PropertyGroup Label="Configuration">
     <RootNamespace>MyvarUI</RootNamespace>
   </PropertyGroup>
