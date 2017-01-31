@@ -1,3 +1,4 @@
+using System;
 using MyvarUI.SDL;
 
 namespace MyvarUI.Drawing
@@ -46,6 +47,36 @@ namespace MyvarUI.Drawing
             return _displayPort.CalulateTextSize(text, font, sizept);
         }
 
+        public void DrawLine(Point start, Point end, Pen pen)
+        {
+            int currentX = start.X;
+            int currentY = start.Y;
+
+            int dx = Math.Abs(end.X - start.X), 
+                sx = start.X < end.X ? 1 : -1;
+
+            int dy = Math.Abs(end.Y - start.Y), 
+                sy = start.Y < end.Y ? 1 : -1;
+
+            int err = (dx > dy ? dx : -dy) / 2;
+            for (;;)
+            {
+                pen.Draw(this, new Point(currentX, currentY));
+                if (currentX == end.X && currentY == end.Y) break;
+
+                var e2 = err;
+                if (e2 > -dx)
+                {
+                    err -= dy;
+                    currentX += sx;
+                }
+                if (e2 < dy)
+                {
+                    err += dx;
+                    currentY += sy;
+                }
+            }
+        }
 
         public void DrawLine(int x, int y, int x2, int y2, Color color)
         {

@@ -35,7 +35,7 @@ namespace MyvarUI.Window
         private MouseState _lastState = MouseState.None; // click even should only fire once
 
 
-        public virtual void FireKeybordEvents(KeybordEventArgs args)
+        public virtual void FireKeyboardEvents(KeyboardEventArgs args)
         {
         }
 

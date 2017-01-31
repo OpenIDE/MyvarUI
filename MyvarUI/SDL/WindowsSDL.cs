@@ -4,16 +4,17 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using MyvarUI.Events;
 using MyvarUI.SDL.Wrappers;
 
 namespace MyvarUI.SDL
 {
-    public unsafe class WindowsIsdl : ISDL
+    public unsafe class WindowsSDL : ISDL
     {
-        public Action<SdlEventType> HookEvents { get; set; } = (x) => { Console.WriteLine("Event: " + x.ToString()); };
+        public EventHandler<SDL_Event> HookEventHandler { get; set; }
 
-        private void* _window;
-        private void* _renderer;
+        private IntPtr _window;
+        private IntPtr _renderer;
 
         public void Clear(Color c)
         {
@@ -23,11 +24,8 @@ namespace MyvarUI.SDL
 
         public void CreateWindow(string name, int x, int y, int width, int height)
         {
-            void* w = _window, r = _renderer;
-            WindowsSdlWrapper.SDL_CreateWindowAndRenderer(width, height, 0, &w, &r);
-            WindowsSdlWrapper.SDL_SetWindowTitle(w, name);
-            _window = w;
-            _renderer = r;
+            WindowsSdlWrapper.SDL_CreateWindowAndRenderer(width, height, 0, out _window, out _renderer);
+            WindowsSdlWrapper.SDL_SetWindowTitle(_window, name);
             DumpErrors();
         }
 
@@ -56,25 +54,16 @@ namespace MyvarUI.SDL
         {
             WindowsSdlWrapper.SDL_RenderPresent(_renderer);
 
-            /* TODO: Implment a real event system*/
-            byte[] buf = new byte[200];
-
-            fixed (byte* ptr = buf)
+            SDL_Event e;
+            if (WindowsSdlWrapper.SDL_PollEvent(out e) == 1)
             {
-                /*
-                This is super hackey but i chould not get it to work normal way,
-                if some one know how to make this work in a non hack way pleae fix it
-                */
-                if (WindowsSdlWrapper.SDL_PollEvent(ptr) == 1)
+                var type = e.type;
+
+                HookEventHandler?.Invoke(this, e);
+
+                if (type == SdlEventType.SdlQuit)
                 {
-                    var type = BitConverter.ToUInt32(buf, 0);
-
-                    HookEvents((SdlEventType) type);
-
-                    if (type == (uint) SdlEventType.SdlQuit)
-                    {
-                        Environment.Exit(0);
-                    }
+                    Environment.Exit(0);
                 }
             }
         }
@@ -109,7 +98,7 @@ namespace MyvarUI.SDL
         public void DrawText(string text, int x, int y, Font font, int sizept, Color c)
         {
             var surface = WindowsSdlWrapper.TTF_RenderText_Blended(font.TtfFont, text, c);
-            SdlSurface whRef = (SdlSurface) Marshal.PtrToStructure(new IntPtr(surface), typeof(SdlSurface));
+            SdlSurface whRef = (SdlSurface) Marshal.PtrToStructure(surface, typeof(SdlSurface));
             var texture = WindowsSdlWrapper.SDL_CreateTextureFromSurface(_renderer, surface);
             var rect = new SdlRect()
             {
@@ -132,29 +121,10 @@ namespace MyvarUI.SDL
         public Size CalulateTextSize(string text, Font font, int sizept)
         {
             var surface = WindowsSdlWrapper.TTF_RenderText_Solid(font.TtfFont, text, Color.White);
-            SdlSurface whRef = (SdlSurface) Marshal.PtrToStructure(new IntPtr(surface), typeof(SdlSurface));
+            SdlSurface whRef = (SdlSurface) Marshal.PtrToStructure(surface, typeof(SdlSurface));
 
 
             return new Size(whRef.W, whRef.H);
-        }
-
-        public char[] KeyPresses()
-        {
-            var re = new List<char>();
-
-            int lenth = 0;
-            var state = WindowsSdlWrapper.SDL_GetKeyboardState(ref lenth);
-
-            for (var i = 0; i < lenth; i++)
-            {
-                if (state[i] == 1)
-                {
-                    var scancode = (SdlScancode) i;
-                    re.Add(scancode.ToString().Split('_').Last().ToLower()[0]);
-                }
-            }
-
-            return re.ToArray();
         }
 
         public Point GetMouseLocation()
@@ -189,6 +159,16 @@ namespace MyvarUI.SDL
         public void Free(IntPtr memblock)
         {
             WindowsSdlWrapper.SDL_free(memblock);
+        }
+
+        public SdlKeycode GetKeyCode(SdlScancode code)
+        {
+            return WindowsSdlWrapper.SDL_GetKeyFromScancode(code);
+        }
+
+        public SdlScancode GetScancode(SdlKeycode key)
+        {
+            return WindowsSdlWrapper.SDL_GetScancodeFromKey(key);
         }
     }
 }

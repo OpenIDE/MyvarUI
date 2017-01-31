@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using MyvarUI.Events;
 
 namespace MyvarUI.SDL
 {
     public interface ISDL
     {
-        Action<SdlEventType> HookEvents { get; set; }
+        //Action<SdlEventType> HookEvents { get; set; }
+        EventHandler<SDL_Event> HookEventHandler { get; set; }
 
         void Init();
         void CreateWindow(string name, int x, int y, int width, int height);
@@ -22,7 +24,8 @@ namespace MyvarUI.SDL
 
         MouseState GetMouseState();
 
-        char[] KeyPresses();
+        SdlKeycode GetKeyCode(SdlScancode code);
+        SdlScancode GetScancode(SdlKeycode key);
 
         Size CalulateTextSize(string text, Font font, int sizept);
 

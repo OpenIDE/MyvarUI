@@ -60,37 +60,39 @@ namespace MyvarUI.Window
             Hidden = false;
             _displayPort.CreateWindow(Title, X, Y, Width, Height);
 
-            _displayPort.HookEvents = (x) =>
+            _displayPort.HookEventHandler += (s, e) =>
             {
+                var x = e.type;
                 if (x == SdlEventType.SdlKeyup
                     || x == SdlEventType.SdlTextinput
                     || x == SdlEventType.SdlKeydown)
                 {
-                    var kState = _displayPort.KeyPresses();
+                    var a = e.key;
+
+                    var eve = new KeyboardEventArgs
+                    {
+                        Scancode = a.keysym.scancode,
+                        Keycode = a.keysym.sym, 
+                        Keymod = a.keysym.mod,
+                        Unicode = a.keysym.unicode
+                    };
+
+                    switch (x)
+                    {
+                        case SdlEventType.SdlKeyup:
+                            eve.State = KeyboardState.KeyUp;
+                            break;
+                        case SdlEventType.SdlTextinput:
+                            eve.State = KeyboardState.TextInput;
+                            break;
+                        case SdlEventType.SdlKeydown:
+                            eve.State = KeyboardState.KeyDown;
+                            break;
+                    }
 
                     foreach (var i in Controls)
                     {
-                        var kbst = new KeybordEventArgs();
-
-                        switch (x)
-                        {
-                            case SdlEventType.SdlKeyup:
-                                kbst.State = KeybordState.KeyUp;
-                                break;
-                            case SdlEventType.SdlTextinput:
-                                kbst.State = KeybordState.TextInput;
-                                break;
-                            case SdlEventType.SdlKeydown:
-                                kbst.State = KeybordState.KeyDown;
-                                break;
-                        }
-
-                        if (kState.Length != 0)
-                        {
-                            kbst.Input = kState;
-
-                            i.FireKeybordEvents(kbst);
-                        }
+                        i.FireKeyboardEvents(eve);
                     }
                 }
             };

@@ -4,31 +4,37 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using MyvarUI.Events;
 using MyvarUI.SDL.Wrappers;
 
 namespace MyvarUI.SDL
 {
-    public unsafe class LinuxIsdl : ISDL
+    public unsafe class LinuxSDL : ISDL
     {
-        public Action<SdlEventType> HookEvents { get; set; } = (x) => { Console.WriteLine("Event: " + x.ToString()); };
+        //public Action<SdlEventType> HookEvents { get; set; } = (x) => { Console.WriteLine("Event: " + x.ToString()); };
+        public EventHandler<SDL_Event> HookEventHandler { get; set; }
 
-        private void* _window;
-        private void* _renderer;
+        private IntPtr _window;
+        private IntPtr _renderer;
 
         public void Clear(Color c)
         {
             LinuxSdlWrapper.SDL_SetRenderDrawColor(_renderer, c.R, c.G, c.B, c.A);
-            LinuxSdlWrapper.SDL_RenderClear(_renderer);
+            LinuxSdlWrapper.SDL_RenderClear(_window);
         }
 
         public void CreateWindow(string name, int x, int y, int width, int height)
         {
-            void* w = _window, r = _renderer;
-            LinuxSdlWrapper.SDL_CreateWindowAndRenderer(width, height, 0, &w, &r);
-            LinuxSdlWrapper.SDL_SetWindowTitle(w, name);
-            _window = w;
-            _renderer = r;
+        //    IntPtr window;
+         //   IntPtr render;
+
+            LinuxSdlWrapper.SDL_CreateWindowAndRenderer(width, height, 0, out _window, out _renderer);
+            LinuxSdlWrapper.SDL_SetWindowTitle(_window, name);
+           // _window = w;
+            //_renderer = r;
             DumpErrors();
+
+         //   return new WindowInfo(window, render);
         }
 
         public void Init()
@@ -56,25 +62,14 @@ namespace MyvarUI.SDL
         {
             LinuxSdlWrapper.SDL_RenderPresent(_renderer);
 
-            /* TODO: Implment a real event system*/
-            byte[] buf = new byte[200];
-
-            fixed (byte* ptr = buf)
+            SDL_Event e;
+            if (LinuxSdlWrapper.SDL_PollEvent(out e) == 1)
             {
-                /*
-                This is super hackey but i chould not get it to work normal way,
-                if some one know how to make this work in a non hack way pleae fix it
-                */
-                if (LinuxSdlWrapper.SDL_PollEvent(ptr) == 1)
+                HookEventHandler?.Invoke(this, e);
+
+                if (e.type == SdlEventType.SdlQuit)
                 {
-                    var type = BitConverter.ToUInt32(buf, 0);
-
-                    HookEvents((SdlEventType) type);
-
-                    if (type == (uint) SdlEventType.SdlQuit)
-                    {
-                        Environment.Exit(0);
-                    }
+                    Environment.Exit(0);
                 }
             }
         }
@@ -132,29 +127,10 @@ namespace MyvarUI.SDL
         public Size CalulateTextSize(string text, Font font, int sizept)
         {
             var surface = LinuxSdlWrapper.TTF_RenderText_Solid(font.TtfFont, text, Color.White);
-            SdlSurface whRef = (SdlSurface) Marshal.PtrToStructure(new IntPtr(surface), typeof(SdlSurface));
+            SdlSurface whRef = (SdlSurface) Marshal.PtrToStructure(surface, typeof(SdlSurface));
 
 
             return new Size(whRef.W, whRef.H);
-        }
-
-        public char[] KeyPresses()
-        {
-            var re = new List<char>();
-
-            int lenth = 0;
-            var state = LinuxSdlWrapper.SDL_GetKeyboardState(ref lenth);
-
-            for (var i = 0; i < lenth; i++)
-            {
-                if (state[i] == 1)
-                {
-                    var scancode = (SdlScancode) i;
-                    re.Add(scancode.ToString().Split('_').Last().ToLower()[0]);
-                }
-            }
-
-            return re.ToArray();
         }
 
         public Point GetMouseLocation()
@@ -189,6 +165,16 @@ namespace MyvarUI.SDL
         public void Free(IntPtr memblock)
         {
             LinuxSdlWrapper.SDL_free(memblock);
+        }
+
+        public SdlKeycode GetKeyCode(SdlScancode code)
+        {
+            return LinuxSdlWrapper.SDL_GetKeyFromScancode(code);
+        }
+
+        public SdlScancode GetScancode(SdlKeycode key)
+        {
+            return LinuxSdlWrapper.SDL_GetScancodeFromKey(key);
         }
     }
 }

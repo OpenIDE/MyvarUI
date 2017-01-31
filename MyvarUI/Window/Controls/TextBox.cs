@@ -1,5 +1,7 @@
+using System;
 using MyvarUI.Drawing;
 using MyvarUI.Events;
+using MyvarUI.SDL;
 
 namespace MyvarUI.Window.Controls
 {
@@ -18,18 +20,24 @@ namespace MyvarUI.Window.Controls
             Height = 25;
         }
 
-        public override void FireKeybordEvents(KeybordEventArgs args)
+        public override void FireKeyboardEvents(KeyboardEventArgs args)
         {
-            if (args.State == KeybordState.TextInput)
+            if (!Focused) return;
+
+            if (args.State != KeyboardState.KeyDown) return;
+
+            if (args.Scancode == SdlScancode.Backspace)
             {
-                /*  foreach(var c in args.Input)
-                  {
-                      Text += c;
-                  }*/
-                Text += args.Input[0];
+                if (Text.Length >= 1)
+                {
+                    Text = Text.Remove(Text.Length - 1);
+                }
+                return;
             }
 
-            base.FireKeybordEvents(args);
+            //var c = Keyboard.CharFromScanCode(args.Scancode);
+            var c = args.GetChar();
+            if (c != '\0') Text += c;
         }
 
         public override void Draw(Graphics g)
@@ -40,7 +48,15 @@ namespace MyvarUI.Window.Controls
             if (!string.IsNullOrEmpty(Text))
             {
                 //draw text
-                g.DrawText(Text, 0, 0, Font, 15, Color.Black);
+                string text = Text;
+                Size size = g.CalulateTextSize(text, Font, 15);
+                while (size.W > this.Width)
+                {
+                    text = text.Remove(text.Length - 1);
+                    size = g.CalulateTextSize(text, Font, 15);
+                }
+
+                g.DrawText(text, 0, 0, Font, 15, Color.Black);
             }
 
             if (Focused)

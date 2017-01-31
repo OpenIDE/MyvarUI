@@ -1,6 +1,6 @@
 namespace MyvarUI
 {
-    public enum KeybordState
+    public enum KeyboardState
     {
         KeyUp,
         KeyDown,

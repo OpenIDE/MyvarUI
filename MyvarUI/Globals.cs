@@ -17,11 +17,11 @@ namespace MyvarUI
 
                 if (isLinux)
                 {
-                    SDL = new LinuxIsdl();
+                    SDL = new LinuxSDL();
                 }
                 else if (isWindows)
                 {
-                    SDL = new WindowsIsdl();
+                    SDL = new WindowsSDL();
                 }
                 else
                 {
